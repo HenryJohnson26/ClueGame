@@ -18,6 +18,18 @@ public class TestBoard {
 		grid = new TestBoardCell[ROWS][COLS];
 	}
 	public void calcTargets( TestBoardCell startCell, int pathlength) {
+		if(!visited.contains(startCell)) {
+			visited.add(startCell);
+			if(pathlength == 0) {
+				targets.add(startCell);
+				return;
+			} else {
+				for(TestBoardCell cell : startCell.getAdjList()) {
+					calcTargets(cell, pathlength - 1);
+					visited.remove(startCell);
+				}
+			}
+		}
 		
 	}
 	public Set<TestBoardCell> getTargets(){

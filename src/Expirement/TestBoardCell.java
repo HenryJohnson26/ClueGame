@@ -10,10 +10,27 @@ public class TestBoardCell {
 	private boolean isRoom;
 	private boolean isOccupied;
 	
-	public TestBoardCell(int r, int c) {
+	public TestBoardCell(int r, int c, TestBoard board) {
 		adjacencyList = new HashSet<>();
 		row = r;
 		column = c;
+		createAdjList(board);
+	}
+	
+	private void createAdjList(TestBoard board) {
+		//if it is within bounds add it
+		if(row-1>=0) {
+			 this.addAdjacency(board.getCell(row-1,column));
+		}
+		if(row+1<TestBoard.ROWS) {
+			 this.addAdjacency(board.getCell(row+1,column));
+		}
+		if(column-1>=0) {
+			 this.addAdjacency(board.getCell(row,column-1));
+		}
+		if(column+1<TestBoard.COLS) {
+			 this.addAdjacency(board.getCell(row,column+1));
+		}
 	}
 	
 	public void addAdjacency( TestBoardCell cell) {

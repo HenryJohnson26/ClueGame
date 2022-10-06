@@ -128,7 +128,7 @@ public class BoardTestsExp {
 	}
 	
 	
-	public BoardTestsExp(int tests) {
-		
-	}
+//	public BoardTestsExp(int tests) {
+//		
+//	}
 }

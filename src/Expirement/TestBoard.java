@@ -2,7 +2,6 @@ package Expirement;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class TestBoard {
 	private TestBoardCell[][] grid;
@@ -14,7 +13,7 @@ public class TestBoard {
 	
 	public TestBoard() {
 		targets = new HashSet<>();
-		visited = new TreeSet<>();
+		visited = new HashSet<>();
 		grid = new TestBoardCell[ROWS][COLS];
 		for(int r = 0; r<ROWS; r++) {
 			for(int c = 0; c< COLS;c++) {
@@ -28,18 +27,26 @@ public class TestBoard {
 		}
 	}
 	public void calcTargets( TestBoardCell startCell, int pathlength) {
-		if(!visited.contains(startCell)) {
+			if(!visited.contains(startCell)) {
 			visited.add(startCell);
 			if(pathlength == 0) {
-				targets.add(startCell);
+				if(!startCell.isOccupied()||startCell.isRoom()) {
+					targets.add(startCell);
+				}
+				visited.remove(startCell);
 				return;
-			} else {
+			} 
+			else {
+				if(startCell.isRoom()) {
+					targets.add(startCell);
+				}
 				for(TestBoardCell cell : startCell.getAdjList()) {
 					calcTargets(cell, pathlength - 1);
 					visited.remove(startCell);
 				}
 			}
 		}
+		return;
 		
 	}
 	public Set<TestBoardCell> getTargets(){

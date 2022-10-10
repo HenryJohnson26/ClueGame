@@ -74,61 +74,53 @@ public class BoardTestsExp {
 		Assert.assertTrue(targets.contains(board.getCell(1, 0)));
 	}
 	
-//	//Tests for when there are occupied squares and rooms on the board, but not in range for the player to move to
-//	//@Test
-//	public void TestTargets2() {
-//		board.getCell(0, 2).setOccupied(true);
-//		board.getCell(1, 2).setRoom(true);
-//		TestBoardCell cell = board.getCell(0, 3);
-//		board.calcTargets(cell, 3);
-//		Set<TestBoardCell> targets = board.getTargets();
-//		Assert.assertEquals(3, targets.size());
-//		Assert.assertTrue(targets.contains(board.getCell(1, 2)));
-//		Assert.assertTrue(targets.contains(board.getCell(2, 2)));
-//		Assert.assertTrue(targets.contains(board.getCell(3, 3)));
-//	}
-//	
-//	//Tests for an occupied room
-//	//@Test
-//	public void TestTargets3() {
-//		board.getCell(2, 2).setRoom(true);
-//		board.getCell(2,2).setOccupied(true);
-//		TestBoardCell cell = board.getCell(0, 3);
-//		board.calcTargets(cell, 3);
-//		Set<TestBoardCell> targets = board.getTargets();
-//		Assert.assertEquals(3, targets.size());
-//		Assert.assertTrue(targets.contains(board.getCell(1, 2)));
-//		Assert.assertFalse(targets.contains(board.getCell(2, 2)));
-//		Assert.assertTrue(targets.contains(board.getCell(3, 3)));
-//	}
-//	
-//	//Tests for an empty board
-//	//@Test
-//	public void TestTargets4() {
-//		TestBoardCell cell = board.getCell(0, 3);
-//		board.calcTargets(cell, 3);
-//		Set<TestBoardCell> targets = board.getTargets();
-//		Assert.assertEquals(3, targets.size());
-//		Assert.assertTrue(targets.contains(board.getCell(1, 2)));
-//		Assert.assertTrue(targets.contains(board.getCell(2, 2)));
-//		Assert.assertTrue(targets.contains(board.getCell(3, 3)));
-//	}
-//	
-//	//Tests for an occupied square in the player's movement range
-//	//@Test
-//	public void TestTargets5() {
-//		board.getCell(1, 2).setOccupied(true);
-//		TestBoardCell cell = board.getCell(0, 3);
-//		board.calcTargets(cell, 3);
-//		Set<TestBoardCell> targets = board.getTargets();
-//		Assert.assertEquals(3, targets.size());
-//		Assert.assertFalse(targets.contains(board.getCell(1, 2)));
-//		Assert.assertTrue(targets.contains(board.getCell(2, 2)));
-//		Assert.assertTrue(targets.contains(board.getCell(3, 3)));
-//	}
+	//Tests for when there are occupied squares and rooms on the board, but not in range for the player to move to
+	@Test
+	public void TestTargets2() {
+		board.getCell(2, 0).setOccupied(true);
+		board.getCell(2, 1).setRoom(true);
+		TestBoardCell cell = board.getCell(0, 3);
+		board.calcTargets(cell, 3);
+		Set<TestBoardCell> targets = board.getTargets();
+		Assert.assertTrue(targets.contains(board.getCell(0, 0)));
+		Assert.assertTrue(targets.contains(board.getCell(2, 2)));
+		Assert.assertTrue(targets.contains(board.getCell(3, 3)));
+	}
 	
+	//Tests for an occupied room
+	@Test
+	public void TestTargets3() {
+		board.getCell(0, 2).setRoom(true);
+		board.getCell(0,2).setOccupied(true);
+		TestBoardCell cell = board.getCell(0, 3);
+		board.calcTargets(cell, 3);
+		Set<TestBoardCell> targets = board.getTargets();
+		Assert.assertTrue(targets.contains(board.getCell(0, 0)));
+		Assert.assertTrue(targets.contains(board.getCell(2, 2)));
+		Assert.assertTrue(targets.contains(board.getCell(3, 3)));
+	}
 	
-//	public BoardTestsExp(int tests) {
-//		
-//	}
+	//Tests for an empty board
+	@Test
+	public void TestTargets4() {
+		TestBoardCell cell = board.getCell(0, 3);
+		board.calcTargets(cell, 3);
+		Set<TestBoardCell> targets = board.getTargets();
+		Assert.assertTrue(targets.contains(board.getCell(0, 0)));
+		Assert.assertTrue(targets.contains(board.getCell(2, 2)));
+		Assert.assertTrue(targets.contains(board.getCell(3, 3)));
+	}
+	
+	//Tests for an occupied square in the player's movement range
+	@Test
+	public void TestTargets5() {
+		board.getCell(1, 2).setOccupied(true);
+		TestBoardCell cell = board.getCell(0, 3);
+		board.calcTargets(cell, 3);
+		Set<TestBoardCell> targets = board.getTargets();
+		Assert.assertFalse(targets.contains(board.getCell(1, 2)));
+		Assert.assertTrue(targets.contains(board.getCell(2, 2)));
+		Assert.assertTrue(targets.contains(board.getCell(3, 3)));
+	}
+	
 }

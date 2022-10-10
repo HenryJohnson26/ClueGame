@@ -1,0 +1,13 @@
+//Rooms and room cards
+Room, Bedroom, B
+Room, Living Room, L
+Room, Storage Room, S
+Room, Bathroom, A
+Room, Basement, M
+Room, Balconey, C
+Room, Patio, P
+Room, Garage, G
+Room, Gym, Y
+//other spaces on board
+Space, Unused, X
+Space, Walkway, W

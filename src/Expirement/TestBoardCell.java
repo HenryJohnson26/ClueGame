@@ -10,14 +10,13 @@ public class TestBoardCell {
 	private boolean isRoom;
 	private boolean isOccupied;
 	
-	public TestBoardCell(int r, int c, TestBoard board) {
+	public TestBoardCell(int r, int c) {
 		adjacencyList = new HashSet<>();
 		row = r;
 		column = c;
-		createAdjList(board);
 	}
 	
-	private void createAdjList(TestBoard board) {
+	public void createAdjList(TestBoard board) {
 		//if it is within bounds add it
 		if(row-1>=0) {
 			 this.addAdjacency(board.getCell(row-1,column));

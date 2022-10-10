@@ -16,6 +16,16 @@ public class TestBoard {
 		targets = new HashSet<>();
 		visited = new TreeSet<>();
 		grid = new TestBoardCell[ROWS][COLS];
+		for(int r = 0; r<ROWS; r++) {
+			for(int c = 0; c< COLS;c++) {
+				grid[r][c] = new TestBoardCell(r,c);
+			}
+		}
+		for(int r = 0; r<ROWS; r++) {
+			for(int c = 0; c< COLS;c++) {
+				grid[r][c].createAdjList(this);
+			}
+		}
 	}
 	public void calcTargets( TestBoardCell startCell, int pathlength) {
 		if(!visited.contains(startCell)) {
@@ -36,7 +46,7 @@ public class TestBoard {
 		return targets;
 	}
 	public TestBoardCell getCell( int row, int col) {
-		return new TestBoardCell(row, col, this);
+		return grid[row][col];
 	}
 	
 }

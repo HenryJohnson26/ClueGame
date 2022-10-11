@@ -1,6 +1,10 @@
 package clueGame;
 
 public class Room {
+	//instance variables
+	private String name;
+	private BoardCell centerCell;
+	private BoardCell labelCell;
 	
 	//skeleton methods
 	public String getName() {

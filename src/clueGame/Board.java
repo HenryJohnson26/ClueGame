@@ -29,7 +29,9 @@ public class Board {
             return theInstance;
      }
      //initialize the board (since we are using singleton pattern)
-     public void initialize() {   	 
+     public void initialize() {
+    	 numRows = cells.size();
+    	 numCols = cells.get(0).size();
      }
      
      

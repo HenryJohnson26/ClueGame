@@ -1,0 +1,6 @@
+There are 13 doorways
+cell 4,6 is a doorway LEFT
+Room 'B' has the name "Bedroom"
+The board has NUMROWS rows
+Cell 11,32 is a walkway
+Cell 21,32 is a door DOWN

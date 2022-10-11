@@ -1,6 +1,10 @@
 package clueGame;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Board {
 	 //instance variables
@@ -10,7 +14,9 @@ public class Board {
 	 private String layoutConfigFile;
 	 private String setupConfigFile;
 	 private Map<Character, Room> roomMap;
-	
+	 private ArrayList<ArrayList<String>> cells;
+	 private ArrayList<Room> rooms;
+	 private FileReader input;
 	
      //variable and methods used for singleton pattern
      private static Board theInstance = new Board();
@@ -27,16 +33,43 @@ public class Board {
      }
      
      
-     //skeleton methods
+     //sets the layout and setup files to the specified files
      public void setConfigFiles(String layout, String setup) {
+    	 layoutConfigFile = layout;
+    	 setupConfigFile = setup;
      }
      
-     public void loadSetupConfig() {
-    	 
+     //loads the setup config file and creates the appropriate rooms
+     public void loadSetupConfig() throws FileNotFoundException {
+    	 input = new FileReader(setupConfigFile);
+    	 Scanner in = new Scanner(input);
+    	 String line;
+    	 while(in.hasNext()) {
+    		 line = in.nextLine();
+    		 String[] parse = line.split(", ", -1);
+    		 if(parse.length > 1) {
+    			Room r = new Room(parse[1], parse[2]); 
+    			rooms.add(r);
+    		 }		 
+    	 }
+    	 in.close();
      }
      
-     public void loadLayoutConfig() {
-    	 
+     //loads the layout config file and puts each value into an array list
+     public void loadLayoutConfig() throws FileNotFoundException {
+    	 input = new FileReader(layoutConfigFile);
+    	 Scanner in = new Scanner(input);
+    	 String line;
+    	 while(in.hasNext()) {
+    		 ArrayList<String> cell = new ArrayList();
+    		 line = in.nextLine();
+    		 String[] parse = line.split(",", -1);
+    		 for(int i = 0; i < parse.length; i++) {
+    			 cell.add(parse[i]);
+    		 }
+    		 cells.add(cell);
+    	 }
+    	 in.close(); 
      }
      
      public Room getRoom(char roomSymbol) {

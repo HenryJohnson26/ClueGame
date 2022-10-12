@@ -31,6 +31,7 @@ public class Board {
      }
      //initialize the board (since we are using singleton pattern)
      public void initialize() {
+    	 //handles exceptions
     	 try {
 			loadSetupConfig();
 			loadLayoutConfig();
@@ -134,6 +135,7 @@ public class Board {
     		 for(int i = 0; i < parse.length; i++) {
     			 if(!parse[i].equals("")) {
     				 label = parse[i].charAt(0);
+    				 //throws exception if the label is not a valid room
         			 if(!roomMap.containsKey(label)) {
         				 throw new BadConfigFormatException("Invalid cell value at " + counter + "," + i + ". Invalid room character.");
         			 }
@@ -144,6 +146,7 @@ public class Board {
     		 counter++;
     	 }
     	 
+    	 //throws exception if the size of the columns is not consistent
     	 int boardWidth = cells.get(0).size();
     	 for(ArrayList<String> s : cells) {
     		 if(boardWidth != s.size()) {

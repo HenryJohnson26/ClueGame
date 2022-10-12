@@ -16,8 +16,8 @@ import clueGame.Room;
 
 class FileInitTests {
 	//constants to test whether file was loaded correctly
-	public static final int NUM_ROWS = 24;
-	public static final int NUM_COLUMNS = 34;
+	public static final int NUM_ROWS = 26;
+	public static final int NUM_COLUMNS = 35;
 	
 	private static Board board;
 	
@@ -59,13 +59,13 @@ class FileInitTests {
 		BoardCell cell = board.getCell(4, 6);
 		assertTrue(cell.isDoorway());
 		assertEquals(DoorDirection.LEFT, cell.getDoorDirection());
-		cell = board.getCell(14, 20);
+		cell = board.getCell(14, 19);
 		assertTrue(cell.isDoorway());
 		assertEquals(DoorDirection.UP, cell.getDoorDirection());
 		cell = board.getCell(4, 7);
 		assertTrue(cell.isDoorway());
 		assertEquals(DoorDirection.RIGHT, cell.getDoorDirection());
-		cell = board.getCell(21, 32);
+		cell = board.getCell(21, 31);
 		assertTrue(cell.isDoorway());
 		assertEquals(DoorDirection.DOWN, cell.getDoorDirection());
 		// Test that walkways are not doors
@@ -84,7 +84,7 @@ class FileInitTests {
 					numDoors++;
 				}
 			}
-		Assert.assertEquals(13, numDoors);
+		Assert.assertEquals(14, numDoors);
 	}
 	
 	//Tests rooms to make sure initial is correct
@@ -116,7 +116,7 @@ class FileInitTests {
 		assertTrue( room.getCenterCell() == cell );
 		
 		//Tests for secret passage
-		cell = board.getCell(7, 35);
+		cell = board.getCell(7, 34);
 		room = board.getRoom( cell );
 		assertTrue( room != null );
 		assertEquals( room.getName(), "Patio" );

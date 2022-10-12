@@ -14,13 +14,14 @@ public class BoardCell {
 	private boolean isLabel;
 	private boolean isRoomCenter;
 	
+	//constructor to create new cells
 	public BoardCell(int row, int col, char initial) {
 		this.row = row;
 		this.col = col;
 		this.initial = initial;
 	}
 	
-	//skeleton methods
+	//methods to determine the type of cell
 	public boolean isDoorway() {
 		return isDoorway;
 	}
@@ -33,13 +34,13 @@ public class BoardCell {
 		return isRoomCenter;
 	}
 	
+	//getters
 	public DoorDirection getDoorDirection() {
-		return null;
+		return doorDirection;
 	}
 	
 	public char getSecretPassage() {
-		char c = '@';
-		return c;
+		return secretPassage;
 	}
 
 }

@@ -7,12 +7,13 @@ public class Room {
 	private BoardCell centerCell;
 	private BoardCell labelCell;
 	
+	//constructor that creates new rooms
 	public Room(String name, String initial) {
 		this.name = name;
 		this.initial = initial;
 	}
 	
-	//skeleton methods
+	//getters and setters
 	public String getName() {
 		return name;
 	}
@@ -21,8 +22,16 @@ public class Room {
 		return new BoardCell();
 	}
 	
+	public void setLabelCell(BoardCell cell) {
+		
+	}
+	
 	public BoardCell getCenterCell() {
 		return new BoardCell();
+	}
+	
+	public void setCenterCell(BoardCell cell) {
+		
 	}
 
 }

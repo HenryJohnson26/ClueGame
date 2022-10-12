@@ -30,6 +30,7 @@ public class Board {
      }
      //initialize the board (since we are using singleton pattern)
      public void initialize() {
+    	 //Gets the number of rows and columns from the cells array list and initializes the grid
     	 numRows = cells.size();
     	 numCols = cells.get(0).size();
     	 grid = new BoardCell[numRows][numCols];
@@ -75,14 +76,17 @@ public class Board {
     	 in.close(); 
      }
      
+     //returns the room based on the char symbol given
      public Room getRoom(char roomSymbol) {
     	 return new Room();
      }
      
+     //returns the room based on the value of the cell
      public Room getRoom(BoardCell cell) {
     	 return new Room();
      }
      
+     //other getters
      public int getNumRows() {
     	 return numRows;
      }
@@ -92,6 +96,6 @@ public class Board {
      }
      
      public BoardCell getCell(int row, int col) {
-    	 return new BoardCell();
+    	 return grid[row][col];
      }
 }

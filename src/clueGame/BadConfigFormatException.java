@@ -1,12 +1,19 @@
 package clueGame;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 public class BadConfigFormatException extends Exception {
 	
 	public BadConfigFormatException() {
 		super("Incorrect file format on config file");
 	}
 	
-	public BadConfigFormatException(String message) {
+	public BadConfigFormatException(String message) throws FileNotFoundException {
 		super(message);
+		//write output to file
+		PrintWriter output = new PrintWriter("logfile.txt");
+		output.print(message);
+		output.close();
 	}	
 }

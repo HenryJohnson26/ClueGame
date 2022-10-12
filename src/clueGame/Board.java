@@ -3,8 +3,10 @@ package clueGame;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Board {
 	 //instance variables
@@ -13,9 +15,8 @@ public class Board {
 	 private BoardCell[][] grid;
 	 private String layoutConfigFile;
 	 private String setupConfigFile;
-	 private Map<Character, Room> roomMap;
-	 private ArrayList<ArrayList<String>> cells;
-	 private ArrayList<Room> rooms;
+	 private Map<Character, Room> roomMap = new HashMap();
+	 private ArrayList<ArrayList<String>> cells = new ArrayList();
 	 private FileReader input;
 	
      //variable and methods used for singleton pattern
@@ -48,6 +49,41 @@ public class Board {
     	 for(int i = 0; i < cells.size(); i++) {
     		 for(int j = 0; j < cells.get(i).size(); j++) {
     			 grid[i][j] = new BoardCell(i, j, cells.get(i).get(j).charAt(0));
+    			 grid[i][j].setDoorDirection(DoorDirection.NONE);
+    			 
+    			 //special cell cases
+    			 if(cells.get(i).get(j).length() == 2) {
+    				 String[] parse = cells.get(i).get(j).split("");
+    				 switch(parse[1]) {
+    				 case "^":
+    					 grid[i][j].setDoorDirection(DoorDirection.UP);
+    					 grid[i][j].setDoor();
+    					 break;
+    				 case ">":
+    					 grid[i][j].setDoorDirection(DoorDirection.RIGHT);
+    					 grid[i][j].setDoor();
+    					 break;
+    				 case "<":
+    					 grid[i][j].setDoorDirection(DoorDirection.LEFT);
+    					 grid[i][j].setDoor();
+    					 break;
+    				 case "v":
+    					 grid[i][j].setDoorDirection(DoorDirection.DOWN);
+    					 grid[i][j].setDoor();
+    					 break;
+    				 case "#":
+    					 grid[i][j].setLabel();
+    					 roomMap.get(parse[0].charAt(0)).setLabelCell(grid[i][j]);
+    					 break;
+    				 case "*":
+    					 grid[i][j].setRoomCenter();
+    					 roomMap.get(parse[0].charAt(0)).setCenterCell(grid[i][j]);
+    					 break;
+    				 default:
+    					 grid[i][j].setSecretPassage(parse[1].charAt(0));
+    					 break;
+    				 }
+    			 }
     		 }
     	 }
      }
@@ -61,7 +97,7 @@ public class Board {
      
      //loads the setup config file and creates the appropriate rooms
      public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException {
-    	 input = new FileReader(setupConfigFile);
+    	 input = new FileReader("data/" + setupConfigFile);
     	 Scanner in = new Scanner(input);
     	 String line;
     	 Character label;
@@ -85,24 +121,29 @@ public class Board {
      
      //loads the layout config file and puts each value into an array list
      public void loadLayoutConfig() throws FileNotFoundException, BadConfigFormatException {
-    	 input = new FileReader(layoutConfigFile);
+    	 input = new FileReader("data/" + layoutConfigFile);
     	 Scanner in = new Scanner(input);
     	 String line;
     	 int counter = 0;
-    	 ArrayList<String> cell = new ArrayList();
+    	 Character label;
+    	 ArrayList<String> cell;
     	 while(in.hasNext()) {
+    		 cell = new ArrayList();
     		 line = in.nextLine();
     		 String[] parse = line.split(",", -1);
     		 for(int i = 0; i < parse.length; i++) {
-    			 if(roomMap.containsKey(parse[i].charAt(0))) {
-    				 throw new BadConfigFormatException("Invalid cell value at " + counter + "," + i + ". Invalid room character.");
+    			 if(!parse[i].equals("")) {
+    				 label = parse[i].charAt(0);
+        			 if(!roomMap.containsKey(label)) {
+        				 throw new BadConfigFormatException("Invalid cell value at " + counter + "," + i + ". Invalid room character.");
+        			 }
+        			 cell.add(parse[i]);
     			 }
-    			 cell.add(parse[i]);
     		 }
     		 cells.add(cell);
     		 counter++;
-    		 cell.clear();
     	 }
+    	 
     	 int boardWidth = cells.get(0).size();
     	 for(ArrayList<String> s : cells) {
     		 if(boardWidth != s.size()) {

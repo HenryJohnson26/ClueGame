@@ -16,8 +16,8 @@ import clueGame.Room;
 
 class FileInitTests {
 	//constants to test whether file was loaded correctly
-	public static final int NUM_ROWS = 25;
-	public static final int NUM_COLUMNS = 35;
+	public static final int NUM_ROWS = 24;
+	public static final int NUM_COLUMNS = 34;
 	
 	private static Board board;
 	

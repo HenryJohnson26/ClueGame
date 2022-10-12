@@ -32,6 +32,7 @@ public class Board {
      public void initialize() {
     	 numRows = cells.size();
     	 numCols = cells.get(0).size();
+    	 grid = new BoardCell[numRows][numCols];
      }
      
      

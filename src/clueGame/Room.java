@@ -3,14 +3,12 @@ package clueGame;
 public class Room {
 	//instance variables
 	private String name;
-	private String initial;
 	private BoardCell centerCell;
 	private BoardCell labelCell;
 	
 	//constructor that creates new rooms
-	public Room(String name, String initial) {
+	public Room(String name) {
 		this.name = name;
-		this.initial = initial;
 	}
 	
 	//getters and setters
@@ -19,19 +17,19 @@ public class Room {
 	}
 	
 	public BoardCell getLabelCell() {
-		return new BoardCell();
+		return labelCell;
 	}
 	
 	public void setLabelCell(BoardCell cell) {
-		
+		this.labelCell = cell;
 	}
 	
 	public BoardCell getCenterCell() {
-		return new BoardCell();
+		return centerCell;
 	}
 	
 	public void setCenterCell(BoardCell cell) {
-		
+		this.centerCell = cell;
 	}
 
 }

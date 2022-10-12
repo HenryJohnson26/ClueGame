@@ -42,5 +42,9 @@ public class BoardCell {
 	public char getSecretPassage() {
 		return secretPassage;
 	}
+	
+	public char getInitial() {
+		return initial;
+	}
 
 }

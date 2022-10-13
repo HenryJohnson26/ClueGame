@@ -1,7 +1,78 @@
-I, Henry Johnson, certify that I partiI, Henry Johnson participated equitably in the creation of assignment KerPlop, dated 10/5/2022.
-I, Isaiah Stene, certify that I pI, Isaiah Stene participated equitably in the creation of this assignment KerPlop, dated 10/5/2022.
+I, Henry Johnson, certify that I partiI, Henry Johnson participated equitably in the creation of assignment ClueGame, dated 10/12/2022.
+I, Isaiah Stene, certify that I pI, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 10/12/2022.
 
+<<<<<<< HEAD
 commit e7f8bc4de626569f5f47a7f9a61a4c5026729047 (HEAD -> master, origin/master)
+=======
+commit 950a6dcca3301bb6ec8073f586e2407104db1ce7 (HEAD -> master, origin/master)
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Oct 12 16:25:35 2022 -0600
+
+    Added some more comments
+
+commit 4feae363702d9d7e310782086ec9a9269f8a3202
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Oct 12 16:20:38 2022 -0600
+
+    added extra credit text file output
+
+commit e2fe9ca71c4940f588be65744a551017ef5cb07f
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Oct 12 16:10:35 2022 -0600
+
+    got tests we designed to pass
+
+commit 90a102abc673d4092b820d2116f79d6ebbfdcd50
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Oct 12 15:57:49 2022 -0600
+
+    Got the 306 tests to pass
+
+commit 9dbb4043aa9c976eac2845a13f7e9d5d9d58999e
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Oct 12 14:36:55 2022 -0600
+
+    Wrote the exception class and added error handling to file congig methods
+
+commit 4823c6d3c6c0e9e016c0d071ec0a2b244e4762f6
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Oct 12 10:57:52 2022 -0600
+
+    added some getters and setters
+
+commit 69cef5a90c97369f5245b37bb25de4be0d5f8136
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Oct 12 10:42:03 2022 -0600
+
+    adjusted csv files to fit input format
+
+commit a09bc46a59442c92f2e82d29395cb0b67f3390fa
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Tue Oct 11 13:45:52 2022 -0600
+
+    Wrote BoardCell constructor
+
+commit 8cbf8e14673736c15f5b272233e0f3f6f931fcf9
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Tue Oct 11 13:36:51 2022 -0600
+
+    Wrote the code for setConfigFiles, loadSetupConfig, and loadLayoutConfig
+
+commit 9004dfe04d2f96d6bef9380c8d8c3c562ca64b90
+Merge: 9f087fd e7f8bc4
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Tue Oct 11 12:57:16 2022 -0600
+
+    Merge branch 'master' of https://github.com/HenryJohnson26/ClueGame
+
+commit 9f087fd683def8390d332513ce3a6eb87042a591
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Tue Oct 11 12:56:52 2022 -0600
+
+    Added instance variables to classes
+
+commit e7f8bc4de626569f5f47a7f9a61a4c5026729047
+>>>>>>> 10fbd62800424d293191de6fc59b809e89dda198
 Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
 Date:   Mon Oct 10 20:59:07 2022 -0600
 
@@ -30,9 +101,44 @@ Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
 Date:   Mon Oct 10 15:49:27 2022 -0600
 
     made all tests work, and adjusted test to make it more robust
+<<<<<<< HEAD
 :
 
 commit bfb23f204adc87bfd962e20666299ac2033416fd (HEAD -> junitTests, origin/junitTests)
+=======
+
+commit 3a64045a492dae6f95e14373b12fd1a81c83d960
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Mon Oct 10 14:54:21 2022 -0600
+
+    got five test cases to run
+
+commit ccefa7c27e809555d89bfc89b2c22e5b5380e7ee
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Mon Oct 10 14:21:12 2022 -0600
+
+    running tests
+
+commit 615e98368820354e973e089782ef754f43c59b9c
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Oct 6 13:47:56 2022 -0600
+
+    Driver:Isaiah Stene; Wrote calcTargets
+
+commit fba74fbf942673a99af49fbc2ea98eb71f282af1 (origin/junitTests, origin/HEAD, junitTests)
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Oct 6 13:36:27 2022 -0600
+
+    added code for adjacendy list creation
+
+commit 19d5292307a3b4c20dad337b2a9184e1cc9b8684
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Oct 6 13:08:48 2022 -0600
+
+    Changed constructor so that all tests fail, and no errors occur
+
+commit bfb23f204adc87bfd962e20666299ac2033416fd
+>>>>>>> 10fbd62800424d293191de6fc59b809e89dda198
 Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
 Date:   Wed Oct 5 16:15:34 2022 -0600
 
@@ -61,34 +167,16 @@ Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
 Date:   Wed Oct 5 15:19:36 2022 -0600
 
     added instance data constructor setters and getters for TestBoardCell
-:
-commit bfb23f204adc87bfd962e20666299ac2033416fd (HEAD -> junitTests, origin/junitTests)
+
+commit bda4b9b345afa712ac0ab897b894bc0d33f45908
 Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
-Date:   Wed Oct 5 16:15:34 2022 -0600
+Date:   Wed Oct 5 15:08:42 2022 -0600
 
-    Driver: Isaiah Stene; Wrote the junit test cases
+    Initial commit- added TestBoardCell
 
-commit 69bd5d6810479068cf5206787000b9cbfd89b13f
+commit 68b2deb5e744bc8fe4ad41df41df6ee993552972 (origin/calcTargets)
 Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
-Date:   Wed Oct 5 15:26:48 2022 -0600
+Date:   Wed Oct 5 15:07:10 2022 -0600
 
-    added BoardTestsExp
+    Initial commit
 
-commit d544f35845d7e219288708088219b7368b6577f3
-Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
-Date:   Wed Oct 5 15:25:54 2022 -0600
-
-    added method stubs
-
-commit e5f9d22cdb493e42169477ec6ad276ef5f1cba0e
-Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
-Date:   Wed Oct 5 15:20:32 2022 -0600
-
-    added class Testboard
-
-commit ab29eadde36ade07d5a8fed926e1628991e9e0f7
-Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
-Date:   Wed Oct 5 15:19:36 2022 -0600
-
-    added instance data constructor setters and getters for TestBoardCell
-:

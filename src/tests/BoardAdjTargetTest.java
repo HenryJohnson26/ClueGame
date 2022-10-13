@@ -1,20 +1,34 @@
 package tests;
 
+<<<<<<< HEAD
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
+=======
+import static org.junit.jupiter.api.Assertions.*;
+>>>>>>> 10fbd62800424d293191de6fc59b809e89dda198
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import clueGame.Board;
+<<<<<<< HEAD
 import clueGame.BoardCell;
 
 public class BoardAdjTargetTest {
 	private static Board board;
 	
+=======
+
+class BoardAdjTargetTest {
+
+	// We make the Board static because we can load it one time and 
+	// then do all the tests. 
+	private static Board board;
+		
+>>>>>>> 10fbd62800424d293191de6fc59b809e89dda198
 	@BeforeAll
 	public static void setUp() {
 		// Board is singleton, get the only instance
@@ -25,6 +39,7 @@ public class BoardAdjTargetTest {
 		board.initialize();
 	}
 
+<<<<<<< HEAD
 	// Ensure that player does not move around within room
 	// These cells are LIGHT ORANGE on the planning spreadsheet
 	@Test
@@ -290,4 +305,6 @@ public class BoardAdjTargetTest {
 		assertTrue(targets.contains(board.getCell(8, 15)));
 
 	}
+=======
+>>>>>>> 10fbd62800424d293191de6fc59b809e89dda198
 }

@@ -1,6 +1,37 @@
 I, Henry Johnson, certify that I partiI, Henry Johnson participated equitably in the creation of assignment KerPlop, dated 10/5/2022.
 I, Isaiah Stene, certify that I pI, Isaiah Stene participated equitably in the creation of this assignment KerPlop, dated 10/5/2022.
 
+commit e7f8bc4de626569f5f47a7f9a61a4c5026729047 (HEAD -> master, origin/master)
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Mon Oct 10 20:59:07 2022 -0600
+
+    added test.txt
+
+commit 2d7e70908c8306e94de3b4c6693921c1bb80f01b
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Mon Oct 10 17:29:19 2022 -0600
+
+    Wrote the Junit tests for the FileInitTests class and ensured that all of them failed.
+
+commit db0423fd838b4afad899302bef6d89b3c0d1a891
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Mon Oct 10 17:01:14 2022 -0600
+
+    Wrote skeleton methods for the different classes to get rid of errors
+
+commit e0b7be2f0ebba639775884a8609a7051726c8dd2
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Mon Oct 10 16:18:50 2022 -0600
+
+    Created new classes and added data directory to the project
+
+commit 656d1b27dd32580ff694d10ead395c01a968ccb4
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Mon Oct 10 15:49:27 2022 -0600
+
+    made all tests work, and adjusted test to make it more robust
+:
+
 commit bfb23f204adc87bfd962e20666299ac2033416fd (HEAD -> junitTests, origin/junitTests)
 Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
 Date:   Wed Oct 5 16:15:34 2022 -0600

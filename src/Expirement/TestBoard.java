@@ -27,10 +27,15 @@ public class TestBoard {
 		}
 	}
 	public void calcTargets( TestBoardCell startCell, int pathlength) {
+		//checks if it the cell is visited
 			if(!visited.contains(startCell)) {
+				//if nod, add it and run the following
 			visited.add(startCell);
+			//checks to see if it is a target
 			if(pathlength == 0) {
+				//see if cell is occupied and if it is a room
 				if(!startCell.isOccupied()||startCell.isRoom()) {
+					//if it is not an occupied walkway, add it to targets
 					targets.add(startCell);
 				}
 				visited.remove(startCell);

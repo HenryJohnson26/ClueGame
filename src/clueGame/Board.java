@@ -4,9 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
+import Expirement.TestBoardCell;
 
 public class Board {
 	 //instance variables
@@ -18,6 +21,8 @@ public class Board {
 	 private Map<Character, Room> roomMap = new HashMap();
 	 private ArrayList<ArrayList<String>> cells = new ArrayList();
 	 private FileReader input;
+	 private Set<BoardCell> targets = new HashSet();
+		private Set<BoardCell> visited;
 	
      //variable and methods used for singleton pattern
      private static Board theInstance = new Board();
@@ -175,4 +180,17 @@ public class Board {
      public BoardCell getCell(int row, int col) {
     	 return grid[row][col];
      }
+     //skeleton Methods
+     //TODO: finish methods
+	 public Set<BoardCell> getAdjList(int row,  int col){
+		 return getCell(row,col).cellGetAdjList();
+	}
+	 
+	 public Set<BoardCell> getTargets(){
+		return targets; 
+	 }
+	 
+	 public void calcTargets(BoardCell startCell, int pathLenght) {
+		 
+	 }
 }

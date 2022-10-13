@@ -14,6 +14,7 @@ public class BoardCell {
 	private boolean isDoorway = false;
 	private boolean isLabel = false;
 	private boolean isRoomCenter = false;
+	private boolean isOccupied = false;
 	
 	//constructor to create new cells
 	public BoardCell(int row, int col, char initial) {
@@ -67,5 +68,12 @@ public class BoardCell {
 	public char getInitial() {
 		return initial;
 	}
-
+	
+	public Set<BoardCell> cellGetAdjList(){
+		return adjList;
+	}
+	
+	public void setOccupied(boolean occupied) {
+		isOccupied = occupied;
+	}
 }

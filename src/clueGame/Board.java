@@ -18,11 +18,11 @@ public class Board {
 	 private BoardCell[][] grid;
 	 private String layoutConfigFile;
 	 private String setupConfigFile;
-	 private Map<Character, Room> roomMap = new HashMap();
-	 private ArrayList<ArrayList<String>> cells = new ArrayList();
+	 private Map<Character, Room> roomMap = new HashMap<>();
+	 private ArrayList<ArrayList<String>> cells = new ArrayList<>();
 	 private FileReader input;
-	 private Set<BoardCell> targets = new HashSet();
-		private Set<BoardCell> visited;
+	 private Set<BoardCell> targets = new HashSet<>();
+	 private Set<BoardCell> visited = new HashSet<>();
 	
      //variable and methods used for singleton pattern
      private static Board theInstance = new Board();
@@ -134,7 +134,7 @@ public class Board {
     	 Character label;
     	 ArrayList<String> cell;
     	 while(in.hasNext()) {
-    		 cell = new ArrayList();
+    		 cell = new ArrayList<>();
     		 line = in.nextLine();
     		 String[] parse = line.split(",", -1);
     		 for(int i = 0; i < parse.length; i++) {
@@ -193,7 +193,35 @@ public class Board {
 		return targets; 
 	 }
 	 
-	 public void calcTargets(BoardCell startCell, int pathLenght) {
-		 
+	 public void calcTargets(BoardCell startCell, int pathlength) {
+		//checks if it the cell is visited
+		if(!visited.contains(startCell)) {
+			//if nod, add it and run the following
+			visited.add(startCell);
+			//checks to see if it is a target
+			if(pathlength == 0) {
+				//see if cell is occupied and if it is a room
+				if(!startCell.getOccupied()||startCell.isRoom()) {
+					//if it is not an occupied walkway, add it to targets
+					targets.add(startCell);
+				}
+				visited.remove(startCell);
+				return;
+			} 
+			else {
+				if(startCell.isRoom()) {
+					targets.add(startCell);
+				}
+				for(BoardCell cell : startCell.cellGetAdjList()) {
+					calcTargets(cell, pathlength - 1);
+					visited.remove(startCell);
+				}
+			}
+		}
+		return;	
+	 }
+	 
+	 public Map<Character, Room> getRoomMap() {
+		 return roomMap;
 	 }
 }

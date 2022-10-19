@@ -1,9 +1,46 @@
-I, Henry Johnson, certify that I partiI, Henry Johnson participated equitably in the creation of assignment ClueGame, dated 10/12/2022.
-I, Isaiah Stene, certify that I pI, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 10/12/2022.
+I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of assignment ClueGame, dated 10/13/2022.
+I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 10/13/2022.
 
 <<<<<<< HEAD
 commit e7f8bc4de626569f5f47a7f9a61a4c5026729047 (HEAD -> master, origin/master)
 =======
+commit 45ad2ec8e0867e0e00147cd686bff26aba512e92 (HEAD -> master, origin/master)
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Thu Oct 13 13:54:02 2022 -0600
+
+    Added spreadsheet for tests
+
+commit cbbfb3469d6c23edcca64d243fffa532f1e806dc
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Oct 13 13:51:40 2022 -0600
+
+    adjusted BoardAdjTargetTest.java to match current design
+
+commit 3e3aff337e3adaa8dacf53bb422393d74806d3bf
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Oct 13 13:03:53 2022 -0600
+
+    solved merge conflict
+
+commit 431d24b46d5a3406600f45f8dc2c15ecac2c5fd3
+Merge: 3d4459c 10fbd62
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Oct 13 13:01:49 2022 -0600
+
+    Added method stubs to make boardAdjTargetTest fail
+
+commit 3d4459cd2fe170a50b3e604a29081126f633d826
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Oct 13 13:01:17 2022 -0600
+
+    Added method stubs to make boardAdjTargetTest fail
+
+commit 10fbd62800424d293191de6fc59b809e89dda198
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Thu Oct 13 10:44:04 2022 -0600
+
+    Added test class files for adjacency to the project
+
 commit 950a6dcca3301bb6ec8073f586e2407104db1ce7 (HEAD -> master, origin/master)
 Author: Isaiah Stene <istene@mines.edu>
 Date:   Wed Oct 12 16:25:35 2022 -0600

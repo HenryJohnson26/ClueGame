@@ -91,7 +91,7 @@ public class BoardCell {
 	}
 	
 	public boolean isRoom() {
-		if(initial != 'W' || initial != 'X') {
+		if(initial != 'W' && initial != 'X') {
 			return true;
 		}
 		return false;
@@ -102,7 +102,6 @@ public class BoardCell {
 		if(this.getIsSecretPassage()) {
 			board.getRoomMap().get(board.getCell(row, col).getInitial()).getCenterCell().addAdjacency(board.getRoomMap().get(secretPassage).getCenterCell());
 		}
-		
 		//adds adjacency to room center cell
 		else if(this.isDoorway()) {
 			if(this.getDoorDirection() == DoorDirection.UP) {
@@ -141,6 +140,11 @@ public class BoardCell {
 	
 	public void addAdjacency(BoardCell cell) {
 		adjList.add(cell);
+	}
+	
+	@Override
+	public String toString() {
+		return row + " " + col + " " + initial;
 	}
 	
 }

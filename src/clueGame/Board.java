@@ -92,6 +92,12 @@ public class Board {
     			 }
     		 }
     	 }
+    	 //creates an adjacency list for each cell
+    	 for(int i = 0; i < numRows; i++) {
+    		 for(int j = 0; j < numCols; j++) {
+    			 grid[i][j].createAdjList(theInstance);
+    		 }
+    	 }
      }
      
      
@@ -193,10 +199,10 @@ public class Board {
 		return targets; 
 	 }
 	 
-	 public void calcTargets(BoardCell startCell, int pathlength) {
+	 private void _calcTargets(BoardCell startCell, int pathlength) {
 		//checks if it the cell is visited
 		if(!visited.contains(startCell)) {
-			//if nod, add it and run the following
+			//if not, add it and run the following
 			visited.add(startCell);
 			//checks to see if it is a target
 			if(pathlength == 0) {
@@ -213,12 +219,25 @@ public class Board {
 					targets.add(startCell);
 				}
 				for(BoardCell cell : startCell.cellGetAdjList()) {
-					calcTargets(cell, pathlength - 1);
-					visited.remove(startCell);
+					if(cell.isRoom()) {
+						targets.add(cell);
+					}
+					else if(!cell.getOccupied()) {
+						_calcTargets(cell, pathlength - 1);	
+					}
+					
 				}
+				visited.remove(startCell);
 			}
 		}
 		return;	
+	 }
+	 
+	 //helper method to calcTargets
+	 public void calcTargets(BoardCell startCell, int pathlength) {
+		 targets.clear();
+		 _calcTargets(startCell, pathlength); 
+		 targets.remove(startCell);
 	 }
 	 
 	 public Map<Character, Room> getRoomMap() {

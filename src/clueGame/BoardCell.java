@@ -144,7 +144,7 @@ public class BoardCell {
 	
 	@Override
 	public String toString() {
-		return row + " " + col + " " + initial;
+		return "" + initial;
 	}
 	
 }

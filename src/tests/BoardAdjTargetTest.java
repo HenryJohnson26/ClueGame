@@ -40,24 +40,24 @@ public class BoardAdjTargetTest {
 	{
 		// we want to test a couple of different rooms.
 		//Testing the Basement, it has one door and one secret passage
-		Set<BoardCell> testList = board.getAdjList(14, 32);
+		Set<BoardCell> testList = board.getAdjList(14, 31);
 		assertEquals(2, testList.size());
 		//door
-		assertTrue(testList.contains(board.getCell(17, 32)));
+		assertTrue(testList.contains(board.getCell(17, 31)));
 		//secret passage
-		assertTrue(testList.contains(board.getCell(16, 35)));
+		assertTrue(testList.contains(board.getCell(2, 2)));
 		
 		// Testing the Gym which has two doors
-		testList = board.getAdjList(16, 24);
+		testList = board.getAdjList(14, 23);
 		assertEquals(2, testList.size());
-		assertTrue(testList.contains(board.getCell(13, 22)));
-		assertTrue(testList.contains(board.getCell(13, 27)));
+		assertTrue(testList.contains(board.getCell(13, 21)));
+		assertTrue(testList.contains(board.getCell(13, 26)));
 
 		// Testing bathroom, it has two doors
 		testList = board.getAdjList(6, 17);
 		assertEquals(2, testList.size());
-		assertTrue(testList.contains(board.getCell(14, 20)));
-		assertTrue(testList.contains(board.getCell(7, 21)));
+		assertTrue(testList.contains(board.getCell(14, 19)));
+		assertTrue(testList.contains(board.getCell(7, 20)));
 	}
 
 	
@@ -82,12 +82,12 @@ public class BoardAdjTargetTest {
 		assertTrue(testList.contains(board.getCell(3, 11)));
 
 		
-		testList = board.getAdjList(21, 32);
+		testList = board.getAdjList(21, 31);
 		assertEquals(3, testList.size());
-		assertTrue(testList.contains(board.getCell(21, 31)));
-		assertTrue(testList.contains(board.getCell(20, 32)));
+		assertTrue(testList.contains(board.getCell(21, 30)));
+		assertTrue(testList.contains(board.getCell(20, 31)));
 		//room adjacency
-		assertTrue(testList.contains(board.getCell(23, 33)));
+		assertTrue(testList.contains(board.getCell(23, 32)));
 	}
 	
 	// Test a variety of walkway scenarios
@@ -132,38 +132,38 @@ public class BoardAdjTargetTest {
 	@Test
 	public void testTargetsInPatio() {
 		// test a roll of 1
-		board.calcTargets(board.getCell(5, 31), 1);
+		board.calcTargets(board.getCell(5, 30), 1);
 		Set<BoardCell> targets= board.getTargets();
-		assertEquals(2, targets.size());
+		assertEquals(3, targets.size());
 		//door
-		assertTrue(targets.contains(board.getCell(7, 27)));
+		assertTrue(targets.contains(board.getCell(7, 26)));
 		//secret passage
-		assertTrue(targets.contains(board.getCell(7, 35)));	
+		assertTrue(targets.contains(board.getCell(19, 3)));	
 		
 		// test a roll of 3
-		board.calcTargets(board.getCell(5, 31), 3);
+		board.calcTargets(board.getCell(5, 30), 3);
 		targets= board.getTargets();
-		assertEquals(4, targets.size());
+		assertEquals(9, targets.size());
 		//secret passage
-		assertTrue(targets.contains(board.getCell(7, 35)));
-		assertTrue(targets.contains(board.getCell(7, 25)));	
-		assertTrue(targets.contains(board.getCell(8, 26)));
-		assertTrue(targets.contains(board.getCell(9, 27)));	
+		assertTrue(targets.contains(board.getCell(19, 3)));
+		assertTrue(targets.contains(board.getCell(7, 24)));	
+		assertTrue(targets.contains(board.getCell(8, 25)));
+		assertTrue(targets.contains(board.getCell(9, 26)));	
 		
 		// test a roll of 4
-		board.calcTargets(board.getCell(5, 31), 4);
+		board.calcTargets(board.getCell(5, 30), 4);
 		targets= board.getTargets();
-		assertEquals(7, targets.size());
-		assertTrue(targets.contains(board.getCell(7, 24)));
-		assertTrue(targets.contains(board.getCell(8, 25)));	
-		assertTrue(targets.contains(board.getCell(7, 26)));
-		assertTrue(targets.contains(board.getCell(8, 27)));	
+		assertEquals(18, targets.size());
+		assertTrue(targets.contains(board.getCell(7, 23)));
+		assertTrue(targets.contains(board.getCell(8, 24)));	
+		assertTrue(targets.contains(board.getCell(7, 25)));
+		assertTrue(targets.contains(board.getCell(8, 26)));	
 	}
 	
 	@Test
 	public void testTargetsInStorageRoom() {
 		// test a roll of 1
-		board.calcTargets(board.getCell(22, 2), 1);
+		board.calcTargets(board.getCell(2, 2), 1);
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(1, targets.size());
 		assertTrue(targets.contains(board.getCell(4, 6)));
@@ -227,21 +227,21 @@ public class BoardAdjTargetTest {
 		assertTrue(targets.contains(board.getCell(17, 33)));
 		
 		// test a roll of 3
-		board.calcTargets(board.getCell(17, 35), 3);
+		board.calcTargets(board.getCell(17, 34), 3);
 		targets= board.getTargets();
 		assertEquals(3, targets.size());
-		assertTrue(targets.contains(board.getCell(19, 34)));
-		assertTrue(targets.contains(board.getCell(18, 33)));
-		assertTrue(targets.contains(board.getCell(1, 32)));	
+		assertTrue(targets.contains(board.getCell(19, 33)));
+		assertTrue(targets.contains(board.getCell(18, 32)));
+		assertTrue(targets.contains(board.getCell(17, 31)));	
 		
 		// test a roll of 4
-		board.calcTargets(board.getCell(17, 35), 4);
+		board.calcTargets(board.getCell(17, 34), 4);
 		targets= board.getTargets();
 		assertEquals(6, targets.size());
-		assertTrue(targets.contains(board.getCell(14, 32)));
-		assertTrue(targets.contains(board.getCell(17, 31)));
-		assertTrue(targets.contains(board.getCell(17, 33)));	
-		assertTrue(targets.contains(board.getCell(18, 32)));	
+		assertTrue(targets.contains(board.getCell(14, 31)));
+		assertTrue(targets.contains(board.getCell(17, 30)));
+		assertTrue(targets.contains(board.getCell(17, 32)));	
+		assertTrue(targets.contains(board.getCell(18, 31)));	
 
 	}
 
@@ -251,38 +251,36 @@ public class BoardAdjTargetTest {
 		board.calcTargets(board.getCell(11, 34), 1);
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(2, targets.size());
-		assertTrue(targets.contains(board.getCell(10, 35)));
-		assertTrue(targets.contains(board.getCell(11, 34)));	
+		assertTrue(targets.contains(board.getCell(10, 34)));
+		assertTrue(targets.contains(board.getCell(11, 33)));	
 		
 		// test a roll of 3
-		board.calcTargets(board.getCell(11, 35), 3);
+		board.calcTargets(board.getCell(11, 34), 3);
 		targets= board.getTargets();
 		assertEquals(2, targets.size());
-		assertTrue(targets.contains(board.getCell(8, 35)));
-		assertTrue(targets.contains(board.getCell(11, 32)));
+		assertTrue(targets.contains(board.getCell(8, 34)));
+		assertTrue(targets.contains(board.getCell(11, 31)));
 		
 		// test a roll of 4
-		board.calcTargets(board.getCell(11, 35), 4);
+		board.calcTargets(board.getCell(11, 34), 4);
 		targets= board.getTargets();
-		assertEquals(2, targets.size());
-		assertTrue(targets.contains(board.getCell(11, 31)));
-		assertTrue(targets.contains(board.getCell(17, 35)));
+		assertEquals(1, targets.size());
+		assertTrue(targets.contains(board.getCell(11, 30)));
 	}
 
 	@Test
 	// test to make sure occupied locations do not cause problems
 	public void testTargetsOccupied() {
 		// test a roll of 4 blocked 2 down
-		board.getCell(8, 22).setOccupied(true);
-		board.calcTargets(board.getCell(6, 22), 4);
-		board.getCell(14, 24).setOccupied(true);
+		board.getCell(8, 21).setOccupied(true);
+		board.calcTargets(board.getCell(6, 21), 4);
+		board.getCell(8, 21).setOccupied(false);
 		Set<BoardCell> targets = board.getTargets();
-		assertEquals(14, targets.size());
-		assertTrue(targets.contains(board.getCell(5, 21)));
-		assertTrue(targets.contains(board.getCell(10, 22)));
-		assertTrue(targets.contains(board.getCell(7, 25)));	
-		assertFalse( targets.contains( board.getCell(8, 22))) ;
-		assertFalse( targets.contains( board.getCell(4, 24))) ;
+		assertEquals(15, targets.size());
+		assertTrue(targets.contains(board.getCell(5, 20)));
+		assertTrue(targets.contains(board.getCell(7, 24)));
+		assertTrue( targets.contains( board.getCell(4, 23))) ;
+		assertFalse( targets.contains( board.getCell(8, 21))) ;
 	
 		// we want to make sure we can get into a room, even if flagged as occupied
 		//setting room as occupied
@@ -300,9 +298,9 @@ public class BoardAdjTargetTest {
 		board.calcTargets(board.getCell(3, 11), 3);
 		board.getCell(8, 10).setOccupied(false);
 		targets= board.getTargets();
-		assertEquals(9, targets.size());
-		assertTrue(targets.contains(board.getCell(2, 7)));
-		assertTrue(targets.contains(board.getCell(6, 7)));	
+		assertEquals(6, targets.size());
+		assertTrue(targets.contains(board.getCell(7, 13)));
+		assertTrue(targets.contains(board.getCell(7, 9)));	
 		assertTrue(targets.contains(board.getCell(9, 11)));
 
 	}

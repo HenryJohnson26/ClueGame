@@ -98,6 +98,13 @@ public class Board {
     			 grid[i][j].createAdjList(theInstance);
     		 }
     	 }
+    	 
+    	 for(int i = 0; i < numRows; i++) {
+    		 for(int j = 0; j < numCols; j++) {
+    			 System.out.print(grid[i][j]);
+    		 }
+    		 System.out.println();
+    	 }
      }
      
      

@@ -140,11 +140,5 @@ public class BoardCell {
 	
 	public void addAdjacency(BoardCell cell) {
 		adjList.add(cell);
-	}
-	
-	@Override
-	public String toString() {
-		return "" + initial;
-	}
-	
+	}	
 }

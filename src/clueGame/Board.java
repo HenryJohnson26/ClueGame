@@ -98,13 +98,6 @@ public class Board {
     			 grid[i][j].createAdjList(theInstance);
     		 }
     	 }
-    	 
-    	 for(int i = 0; i < numRows; i++) {
-    		 for(int j = 0; j < numCols; j++) {
-    			 System.out.print(grid[i][j]);
-    		 }
-    		 System.out.println();
-    	 }
      }
      
      
@@ -184,7 +177,7 @@ public class Board {
     	 return roomMap.get(cell.getInitial());
      }
      
-     //other getters
+     //other getters and setters
      public int getNumRows() {
     	 return numRows;
      }
@@ -196,8 +189,7 @@ public class Board {
      public BoardCell getCell(int row, int col) {
     	 return grid[row][col];
      }
-     //skeleton Methods
-     //TODO: finish methods
+
 	 public Set<BoardCell> getAdjList(int row,  int col){
 		 return getCell(row,col).cellGetAdjList();
 	}
@@ -206,6 +198,11 @@ public class Board {
 		return targets; 
 	 }
 	 
+	 public Map<Character, Room> getRoomMap() {
+		 return roomMap;
+	 }
+	 
+	 //calculates the targets of the given cell and path length
 	 private void _calcTargets(BoardCell startCell, int pathlength) {
 		//checks if it the cell is visited
 		if(!visited.contains(startCell)) {
@@ -245,9 +242,5 @@ public class Board {
 		 targets.clear();
 		 _calcTargets(startCell, pathlength); 
 		 targets.remove(startCell);
-	 }
-	 
-	 public Map<Character, Room> getRoomMap() {
-		 return roomMap;
 	 }
 }

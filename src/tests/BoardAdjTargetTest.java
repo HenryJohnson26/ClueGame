@@ -294,7 +294,7 @@ public class BoardAdjTargetTest {
 		// check leaving a room with a blocked doorway
 		board.getCell(4, 7).setOccupied(true);
 		board.calcTargets(board.getCell(3, 11), 3);
-		board.getCell(8, 10).setOccupied(false);
+		board.getCell(4, 7).setOccupied(false);
 		targets= board.getTargets();
 		assertEquals(6, targets.size());
 		assertTrue(targets.contains(board.getCell(7, 13)));

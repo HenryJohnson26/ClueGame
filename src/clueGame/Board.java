@@ -90,14 +90,17 @@ public class Board {
     			 }
     		 }
     	 }
-    	 //creates an adjacency list for each cell
+    	 createCellAdjList();
+     }
+     
+    //creates an adjacency list for each cell
+	private void createCellAdjList() {
     	 for(int i = 0; i < numRows; i++) {
     		 for(int j = 0; j < numCols; j++) {
     			 grid[i][j].createAdjList(theInstance);
     		 }
     	 }
-     }
-     
+	}
      
      //sets the layout and setup files to the specified files
      public void setConfigFiles(String layout, String setup) {
@@ -153,7 +156,6 @@ public class Board {
     		 }
     		 cells.add(cell);
     		 counter++;
-    		 in.close();
     	 }
     	 
     	 //throws exception if the size of the columns is not consistent

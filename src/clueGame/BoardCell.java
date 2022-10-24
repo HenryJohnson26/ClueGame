@@ -138,6 +138,7 @@ public class BoardCell {
 		}
 	}
 	
+	//Add cell to adjacency list
 	public void addAdjacency(BoardCell cell) {
 		adjList.add(cell);
 	}	

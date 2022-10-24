@@ -153,6 +153,7 @@ public class Board {
     		 }
     		 cells.add(cell);
     		 counter++;
+    		 in.close();
     	 }
     	 
     	 //throws exception if the size of the columns is not consistent

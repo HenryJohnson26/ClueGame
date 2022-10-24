@@ -104,21 +104,25 @@ public class BoardCell {
 		}
 		//adds adjacency to room center cell
 		else if(this.isDoorway()) {
-			if(this.getDoorDirection() == DoorDirection.UP) {
+			switch(this.getDoorDirection()) {
+			case UP:
 				board.getRoomMap().get(board.getCell(row-1, col).getInitial()).getCenterCell().addAdjacency(this);
 				this.addAdjacency(board.getRoomMap().get(board.getCell(row-1, col).getInitial()).getCenterCell());
-			}
-			else if(this.getDoorDirection() == DoorDirection.DOWN) {
+				break;
+			case DOWN:
 				board.getRoomMap().get(board.getCell(row+1, col).getInitial()).getCenterCell().addAdjacency(this);
 				this.addAdjacency(board.getRoomMap().get(board.getCell(row+1, col).getInitial()).getCenterCell());
-			}
-			else if(this.getDoorDirection() == DoorDirection.LEFT) {
+				break;
+			case LEFT:
 				board.getRoomMap().get(board.getCell(row, col-1).getInitial()).getCenterCell().addAdjacency(this);
 				this.addAdjacency(board.getRoomMap().get(board.getCell(row, col-1).getInitial()).getCenterCell());
-			}
-			else if(this.getDoorDirection() == DoorDirection.RIGHT) {
+				break;
+			case RIGHT:
 				board.getRoomMap().get(board.getCell(row, col+1).getInitial()).getCenterCell().addAdjacency(this);
 				this.addAdjacency(board.getRoomMap().get(board.getCell(row, col+1).getInitial()).getCenterCell());
+				break;
+			default:
+				break;
 			}
 		}
 		//default cases for walkway cells

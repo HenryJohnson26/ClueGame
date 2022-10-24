@@ -103,13 +103,13 @@ public class Board {
      
      //sets the layout and setup files to the specified files
      public void setConfigFiles(String layout, String setup) {
-    	 layoutConfigFile = layout;
-    	 setupConfigFile = setup;
+    	 layoutConfigFile = "data/" + layout;
+    	 setupConfigFile = "data/" + setup;
      }
      
      //loads the setup config file and creates the appropriate rooms
      public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException {
-    	 input = new FileReader("data/" + setupConfigFile);
+    	 input = new FileReader(setupConfigFile);
     	 Scanner in = new Scanner(input);
     	 String line;
     	 Character label;
@@ -133,7 +133,7 @@ public class Board {
      
      //loads the layout config file and puts each value into an array list
      public void loadLayoutConfig() throws FileNotFoundException, BadConfigFormatException {
-    	 input = new FileReader("data/" + layoutConfigFile);
+    	 input = new FileReader(layoutConfigFile);
     	 Scanner in = new Scanner(input);
     	 String line;
     	 int counter = 0;

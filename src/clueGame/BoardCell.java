@@ -3,9 +3,6 @@ package clueGame;
 import java.util.HashSet;
 import java.util.Set;
 
-import Expirement.TestBoard;
-import Expirement.TestBoardCell;
-
 public class BoardCell {
 	//instance variables
 	private int row;

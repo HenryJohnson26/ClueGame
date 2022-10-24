@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-import Expirement.TestBoardCell;
-
 public class Board {
 	 //instance variables
 	 private int numRows;

@@ -50,41 +50,41 @@ public class Board {
     	 grid = new BoardCell[numRows][numCols];
     	 
     	 //Creates the grid 
-    	 for(int i = 0; i < cells.size(); i++) {
-    		 for(int j = 0; j < cells.get(i).size(); j++) {
-    			 grid[i][j] = new BoardCell(i, j, cells.get(i).get(j).charAt(0));
-    			 grid[i][j].setDoorDirection(DoorDirection.NONE);
+    	 for(int row = 0; row < cells.size(); row++) {
+    		 for(int col = 0; col < cells.get(row).size(); col++) {
+    			 grid[row][col] = new BoardCell(row, col, cells.get(row).get(col).charAt(0));
+    			 grid[row][col].setDoorDirection(DoorDirection.NONE);
     			 
     			 //special cell cases
-    			 if(cells.get(i).get(j).length() == 2) {
-    				 String[] parse = cells.get(i).get(j).split("");
+    			 if(cells.get(row).get(col).length() == 2) {
+    				 String[] parse = cells.get(row).get(col).split("");
     				 switch(parse[1]) {
     				 case "^":
-    					 grid[i][j].setDoorDirection(DoorDirection.UP);
-    					 grid[i][j].setDoor();
+    					 grid[row][col].setDoorDirection(DoorDirection.UP);
+    					 grid[row][col].setDoor();
     					 break;
     				 case ">":
-    					 grid[i][j].setDoorDirection(DoorDirection.RIGHT);
-    					 grid[i][j].setDoor();
+    					 grid[row][col].setDoorDirection(DoorDirection.RIGHT);
+    					 grid[row][col].setDoor();
     					 break;
     				 case "<":
-    					 grid[i][j].setDoorDirection(DoorDirection.LEFT);
-    					 grid[i][j].setDoor();
+    					 grid[row][col].setDoorDirection(DoorDirection.LEFT);
+    					 grid[row][col].setDoor();
     					 break;
     				 case "v":
-    					 grid[i][j].setDoorDirection(DoorDirection.DOWN);
-    					 grid[i][j].setDoor();
+    					 grid[row][col].setDoorDirection(DoorDirection.DOWN);
+    					 grid[row][col].setDoor();
     					 break;
     				 case "#":
-    					 grid[i][j].setLabel();
-    					 roomMap.get(parse[0].charAt(0)).setLabelCell(grid[i][j]);
+    					 grid[row][col].setLabel();
+    					 roomMap.get(parse[0].charAt(0)).setLabelCell(grid[row][col]);
     					 break;
     				 case "*":
-    					 grid[i][j].setRoomCenter();
-    					 roomMap.get(parse[0].charAt(0)).setCenterCell(grid[i][j]);
+    					 grid[row][col].setRoomCenter();
+    					 roomMap.get(parse[0].charAt(0)).setCenterCell(grid[row][col]);
     					 break;
     				 default:
-    					 grid[i][j].setSecretPassage(parse[1].charAt(0));
+    					 grid[row][col].setSecretPassage(parse[1].charAt(0));
     					 break;
     				 }
     			 }

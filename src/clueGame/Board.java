@@ -209,6 +209,11 @@ public class Board {
    		 _calcTargets(startCell, pathlength); 
    		 targets.remove(startCell);
    	 }
+   	 
+   	 //deals cards to players
+   	 public void deal() {
+   		 
+   	 }
      
      //returns the room based on the char symbol given
      public Room getRoom(char roomSymbol) {

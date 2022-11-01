@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-import Expirement.TestBoardCell;
-
 public class Board {
 	 //instance variables
 	 private int numRows;
@@ -52,64 +50,67 @@ public class Board {
     	 grid = new BoardCell[numRows][numCols];
     	 
     	 //Creates the grid 
-    	 for(int i = 0; i < cells.size(); i++) {
-    		 for(int j = 0; j < cells.get(i).size(); j++) {
-    			 grid[i][j] = new BoardCell(i, j, cells.get(i).get(j).charAt(0));
-    			 grid[i][j].setDoorDirection(DoorDirection.NONE);
+    	 for(int row = 0; row < cells.size(); row++) {
+    		 for(int col = 0; col < cells.get(row).size(); col++) {
+    			 grid[row][col] = new BoardCell(row, col, cells.get(row).get(col).charAt(0));
+    			 grid[row][col].setDoorDirection(DoorDirection.NONE);
     			 
     			 //special cell cases
-    			 if(cells.get(i).get(j).length() == 2) {
-    				 String[] parse = cells.get(i).get(j).split("");
+    			 if(cells.get(row).get(col).length() == 2) {
+    				 String[] parse = cells.get(row).get(col).split("");
     				 switch(parse[1]) {
     				 case "^":
-    					 grid[i][j].setDoorDirection(DoorDirection.UP);
-    					 grid[i][j].setDoor();
+    					 grid[row][col].setDoorDirection(DoorDirection.UP);
+    					 grid[row][col].setDoor();
     					 break;
     				 case ">":
-    					 grid[i][j].setDoorDirection(DoorDirection.RIGHT);
-    					 grid[i][j].setDoor();
+    					 grid[row][col].setDoorDirection(DoorDirection.RIGHT);
+    					 grid[row][col].setDoor();
     					 break;
     				 case "<":
-    					 grid[i][j].setDoorDirection(DoorDirection.LEFT);
-    					 grid[i][j].setDoor();
+    					 grid[row][col].setDoorDirection(DoorDirection.LEFT);
+    					 grid[row][col].setDoor();
     					 break;
     				 case "v":
-    					 grid[i][j].setDoorDirection(DoorDirection.DOWN);
-    					 grid[i][j].setDoor();
+    					 grid[row][col].setDoorDirection(DoorDirection.DOWN);
+    					 grid[row][col].setDoor();
     					 break;
     				 case "#":
-    					 grid[i][j].setLabel();
-    					 roomMap.get(parse[0].charAt(0)).setLabelCell(grid[i][j]);
+    					 grid[row][col].setLabel();
+    					 roomMap.get(parse[0].charAt(0)).setLabelCell(grid[row][col]);
     					 break;
     				 case "*":
-    					 grid[i][j].setRoomCenter();
-    					 roomMap.get(parse[0].charAt(0)).setCenterCell(grid[i][j]);
+    					 grid[row][col].setRoomCenter();
+    					 roomMap.get(parse[0].charAt(0)).setCenterCell(grid[row][col]);
     					 break;
     				 default:
-    					 grid[i][j].setSecretPassage(parse[1].charAt(0));
+    					 grid[row][col].setSecretPassage(parse[1].charAt(0));
     					 break;
     				 }
     			 }
     		 }
     	 }
-    	 //creates an adjacency list for each cell
+    	 createCellAdjList();
+     }
+     
+    //creates an adjacency list for each cell
+	private void createCellAdjList() {
     	 for(int i = 0; i < numRows; i++) {
     		 for(int j = 0; j < numCols; j++) {
     			 grid[i][j].createAdjList(theInstance);
     		 }
     	 }
-     }
-     
+	}
      
      //sets the layout and setup files to the specified files
      public void setConfigFiles(String layout, String setup) {
-    	 layoutConfigFile = layout;
-    	 setupConfigFile = setup;
+    	 layoutConfigFile = "data/" + layout;
+    	 setupConfigFile = "data/" + setup;
      }
      
      //loads the setup config file and creates the appropriate rooms
      public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException {
-    	 input = new FileReader("data/" + setupConfigFile);
+    	 input = new FileReader(setupConfigFile);
     	 Scanner in = new Scanner(input);
     	 String line;
     	 Character label;
@@ -133,7 +134,7 @@ public class Board {
      
      //loads the layout config file and puts each value into an array list
      public void loadLayoutConfig() throws FileNotFoundException, BadConfigFormatException {
-    	 input = new FileReader("data/" + layoutConfigFile);
+    	 input = new FileReader(layoutConfigFile);
     	 Scanner in = new Scanner(input);
     	 String line;
     	 int counter = 0;
@@ -166,6 +167,48 @@ public class Board {
     	 }
     	 in.close(); 
      }
+     
+   //calculates the targets of the given cell and path length
+   	 private void _calcTargets(BoardCell startCell, int pathlength) {
+   		//checks if it the cell is visited
+   		if(!visited.contains(startCell)) {
+   			//if not, add it and run the following
+   			visited.add(startCell);
+   			//checks to see if it is a target
+   			if(pathlength == 0) {
+   				//see if cell is occupied and if it is a room
+   				if(!startCell.getOccupied()||startCell.isRoom()) {
+   					//if it is not an occupied walkway, add it to targets
+   					targets.add(startCell);
+   				}
+   				visited.remove(startCell);
+   				return;
+   			} 
+   			else {
+   				if(startCell.isRoom()) {
+   					targets.add(startCell);
+   				}
+   				for(BoardCell cell : startCell.cellGetAdjList()) {
+   					if(cell.isRoom()) {
+   						targets.add(cell);
+   					}
+   					else if(!cell.getOccupied()) {
+   						_calcTargets(cell, pathlength - 1);	
+   					}
+   					
+   				}
+   				visited.remove(startCell);
+   			}
+   		}
+   		return;	
+   	 }
+   	 
+   	 //helper method to calcTargets
+   	 public void calcTargets(BoardCell startCell, int pathlength) {
+   		 targets.clear();
+   		 _calcTargets(startCell, pathlength); 
+   		 targets.remove(startCell);
+   	 }
      
      //returns the room based on the char symbol given
      public Room getRoom(char roomSymbol) {
@@ -200,47 +243,5 @@ public class Board {
 	 
 	 public Map<Character, Room> getRoomMap() {
 		 return roomMap;
-	 }
-	 
-	 //calculates the targets of the given cell and path length
-	 private void _calcTargets(BoardCell startCell, int pathlength) {
-		//checks if it the cell is visited
-		if(!visited.contains(startCell)) {
-			//if not, add it and run the following
-			visited.add(startCell);
-			//checks to see if it is a target
-			if(pathlength == 0) {
-				//see if cell is occupied and if it is a room
-				if(!startCell.getOccupied()||startCell.isRoom()) {
-					//if it is not an occupied walkway, add it to targets
-					targets.add(startCell);
-				}
-				visited.remove(startCell);
-				return;
-			} 
-			else {
-				if(startCell.isRoom()) {
-					targets.add(startCell);
-				}
-				for(BoardCell cell : startCell.cellGetAdjList()) {
-					if(cell.isRoom()) {
-						targets.add(cell);
-					}
-					else if(!cell.getOccupied()) {
-						_calcTargets(cell, pathlength - 1);	
-					}
-					
-				}
-				visited.remove(startCell);
-			}
-		}
-		return;	
-	 }
-	 
-	 //helper method to calcTargets
-	 public void calcTargets(BoardCell startCell, int pathlength) {
-		 targets.clear();
-		 _calcTargets(startCell, pathlength); 
-		 targets.remove(startCell);
 	 }
 }

@@ -3,9 +3,6 @@ package clueGame;
 import java.util.HashSet;
 import java.util.Set;
 
-import Expirement.TestBoard;
-import Expirement.TestBoardCell;
-
 public class BoardCell {
 	//instance variables
 	private int row;
@@ -39,6 +36,56 @@ public class BoardCell {
 	public boolean isRoomCenter() {
 		return isRoomCenter;
 	}
+	
+	public void createAdjList(Board board) {
+		//add adjacency from room to corresponding room from secret passage
+		if(this.getIsSecretPassage()) {
+			board.getRoomMap().get(board.getCell(row, col).getInitial()).getCenterCell().addAdjacency(board.getRoomMap().get(secretPassage).getCenterCell());
+		}
+		//adds adjacency to room center cell
+		else if(this.isDoorway()) {
+			switch(this.getDoorDirection()) {
+			case UP:
+				board.getRoomMap().get(board.getCell(row-1, col).getInitial()).getCenterCell().addAdjacency(this);
+				this.addAdjacency(board.getRoomMap().get(board.getCell(row-1, col).getInitial()).getCenterCell());
+				break;
+			case DOWN:
+				board.getRoomMap().get(board.getCell(row+1, col).getInitial()).getCenterCell().addAdjacency(this);
+				this.addAdjacency(board.getRoomMap().get(board.getCell(row+1, col).getInitial()).getCenterCell());
+				break;
+			case LEFT:
+				board.getRoomMap().get(board.getCell(row, col-1).getInitial()).getCenterCell().addAdjacency(this);
+				this.addAdjacency(board.getRoomMap().get(board.getCell(row, col-1).getInitial()).getCenterCell());
+				break;
+			case RIGHT:
+				board.getRoomMap().get(board.getCell(row, col+1).getInitial()).getCenterCell().addAdjacency(this);
+				this.addAdjacency(board.getRoomMap().get(board.getCell(row, col+1).getInitial()).getCenterCell());
+				break;
+			default:
+				break;
+			}
+		}
+		//default cases for walkway cells
+		if(initial == 'W') {
+			if(row-1>=0 && board.getCell(row-1, col).getInitial() == 'W') {
+				 this.addAdjacency(board.getCell(row-1,col));
+			}
+			if(row+1<board.getNumRows() && board.getCell(row+1, col).getInitial() == 'W') {
+				 this.addAdjacency(board.getCell(row+1,col));
+			}
+			if(col-1>=0 && board.getCell(row, col-1).getInitial() == 'W') {
+				 this.addAdjacency(board.getCell(row,col-1));
+			}
+			if(col+1<board.getNumColumns() && board.getCell(row, col+1).getInitial() == 'W') {
+				 this.addAdjacency(board.getCell(row,col+1));
+			}
+		}
+	}
+
+	//Add cell to adjacency list
+	public void addAdjacency(BoardCell cell) {
+		adjList.add(cell);
+	}	
 	
 	//getters and setters
 	public DoorDirection getDoorDirection() {
@@ -96,6 +143,7 @@ public class BoardCell {
 		}
 		return false;
 	}
+<<<<<<< HEAD
 	
 	public void createAdjList(Board board) {
 		//add adjacency from room to corresponding room from secret passage
@@ -146,4 +194,6 @@ public class BoardCell {
 	public String toString() {
 		return "r: "+row+" c: "+col+" initial: "+initial;
 	}
+=======
+>>>>>>> 95333dbcb7275e5999f3d9e8a6b7a5c1c4c3f51d
 }

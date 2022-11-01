@@ -1,10 +1,34 @@
-I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of assignment ClueGame, dated 10/13/2022.
-I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 10/13/2022.
+I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 10/19/2022.
+I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 10/19/2022.
 
 <<<<<<< HEAD
 commit e7f8bc4de626569f5f47a7f9a61a4c5026729047 (HEAD -> master, origin/master)
 =======
-commit 45ad2ec8e0867e0e00147cd686bff26aba512e92 (HEAD -> master, origin/master)
+commit 2586dbf5901d0330ecd076e28e4ae02a18df3d30 (HEAD -> master, origin/master)
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Oct 19 17:08:41 2022 -0600
+
+    Added comments
+
+commit c51ef76d442489fd776dca10982912b81badd79a
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Oct 19 17:04:14 2022 -0600
+
+    got our version of the tests to pass
+
+commit 41d402e534df77af67db4774dd00f14daef9d1a6
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Oct 19 16:37:43 2022 -0600
+
+    Got the 306 tests to pass
+
+commit 7a18047c60f1ca106dca8f74980e72188948c7ae
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Oct 19 15:03:31 2022 -0600
+
+    Wrote the code for calcTargets and to create the adjacency list
+
+commit 45ad2ec8e0867e0e00147cd686bff26aba512e92
 Author: Isaiah Stene <istene@mines.edu>
 Date:   Thu Oct 13 13:54:02 2022 -0600
 
@@ -41,7 +65,7 @@ Date:   Thu Oct 13 10:44:04 2022 -0600
 
     Added test class files for adjacency to the project
 
-commit 950a6dcca3301bb6ec8073f586e2407104db1ce7 (HEAD -> master, origin/master)
+commit 950a6dcca3301bb6ec8073f586e2407104db1ce7
 Author: Isaiah Stene <istene@mines.edu>
 Date:   Wed Oct 12 16:25:35 2022 -0600
 
@@ -109,7 +133,6 @@ Date:   Tue Oct 11 12:56:52 2022 -0600
     Added instance variables to classes
 
 commit e7f8bc4de626569f5f47a7f9a61a4c5026729047
->>>>>>> 10fbd62800424d293191de6fc59b809e89dda198
 Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
 Date:   Mon Oct 10 20:59:07 2022 -0600
 
@@ -138,11 +161,6 @@ Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
 Date:   Mon Oct 10 15:49:27 2022 -0600
 
     made all tests work, and adjusted test to make it more robust
-<<<<<<< HEAD
-:
-
-commit bfb23f204adc87bfd962e20666299ac2033416fd (HEAD -> junitTests, origin/junitTests)
-=======
 
 commit 3a64045a492dae6f95e14373b12fd1a81c83d960
 Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
@@ -175,7 +193,6 @@ Date:   Thu Oct 6 13:08:48 2022 -0600
     Changed constructor so that all tests fail, and no errors occur
 
 commit bfb23f204adc87bfd962e20666299ac2033416fd
->>>>>>> 10fbd62800424d293191de6fc59b809e89dda198
 Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
 Date:   Wed Oct 5 16:15:34 2022 -0600
 
@@ -216,4 +233,3 @@ Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
 Date:   Wed Oct 5 15:07:10 2022 -0600
 
     Initial commit
-

@@ -141,4 +141,9 @@ public class BoardCell {
 	public void addAdjacency(BoardCell cell) {
 		adjList.add(cell);
 	}	
+	
+	@Override
+	public String toString() {
+		return "r: "+row+" c: "+col+" initial: "+initial;
+	}
 }

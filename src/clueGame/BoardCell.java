@@ -143,57 +143,9 @@ public class BoardCell {
 		}
 		return false;
 	}
-<<<<<<< HEAD
-	
-	public void createAdjList(Board board) {
-		//add adjacency from room to corresponding room from secret passage
-		if(this.getIsSecretPassage()) {
-			board.getRoomMap().get(board.getCell(row, col).getInitial()).getCenterCell().addAdjacency(board.getRoomMap().get(secretPassage).getCenterCell());
-		}
-		//adds adjacency to room center cell
-		else if(this.isDoorway()) {
-			if(this.getDoorDirection() == DoorDirection.UP) {
-				board.getRoomMap().get(board.getCell(row-1, col).getInitial()).getCenterCell().addAdjacency(this);
-				this.addAdjacency(board.getRoomMap().get(board.getCell(row-1, col).getInitial()).getCenterCell());
-			}
-			else if(this.getDoorDirection() == DoorDirection.DOWN) {
-				board.getRoomMap().get(board.getCell(row+1, col).getInitial()).getCenterCell().addAdjacency(this);
-				this.addAdjacency(board.getRoomMap().get(board.getCell(row+1, col).getInitial()).getCenterCell());
-			}
-			else if(this.getDoorDirection() == DoorDirection.LEFT) {
-				board.getRoomMap().get(board.getCell(row, col-1).getInitial()).getCenterCell().addAdjacency(this);
-				this.addAdjacency(board.getRoomMap().get(board.getCell(row, col-1).getInitial()).getCenterCell());
-			}
-			else if(this.getDoorDirection() == DoorDirection.RIGHT) {
-				board.getRoomMap().get(board.getCell(row, col+1).getInitial()).getCenterCell().addAdjacency(this);
-				this.addAdjacency(board.getRoomMap().get(board.getCell(row, col+1).getInitial()).getCenterCell());
-			}
-		}
-		//default cases for walkway cells
-		if(initial == 'W') {
-			if(row-1>=0 && board.getCell(row-1, col).getInitial() == 'W') {
-				 this.addAdjacency(board.getCell(row-1,col));
-			}
-			if(row+1<board.getNumRows() && board.getCell(row+1, col).getInitial() == 'W') {
-				 this.addAdjacency(board.getCell(row+1,col));
-			}
-			if(col-1>=0 && board.getCell(row, col-1).getInitial() == 'W') {
-				 this.addAdjacency(board.getCell(row,col-1));
-			}
-			if(col+1<board.getNumColumns() && board.getCell(row, col+1).getInitial() == 'W') {
-				 this.addAdjacency(board.getCell(row,col+1));
-			}
-		}
-	}
-	
-	public void addAdjacency(BoardCell cell) {
-		adjList.add(cell);
-	}	
 	
 	@Override
 	public String toString() {
 		return "r: "+row+" c: "+col+" initial: "+initial;
 	}
-=======
->>>>>>> 95333dbcb7275e5999f3d9e8a6b7a5c1c4c3f51d
 }

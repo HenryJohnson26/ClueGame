@@ -6,7 +6,7 @@ public class Card {
 	private CardType type;
 	
 	public boolean equals(Card card) {
-		return true;
+		return (cardName.equals(card.getName()));
 	}
 
 	public CardType getType() {
@@ -16,5 +16,7 @@ public class Card {
 	public void setType(CardType type) {
 		this.type = type;
 	}
-	
+	public String getName() {
+		return cardName;
+	}
 }

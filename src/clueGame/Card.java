@@ -5,6 +5,10 @@ public class Card {
 	private String cardName;
 	private CardType type;
 	
+	public Card(String name) {
+		cardName = name;
+	}
+	
 	public boolean equals(Card card) {
 		return (cardName.equals(card.getName()));
 	}

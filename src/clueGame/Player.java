@@ -10,9 +10,29 @@ public abstract class Player {
 	private int row, col;
 	private ArrayList<Card> hand;
 	
-	public Player(String n, Color color, int r, int col) {
+	public Player(String n, String color, int r, int col) {
 		name = n;
-		this.color = color;
+		switch(color) {
+		case "Red":
+			this.color = Color.red;
+			break;
+		case "Blue":
+			this.color = Color.blue;
+			break;
+		case "Green":
+			this.color = Color.green;
+			break;
+		case "Orange":
+			this.color = Color.orange;
+			break;
+		case "Purple":
+			this.color = Color.magenta;
+			break;
+		default:
+			this.color = Color.gray;
+			break;
+		}
+		
 		row = r;
 		this.col = col;
 		hand = new ArrayList<Card>();

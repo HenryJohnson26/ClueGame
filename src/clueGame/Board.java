@@ -3,9 +3,11 @@ package clueGame;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -27,6 +29,7 @@ public class Board {
 	 private ArrayList<Card> weaponCards = new ArrayList<Card>();
 	 private ArrayList<Card> deck = new ArrayList<Card>();
 	 private Solution solution;
+	 private Random random = new Random();
 
 
 	//variable and methods used for singleton pattern
@@ -57,7 +60,22 @@ public class Board {
     	 grid = new BoardCell[numRows][numCols];
     	 
     	 //Creates the grid 
-    	 for(int row = 0; row < cells.size(); row++) {
+    	 makeGrid();
+    	 createCellAdjList();
+    	 
+    	 //make solution
+    	 Card room = roomCards.get(random.nextInt(roomCards.size()-1));
+    	 deck.remove(room);
+    	 Card person = playerCards.get(random.nextInt(playerCards.size()-1));
+    	 deck.remove(person);
+    	 Card weapon = weaponCards.get(random.nextInt(weaponCards.size()-1));
+    	 deck.remove(weapon);
+    	 solution = new Solution(room, person, weapon);
+    	 
+    	 deal();
+     }
+	private void makeGrid() {
+		for(int row = 0; row < cells.size(); row++) {
     		 for(int col = 0; col < cells.get(row).size(); col++) {
     			 grid[row][col] = new BoardCell(row, col, cells.get(row).get(col).charAt(0));
     			 grid[row][col].setDoorDirection(DoorDirection.NONE);
@@ -97,10 +115,7 @@ public class Board {
     			 }
     		 }
     	 }
-    	 createCellAdjList();
-    	 
-    	 //TODO:make solution
-     }
+	}
      
     //creates an adjacency list for each cell
 	private void createCellAdjList() {
@@ -132,20 +147,72 @@ public class Board {
     			 
     			 //first checks if its a room or a space
 	    		if(parse[0].equals("Room") || parse[0].equals("Space")) {
-	    			 if(parse[2].length() != 1 || parse.length != 3) {
-	        			 throw new BadConfigFormatException("Incorrect format on " + setupConfigFile);
-	        		 } 
-	    			 else {
-	    				Room r = new Room(parse[1]);
-	    	    		label = parse[2].charAt(0);
-	    	    		roomMap.put(label, r);
-	        		 }
+	    			 makeRoomObjects(parse);
     			 }
+	    		 //TODO:write badconfigFile for non rooms
+	    		else if(parse[0].equals("Player")) {
+	    			makePlayerObject(parse);
+	    		}
+	    		else if(parse[0].equals("Weapon")) {
+	    			makeWeaponObject(parse);
+	    		}
     		 }	
-    		 //TODO:write badconfigFile for no rooms
     	 }
     	 in.close();
      }
+	private void makeRoomObjects(String[] parse) throws BadConfigFormatException, FileNotFoundException {
+		Character label;
+		if(parse[2].length() != 1 || parse.length != 3) {
+			 throw new BadConfigFormatException("Incorrect room format on file " + setupConfigFile);
+		 } 
+		 else {
+			Room r = new Room(parse[1]);
+			label = parse[2].charAt(0);
+			roomMap.put(label, r);
+			if(parse[0].equals("Room")) {
+			Card card = new Card(parse[1]);
+			card.setType(CardType.ROOM);
+			roomCards.add(card);
+			deck.add(card);
+			}
+		 }
+	}
+	private void makeWeaponObject(String[] parse) throws BadConfigFormatException, FileNotFoundException {
+		//throws if it has the wrong number of parses
+		if(parse.length!=2) {
+			throw new BadConfigFormatException("Incorrect weapon format on file " + setupConfigFile);
+		}
+		else {
+			Card card = new Card(parse[1]);
+			card.setType(CardType.WEAPON);
+			weaponCards.add(card);
+			deck.add(card);
+		}
+	}
+	private void makePlayerObject(String[] parse) throws BadConfigFormatException, FileNotFoundException {
+		if(parse.length!=6) {
+			throw new BadConfigFormatException("Incorrect player format on file " + setupConfigFile);
+		}
+		else {
+			//catches a NumberFormatException form Integer.parseInt and throws a badConfigFormat instead
+			try {
+			if(parse[5].equals("human")) {
+				players.add(new HumanPlayer(parse[1], parse[2],
+						(int)(Integer.parseInt(parse[3])), (int)(Integer.parseInt(parse[4]))));
+			}
+			else {
+				players.add(new ComputerPlayer(parse[1], parse[2],
+						(int)(Integer.parseInt(parse[3])), (int)(Integer.parseInt(parse[4]))));
+			}
+			Card card = new Card(parse[1]);
+			card.setType(CardType.PLAYER);
+			playerCards.add(card);
+			deck.add(card);
+		}catch(NumberFormatException e) {
+			throw new BadConfigFormatException("Incorrect player format on file " + setupConfigFile + "invalid row or column number");
+			}
+		}
+	}
      
      //loads the layout config file and puts each value into an array list
      public void loadLayoutConfig() throws FileNotFoundException, BadConfigFormatException {
@@ -227,7 +294,14 @@ public class Board {
    	 
    	 //deals cards to players
    	 public void deal() {
-   		 
+   		 Collections.shuffle(deck);
+   		 int counter = 0;
+   		 for(Player p : players) {
+   			 for(int i = 0; i<3;i++) {
+   				 p.getHand().add(deck.get(counter));
+   				 counter++;
+   			 }
+   		 }
    	 }
      
      //returns the room based on the char symbol given

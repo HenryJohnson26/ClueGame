@@ -33,7 +33,7 @@ class GameSetupTests {
 	@Test
 	public void testPlayers() {
 		//test number of players
-		ArrayList<Player> players = new ArrayList<Player>();
+		ArrayList<Player> players = board.getPlayers();
 		assertEquals(6, players.size());
 		//sees that the first player is a human
 		assertTrue(players.get(0) instanceof HumanPlayer);
@@ -58,7 +58,6 @@ class GameSetupTests {
 		assertEquals(board.getWeaponCards().get(0).getType(), CardType.WEAPON);
 
 		//test that each player has three cards
-		board.deal();
 		for(Player p : board.getPlayers()) {
 			assertEquals(p.getHand().size(), 3);
 		}

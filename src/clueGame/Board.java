@@ -21,8 +21,15 @@ public class Board {
 	 private FileReader input;
 	 private Set<BoardCell> targets = new HashSet<>();
 	 private Set<BoardCell> visited = new HashSet<>();
-	
-     //variable and methods used for singleton pattern
+	 private ArrayList<Player> players = new ArrayList<Player>();
+	 private ArrayList<Card> playerCards = new ArrayList<Card>();
+	 private ArrayList<Card> roomCards = new ArrayList<Card>();
+	 private ArrayList<Card> weaponCards = new ArrayList<Card>();
+	 private ArrayList<Card> deck = new ArrayList<Card>();
+	 private Solution solution;
+
+
+	//variable and methods used for singleton pattern
      private static Board theInstance = new Board();
      // constructor is private to ensure only one can be created
      private Board() {
@@ -91,6 +98,8 @@ public class Board {
     		 }
     	 }
     	 createCellAdjList();
+    	 
+    	 //TODO:make solution
      }
      
     //creates an adjacency list for each cell
@@ -110,6 +119,7 @@ public class Board {
      
      //loads the setup config file and creates the appropriate rooms
      public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException {
+    	 //TODO:refractor
     	 input = new FileReader(setupConfigFile);
     	 Scanner in = new Scanner(input);
     	 String line;
@@ -119,15 +129,20 @@ public class Board {
     		 String[] parse = line.split(", ", -1);
     		 if(parse.length > 1) {
     			 //Throws exception if in the wrong format
-    			 if(parse[2].length() != 1 || parse.length != 3) {
-        			 throw new BadConfigFormatException("Incorrect format on " + setupConfigFile);
-        		 } 
-    			 else {
-    				Room r = new Room(parse[1]);
-    	    		label = parse[2].charAt(0);
-    	    		roomMap.put(label, r);
-        		 }
-    		 }		 
+    			 
+    			 //first checks if its a room or a space
+	    		if(parse[0].equals("Room") || parse[0].equals("Space")) {
+	    			 if(parse[2].length() != 1 || parse.length != 3) {
+	        			 throw new BadConfigFormatException("Incorrect format on " + setupConfigFile);
+	        		 } 
+	    			 else {
+	    				Room r = new Room(parse[1]);
+	    	    		label = parse[2].charAt(0);
+	    	    		roomMap.put(label, r);
+	        		 }
+    			 }
+    		 }	
+    		 //TODO:write badconfigFile for no rooms
     	 }
     	 in.close();
      }
@@ -249,4 +264,23 @@ public class Board {
 	 public Map<Character, Room> getRoomMap() {
 		 return roomMap;
 	 }
+	 
+	 public ArrayList<Player> getPlayers(){
+		 return players;
+	 }
+	 public ArrayList<Card> getPlayerCards() {
+		return playerCards;
+	}
+	public ArrayList<Card> getRoomCards() {
+		return roomCards;
+	}
+	public ArrayList<Card> getWeaponCards() {
+		return weaponCards;
+	}
+	public ArrayList<Card> getDeck() {
+		return deck;
+	}
+    public Solution getSolution() {
+		return solution;
+	}
 }

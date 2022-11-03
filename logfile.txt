@@ -1,1 +1,1 @@
-Variable board width on layout file
+Incorrect format on data/ClueSetup.txt

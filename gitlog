@@ -1,5 +1,36 @@
-I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 10/19/2022.
-I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 10/19/2022.
+I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 11/3/2022.
+I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 11/3/2022.
+
+commit 45d5dcd1b45dffee9cb57ead68fdc3ab8c60171e (HEAD -> master)
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Nov 3 16:17:18 2022 -0600
+
+    added code so that all tests pass
+
+commit 46a5bbfcda369b1430f4ba7fe61f1487e0a8ba2d (origin/master)
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Nov 3 13:43:24 2022 -0600
+
+    made the equals method for Cards
+
+commit 77a246f302bd59f8dce627810339b10f25e42755
+Merge: 4d17297 9675c52
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Nov 3 13:39:12 2022 -0600
+
+    Merge branch 'master' of https://github.com/HenryJohnson26/ClueGame
+
+commit 4d17297d58f3e9499770d4841900e1fb0d2c5797
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Nov 3 13:38:46 2022 -0600
+
+    finished all method stubs and wrote all tests to fail.
+
+commit 9675c5263a6eb0ec25be56a044269657cf08a64b
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Thu Nov 3 12:56:06 2022 -0600
+
+:
 
 <<<<<<< HEAD
 commit e7f8bc4de626569f5f47a7f9a61a4c5026729047 (HEAD -> master, origin/master)

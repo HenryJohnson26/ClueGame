@@ -12,6 +12,7 @@ public abstract class Player {
 	
 	public Player(String n, String color, int r, int col) {
 		name = n;
+		//turning string into color
 		switch(color) {
 		case "Red":
 			this.color = Color.red;
@@ -40,16 +41,7 @@ public abstract class Player {
 	
 	public ArrayList<Card> getHand() {
 		return hand;
-	}
-
-	public void setHand(ArrayList<Card> hand) {
-		this.hand = hand;
-	}
-
-	public void updateHand(Card card) {
-		
-	}
-	
+	}	
 	
 	public String getPlayerName() {
 		return name;

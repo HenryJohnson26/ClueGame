@@ -11,3 +11,17 @@ Room, Hall, H
 // other spaces on board
 Space, Unused, X
 Space, Walkway, W
+//adding players
+Player, Lokaste Alberic, Red, 0, 6, human
+Player, Niobe jupiter, Blue, 25, 8, computer
+Player, Hermione Isis, Green, 0, 20, computer
+Player, Romulus Nephele, Orange, 0, 23, computer
+Player, Sigmundr Teshub, Purple, 8, 34, computer
+Player, Nemesis Loke, Gray, 17, 34, computer
+//Weapons and weapon cards
+Weapon, Brick
+Weapon, Traffic Cone
+Weapon, Car
+Weapon, Boulder
+Weapon, Cyanide
+Weapon, Pitchfork

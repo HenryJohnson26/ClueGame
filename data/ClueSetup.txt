@@ -12,12 +12,12 @@ Room, Gym, Y
 Space, Unused, X
 Space, Walkway, W
 //Players and player cards
-Player, Lokaste Alberic, Red, 0, 6
-Player, Niobe jupiter, Blue, 25, 8
-Player, Hermione Isis, Green, 0, 20
-Player, Romulus Nephele, Orange, 0, 23
-Player, Sigmundr Teshub, Purple, 8, 34
-Player, Nemesis Loke, Gray, 17, 34
+Player, Lokaste Alberic, Red, 0, 6, human
+Player, Niobe jupiter, Blue, 25, 8, computer
+Player, Hermione Isis, Green, 0, 20, computer
+Player, Romulus Nephele, Orange, 0, 23, computer
+Player, Sigmundr Teshub, Purple, 8, 34, computer
+Player, Nemesis Loke, Gray, 17, 34, computer
 //Weapons and weapon cards
 Weapon, Brick
 Weapon, Traffic Cone

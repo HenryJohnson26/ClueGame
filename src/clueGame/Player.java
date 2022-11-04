@@ -9,6 +9,7 @@ public abstract class Player {
 	private Color color;
 	private int row, col;
 	private ArrayList<Card> hand;
+	private ArrayList<Card> seen;
 	
 	public Player(String n, String color, int r, int col) {
 		name = n;
@@ -37,6 +38,7 @@ public abstract class Player {
 		row = r;
 		this.col = col;
 		hand = new ArrayList<Card>();
+		seen = new ArrayList<Card>();
 	}
 	
 	//checks to see if player can disprove suggestion
@@ -62,6 +64,9 @@ public abstract class Player {
 	
 	public int getPlayerCol() {
 		return col;
+	}
+	public ArrayList<Card> getSeen() {
+		return seen;
 	}
 	
 	//methods for testing

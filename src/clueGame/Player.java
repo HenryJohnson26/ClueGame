@@ -39,6 +39,11 @@ public abstract class Player {
 		hand = new ArrayList<Card>();
 	}
 	
+	//checks to see if player can disprove suggestion
+	public Card DisproveSuggestion(Card room, Card person, Card weapon) {
+		return null;
+	}
+	
 	public ArrayList<Card> getHand() {
 		return hand;
 	}	
@@ -57,5 +62,13 @@ public abstract class Player {
 	
 	public int getPlayerCol() {
 		return col;
+	}
+	
+	//methods for testing
+	public void setHand(Card room, Card person, Card weapon) {
+		hand.clear();
+		hand.add(room);
+		hand.add(person);
+		hand.add(weapon);
 	}
 }

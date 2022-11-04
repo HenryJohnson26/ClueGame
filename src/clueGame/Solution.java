@@ -21,5 +21,5 @@ public class Solution {
 	public Card getWeaponSolution() {
 		return weapon;
 	}
-		
+	
 }

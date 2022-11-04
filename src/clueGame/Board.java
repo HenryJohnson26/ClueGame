@@ -303,7 +303,27 @@ public class Board {
    			 }
    		 }
    	 }
+   	 
+   	 //checks an accusation made by the player
+   	 public boolean checkAccusation(Solution accusation) {
+   		 return false;
+   	 }
+   	 
+   	 //Handles suggestions made by players
+   	 public Card handleSuggestion(Player p, Card room, Card person, Card name) {
+   		 return null;
+   	 }
      
+   	 //method for testing accusations
+   	 public void setSolution(Solution theAnswer) {
+   		 
+   	 }
+   	 
+   	 public void setPlayers(ArrayList<Player> p) {
+   		 players.clear();
+   		 players = p;
+   	 }
+   	 
      //returns the room based on the char symbol given
      public Room getRoom(char roomSymbol) {
     	 return roomMap.get(roomSymbol);

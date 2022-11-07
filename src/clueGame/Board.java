@@ -306,7 +306,9 @@ public class Board {
    	 
    	 //checks an accusation made by the player
    	 public boolean checkAccusation(Solution accusation) {
-   		 return false;
+   		 return (solution.getRoomSolution().equals(accusation.getRoomSolution()) && 
+   				 solution.getPersonSolution().equals(accusation.getPersonSolution()) && 
+   				 solution.getWeaponSolution().equals(accusation.getWeaponSolution())); 
    	 }
    	 
    	 //Handles suggestions made by players
@@ -316,7 +318,7 @@ public class Board {
      
    	 //method for testing accusations
    	 public void setSolution(Solution theAnswer) {
-   		 
+   		 solution = theAnswer;
    	 }
    	 
    	 public void setPlayers(ArrayList<Player> p) {

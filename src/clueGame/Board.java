@@ -312,7 +312,12 @@ public class Board {
    	 }
    	 
    	 //Handles suggestions made by players
-   	 public Card handleSuggestion(Player p, Card room, Card person, Card name) {
+   	 public Card handleSuggestion(Player p, Card room, Card person, Card weapon) {
+   		 for(Player player : players) {
+   			 if(player != p) {
+   				 if(player.DisproveSuggestion(room, person, weapon) != null) return player.DisproveSuggestion(room, person, weapon);
+   			 }
+   		 }
    		 return null;
    	 }
      

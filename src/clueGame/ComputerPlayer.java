@@ -2,18 +2,53 @@ package clueGame;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ComputerPlayer extends Player {
-
+	
 	public ComputerPlayer(String n, String color, int r, int col) {
 		super(n, color, r, col);
 	}
 
-	public Solution createSuggestion(Room room) {
-		return null;
+	public Solution createSuggestion(Room room, Board board) {
+		ArrayList<Card> possibleWeapons = new ArrayList<Card>();
+		ArrayList<Card> possiblePlayers = new ArrayList<Card>();
+		Card r = new Card("");
+		for(Card c : board.getWeaponCards()) {
+			if (!hand.contains(c) || !seen.contains(c)) {
+				possibleWeapons.add(c);
+			}
+		}
+		for(Card p : board.getPlayerCards()) {
+			if (!hand.contains(p) || !seen.contains(p)) {
+				possiblePlayers.add(p);
+			}
+		}
+		
+		for(Card c : board.getRoomCards()) {
+			if(c.getName().equals(room.getName())) r=c;
+		}
+		
+		return new Solution(r, possiblePlayers.get(rand.nextInt(possiblePlayers.size() - 1)), possibleWeapons.get(rand.nextInt(possibleWeapons.size() - 1)));
 	}
-	public BoardCell selectTarget(ArrayList<BoardCell> targetList) {
-		return null;
+	
+	public BoardCell selectTarget(ArrayList<BoardCell> targetList, Board board) {
+		ArrayList<BoardCell> possibleLocations = new ArrayList<BoardCell>();
+		ArrayList<BoardCell> possibleRooms = new ArrayList<BoardCell>();
+		for(BoardCell b : targetList) {
+			if(b.isRoomCenter()) {
+				for(Card c : board.getRoomCards()) {
+					if(c.getName().equals(board.getRoom(b).getName()) && !seen.contains(c) && !hand.contains(c)) {
+						possibleRooms.add(b);
+					}
+				}
+			}
+			else {
+				possibleLocations.add(b);
+			}
+		}
+		if(possibleRooms.size() == 0) return possibleLocations.get(rand.nextInt(possibleLocations.size()));
+		return possibleRooms.get(rand.nextInt(possibleRooms.size()));
 	}
 	
 }

@@ -2,14 +2,15 @@ package clueGame;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class Player {
-
 	private String name;
 	private Color color;
 	private int row, col;
-	private ArrayList<Card> hand;
-	private ArrayList<Card> seen;
+	protected ArrayList<Card> hand;
+	protected ArrayList<Card> seen;
+	protected Random rand = new Random();
 	
 	public Player(String n, String color, int r, int col) {
 		name = n;
@@ -43,7 +44,14 @@ public abstract class Player {
 	
 	//checks to see if player can disprove suggestion
 	public Card DisproveSuggestion(Card room, Card person, Card weapon) {
-		return null;
+		ArrayList<Card> canDisprove = new ArrayList<Card>();
+		for(Card c : hand) {
+			if(c.equals(room) || c.equals(person) || c.equals(weapon)) {
+				canDisprove.add(c);
+			}
+		}
+		if(canDisprove.size() == 0) return null;
+		return canDisprove.get(rand.nextInt(canDisprove.size()));
 	}
 	
 	public ArrayList<Card> getHand() {
@@ -75,5 +83,9 @@ public abstract class Player {
 		hand.add(room);
 		hand.add(person);
 		hand.add(weapon);
+	}
+	
+	public void setSeen(Card card) {
+		seen.add(card);
 	}
 }

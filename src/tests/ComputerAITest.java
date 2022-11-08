@@ -36,8 +36,9 @@ class ComputerAITest {
 		//create a suggustjion that returns a solution
 		//check that its suggestion is not null and that it does not contain one of its in hand or seen cards
 		computer.setHand(board.getRoomCards().get(0), board.getPlayerCards().get(0), board.getWeaponCards().get(0));
-		Room room = new Room("room");
-		Solution suggestion = ((ComputerPlayer) computer).createSuggestion(room);
+		computer.setSeen(board.getRoomCards().get(1));
+		Room room = board.getRoomMap().get('M');
+		Solution suggestion = ((ComputerPlayer) computer).createSuggestion(room, board);
 		assertTrue(suggestion!=null);
 		assertFalse(computer.getHand().contains(suggestion.getPersonSolution())
 				|| computer.getHand().contains(suggestion.getRoomSolution())
@@ -52,12 +53,12 @@ class ComputerAITest {
 		ArrayList<BoardCell> targets = new ArrayList<BoardCell>();
 		BoardCell walkway1 = new BoardCell(2, 2, 'W');
 		BoardCell walkway2 = new BoardCell(2, 3, 'W');
-		BoardCell room = new BoardCell(3, 3, 'R');
+		BoardCell room = board.getRoomMap().get('L').getCenterCell();
 		targets.add(walkway2);
 		targets.add(walkway1);
 		targets.add(room);
 
-		assertTrue(((ComputerPlayer)computer).selectTarget(targets) == room);
+		assertEquals(((ComputerPlayer)computer).selectTarget(targets, board), room);
 		
 		targets.remove(room);
 		BoardCell walkway3 = new BoardCell(4, 4, 'W');
@@ -67,9 +68,9 @@ class ComputerAITest {
 		int walkway2counter = 0;
 		int walkway3counter = 0;
 		for(int i = 0; i < 50; i++) {
-			if(((ComputerPlayer)computer).selectTarget(targets)==walkway1)walkway1counter++;
-			if(((ComputerPlayer)computer).selectTarget(targets)==walkway2)walkway2counter++;
-			if(((ComputerPlayer)computer).selectTarget(targets)==walkway3)walkway3counter++;
+			if(((ComputerPlayer)computer).selectTarget(targets, board)==walkway1)walkway1counter++;
+			if(((ComputerPlayer)computer).selectTarget(targets, board)==walkway2)walkway2counter++;
+			if(((ComputerPlayer)computer).selectTarget(targets, board)==walkway3)walkway3counter++;
 		}
 		
 		assertTrue(walkway1counter > 0);

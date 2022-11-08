@@ -1,5 +1,24 @@
-I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 11/3/2022.
-I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 11/3/2022.
+I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 11/7/2022.
+I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 11/7/2022.
+
+commit c6909193843e3f1faa7b6d5ba23dfe6e3e3a51a6 (HEAD -> master, origin/master)
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Mon Nov 7 17:53:59 2022 -0700
+
+    Added some comments
+
+commit 96b0302eb79ec60376eaf6f02f2e9f70a5965dd5
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Mon Nov 7 17:51:11 2022 -0700
+
+    Got the remaining tests to pass.
+
+commit 0cf8ad489819f43c05566dd33777f5ba093edcf6
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Mon Nov 7 16:55:18 2022 -0700
+
+    Wrote the checkAccusation method and got corresponding tests to pass.
+
 
 commit 45d5dcd1b45dffee9cb57ead68fdc3ab8c60171e (HEAD -> master)
 Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>

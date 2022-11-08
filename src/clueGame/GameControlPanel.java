@@ -1,7 +1,9 @@
 package clueGame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,13 +27,14 @@ public class GameControlPanel extends JPanel {
 		topPanel.add(new JButton("Make Accusation"));
 		topPanel.add(new JButton("NEXT!"));
 		bottomPanel = new JPanel();
-		JPanel bottomLeft = new JPanel();
+		JPanel bottomLeft = new JPanel(new BorderLayout());
 		bottomLeft.add(new JTextField());
-		bottomLeft.setName("Guess");
-		bottomLeft.setVisible(false);
+		bottomLeft.add(new JLabel("Guess"), BorderLayout.NORTH);
+		bottomLeft.setBorder(BorderFactory.createLineBorder(Color.black));
 		JPanel bottomRight = new JPanel();
-		bottomRight.add(new JTextField());
-		bottomRight.setName("Guess Result");
+		bottomRight.add(new JLabel("Guess Result"), BorderLayout.NORTH);
+		bottomRight.setBorder(BorderFactory.createLineBorder(Color.black));
+		bottomRight.add(new JTextField(), BorderLayout.SOUTH);
 		bottomPanel.add(bottomLeft);
 		bottomPanel.add(bottomRight);
 	}

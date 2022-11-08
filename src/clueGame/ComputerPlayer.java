@@ -10,21 +10,25 @@ public class ComputerPlayer extends Player {
 		super(n, color, r, col);
 	}
 
+	//Creates a suggestion for the computer player based on what cards they've seen
 	public Solution createSuggestion(Room room, Board board) {
 		ArrayList<Card> possibleWeapons = new ArrayList<Card>();
 		ArrayList<Card> possiblePlayers = new ArrayList<Card>();
 		Card r = new Card("");
+		//Chooses a weapon card
 		for(Card c : board.getWeaponCards()) {
 			if (!hand.contains(c) || !seen.contains(c)) {
 				possibleWeapons.add(c);
 			}
 		}
+		//Chooses a player card
 		for(Card p : board.getPlayerCards()) {
 			if (!hand.contains(p) || !seen.contains(p)) {
 				possiblePlayers.add(p);
 			}
 		}
 		
+		//Gets the room card of the player
 		for(Card c : board.getRoomCards()) {
 			if(c.getName().equals(room.getName())) r=c;
 		}
@@ -32,6 +36,7 @@ public class ComputerPlayer extends Player {
 		return new Solution(r, possiblePlayers.get(rand.nextInt(possiblePlayers.size() - 1)), possibleWeapons.get(rand.nextInt(possibleWeapons.size() - 1)));
 	}
 	
+	//Chooses the target cell that the computer player will move to
 	public BoardCell selectTarget(ArrayList<BoardCell> targetList, Board board) {
 		ArrayList<BoardCell> possibleLocations = new ArrayList<BoardCell>();
 		ArrayList<BoardCell> possibleRooms = new ArrayList<BoardCell>();

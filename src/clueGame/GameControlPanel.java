@@ -13,15 +13,22 @@ import javax.swing.JTextField;
 public class GameControlPanel extends JPanel {
 	private static JPanel topPanel;
 	private static JPanel bottomPanel;
+	private JTextField turnTextField;
+	private JTextField rollNum;
 
 	public GameControlPanel() {
+		turnTextField = new JTextField();
+		turnTextField.setEditable(false);
+		
+		rollNum = new JTextField();
+		rollNum.setEditable(false);
 		topPanel = new JPanel();
 		JPanel topLeft = new JPanel(new BorderLayout());
 		topLeft.add(new JLabel("Whose turn?"), BorderLayout.NORTH);
-		topLeft.add(new JTextField(), BorderLayout.SOUTH);
+		topLeft.add(turnTextField, BorderLayout.SOUTH);
 		JPanel topRight = new JPanel();
 		topRight.add(new JLabel("Roll:"));
-		topRight.add(new JTextField());
+		topRight.add(rollNum);
 		topPanel.add(topLeft);
 		topPanel.add(topRight);
 		topPanel.add(new JButton("Make Accusation"));
@@ -40,7 +47,8 @@ public class GameControlPanel extends JPanel {
 	}
 	
 	public void setTurn(Player player, int roll) {
-		
+		turnTextField.setText(player.getPlayerName());
+		rollNum.setText(""+roll);
 	}
 	
 	public void setGuess(String guess) {

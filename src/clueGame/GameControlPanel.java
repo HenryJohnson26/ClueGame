@@ -13,42 +13,47 @@ import javax.swing.JTextField;
 public class GameControlPanel extends JPanel {
 	private static JPanel topPanel;
 	private static JPanel bottomPanel;
+	private static JTextField theGuess;
+	private static JTextField theGuessResult;
+	private static JTextField playerTurn;
+	private static JTextField dieRoll;
 
 	public GameControlPanel() {
 		topPanel = new JPanel();
 		JPanel topLeft = new JPanel(new BorderLayout());
 		topLeft.add(new JLabel("Whose turn?"), BorderLayout.NORTH);
-		topLeft.add(new JTextField(), BorderLayout.SOUTH);
+		topLeft.add(playerTurn = new JTextField(), BorderLayout.SOUTH);
 		JPanel topRight = new JPanel();
 		topRight.add(new JLabel("Roll:"));
-		topRight.add(new JTextField());
+		topRight.add(dieRoll = new JTextField());
 		topPanel.add(topLeft);
 		topPanel.add(topRight);
 		topPanel.add(new JButton("Make Accusation"));
 		topPanel.add(new JButton("NEXT!"));
 		bottomPanel = new JPanel();
 		JPanel bottomLeft = new JPanel(new BorderLayout());
-		bottomLeft.add(new JTextField());
+		bottomLeft.add(theGuess = new JTextField());
 		bottomLeft.add(new JLabel("Guess"), BorderLayout.NORTH);
 		bottomLeft.setBorder(BorderFactory.createLineBorder(Color.black));
 		JPanel bottomRight = new JPanel();
 		bottomRight.add(new JLabel("Guess Result"), BorderLayout.NORTH);
 		bottomRight.setBorder(BorderFactory.createLineBorder(Color.black));
-		bottomRight.add(new JTextField(), BorderLayout.SOUTH);
+		bottomRight.add(theGuessResult = new JTextField(), BorderLayout.SOUTH);
 		bottomPanel.add(bottomLeft);
 		bottomPanel.add(bottomRight);
 	}
 	
 	public void setTurn(Player player, int roll) {
-		
+		playerTurn.setText(player.getPlayerName());
+		dieRoll.setText("" + roll + "");
 	}
 	
 	public void setGuess(String guess) {
-		
+		theGuess.setText(guess);
 	}
 	
 	public void setGuessResult(String result) {
-		
+		theGuessResult.setText(result);
 	}
 	
 	//main to test panel

@@ -72,7 +72,7 @@ public class GameControlPanel extends JPanel {
 		theGuess.setText(guess);
 	}
 	
-	//sets text field for result of the guess
+	//sets text field for 
 	public void setGuessResult(String result) {
 		theGuessResult.setSize(200,20);
 		theGuessResult.setText(result);

@@ -1,5 +1,36 @@
-I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 11/7/2022.
-I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 11/7/2022.
+I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 11/10/2022.
+I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 11//2022.
+
+commit 48e53062466f8f0b29754f6336063d748c0f0e18 (HEAD -> master, origin/master)
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Nov 10 12:53:48 2022 -0700
+
+    Refractored
+
+commit e81f56c6fee16a741d6d2ba993699b33d276a839
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Nov 10 12:47:53 2022 -0700
+
+    Changed formatting of gameControlBoard
+
+commit cdcd1a0be48689ae690517e6e516254bc8499975
+Merge: 2096a74 62aa1f5
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Nov 10 11:44:37 2022 -0700
+
+    Changed Borders to etched and named, changed layout, and changed setTurn to adjust color
+
+commit 2096a74359662d7fe2b44f9bfb88d5635092a107
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Wed Nov 9 14:13:29 2022 -0700
+
+    changed setters int gameControlPanel
+
+commit 62aa1f59abe52e701d6ad4e1a896004f1e91390f
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Nov 9 14:13:29 2022 -0700
+
+:
 
 commit c6909193843e3f1faa7b6d5ba23dfe6e3e3a51a6 (HEAD -> master, origin/master)
 Author: Isaiah Stene <istene@mines.edu>

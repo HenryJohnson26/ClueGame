@@ -22,7 +22,7 @@ public class GameControlPanel extends JPanel {
 	private static JTextField playerTurn;
 	private static JTextField dieRoll;
 	private JPanel bottomLeft = new JPanel(new BorderLayout());
-	private JPanel bottomRight = new JPanel();
+	private JPanel bottomRight = new JPanel(new BorderLayout());
 
 
 	public GameControlPanel() {
@@ -38,7 +38,7 @@ public class GameControlPanel extends JPanel {
 		dieRoll.setSize(70, 20);
 		dieRoll.setEditable(false);
 		topPanel = new JPanel();
-		topPanel.setLayout(new GridLayout(0, 2));
+		topPanel.setLayout(new GridLayout(0, 4));
 		JPanel topLeft = new JPanel(new BorderLayout());
 		topLeft.add(new JLabel("Whose turn?"), BorderLayout.NORTH);
 		topLeft.add(playerTurn, BorderLayout.SOUTH);
@@ -52,14 +52,14 @@ public class GameControlPanel extends JPanel {
 		bottomLeft.add(theGuess, BorderLayout.CENTER);
 		bottomLeft.setBorder(new TitledBorder(new EtchedBorder(), "Guess"));
 		bottomRight.setBorder(new TitledBorder(new EtchedBorder(), "Guess Result"));
-		bottomRight.add(theGuessResult, BorderLayout.CENTER);
+		bottomRight.add(theGuessResult, BorderLayout.WEST);
 		bottomPanel.add(bottomLeft, BorderLayout.WEST);
 		bottomPanel.add(bottomRight, BorderLayout.EAST);
 	}
 	
 	public void setTurn(Player player, int roll) {
 		playerTurn.setText(player.getPlayerName());
-		dieRoll.setSize(70,20);
+		dieRoll.setSize(20,20);
 		dieRoll.setText(((Integer)(roll)).toString());
 		playerTurn.setBackground(player.getPlayerColor());
 	}
@@ -92,7 +92,7 @@ public class GameControlPanel extends JPanel {
 		frame.setVisible(true); // make it visible
 		
 		// test filling in the data
-		panel.setTurn(new ComputerPlayer("Col. Mustard", "orange", 0, 0), 5);
+		panel.setTurn(new ComputerPlayer("Col. Mustard", "Orange", 0, 0), 5);
 		panel.setGuess( "I have no guess!");
 		panel.setGuessResult( "So you have nothing?");
 	}

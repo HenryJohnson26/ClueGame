@@ -26,7 +26,9 @@ public class GameControlPanel extends JPanel {
 
 
 	public GameControlPanel() {
+		//makes a bottom panel to split the main panel in half
 		bottomPanel = new JPanel();
+		//creates grid layout for two other objects
 		bottomPanel.setLayout(new GridLayout(0, 2));
 		theGuess = new JTextField("");
 		theGuess.setEditable(false);
@@ -35,7 +37,6 @@ public class GameControlPanel extends JPanel {
 		playerTurn = new JTextField();
 		playerTurn.setEditable(false);
 		dieRoll = new JTextField();
-		dieRoll.setSize(70, 20);
 		dieRoll.setEditable(false);
 		topPanel = new JPanel();
 		topPanel.setLayout(new GridLayout(0, 4));
@@ -57,6 +58,7 @@ public class GameControlPanel extends JPanel {
 		bottomPanel.add(bottomRight, BorderLayout.EAST);
 	}
 	
+	//sets text feild to who's turn it is, the color that character and the roll
 	public void setTurn(Player player, int roll) {
 		playerTurn.setText(player.getPlayerName());
 		dieRoll.setSize(20,20);
@@ -64,11 +66,13 @@ public class GameControlPanel extends JPanel {
 		playerTurn.setBackground(player.getPlayerColor());
 	}
 	
+	//sets text field for guesses
 	public void setGuess(String guess) {
 		theGuess.setSize(150, 20);
 		theGuess.setText(guess);
 	}
 	
+	//sets text field for result of the guess
 	public void setGuessResult(String result) {
 		theGuessResult.setSize(200,20);
 		theGuessResult.setText(result);

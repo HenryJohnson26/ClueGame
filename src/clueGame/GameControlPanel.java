@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -9,54 +10,68 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 public class GameControlPanel extends JPanel {
 	private static JPanel topPanel;
 	private static JPanel bottomPanel;
-	private JTextField turnTextField;
-	private JTextField rollNum;
+
+	private static JTextField theGuess;
+	private static JTextField theGuessResult;
+	private static JTextField playerTurn;
+	private static JTextField dieRoll;
+	private JPanel bottomLeft = new JPanel(new BorderLayout());
+	private JPanel bottomRight = new JPanel();
+
 
 	public GameControlPanel() {
-		turnTextField = new JTextField();
-		turnTextField.setEditable(false);
-		
-		rollNum = new JTextField();
-		rollNum.setEditable(false);
+		bottomPanel = new JPanel();
+		bottomPanel.setLayout(new GridLayout(0, 2));
+		theGuess = new JTextField("");
+		theGuess.setEditable(false);
+		theGuessResult = new JTextField("");
+		theGuessResult.setEditable(false);
+		playerTurn = new JTextField();
+		playerTurn.setEditable(false);
+		dieRoll = new JTextField();
+		dieRoll.setSize(70, 20);
+		dieRoll.setEditable(false);
 		topPanel = new JPanel();
+		topPanel.setLayout(new GridLayout(0, 2));
 		JPanel topLeft = new JPanel(new BorderLayout());
 		topLeft.add(new JLabel("Whose turn?"), BorderLayout.NORTH);
-		topLeft.add(turnTextField, BorderLayout.SOUTH);
+		topLeft.add(playerTurn, BorderLayout.SOUTH);
 		JPanel topRight = new JPanel();
 		topRight.add(new JLabel("Roll:"));
-		topRight.add(rollNum);
-		topPanel.add(topLeft);
-		topPanel.add(topRight);
+		topRight.add(dieRoll);
+		topPanel.add(topLeft, BorderLayout.WEST);
+		topPanel.add(topRight, BorderLayout.EAST);
 		topPanel.add(new JButton("Make Accusation"));
 		topPanel.add(new JButton("NEXT!"));
-		bottomPanel = new JPanel();
-		JPanel bottomLeft = new JPanel(new BorderLayout());
-		bottomLeft.add(new JTextField());
-		bottomLeft.add(new JLabel("Guess"), BorderLayout.NORTH);
-		bottomLeft.setBorder(BorderFactory.createLineBorder(Color.black));
-		JPanel bottomRight = new JPanel();
-		bottomRight.add(new JLabel("Guess Result"), BorderLayout.NORTH);
-		bottomRight.setBorder(BorderFactory.createLineBorder(Color.black));
-		bottomRight.add(new JTextField(), BorderLayout.SOUTH);
-		bottomPanel.add(bottomLeft);
-		bottomPanel.add(bottomRight);
+		bottomLeft.add(theGuess, BorderLayout.CENTER);
+		bottomLeft.setBorder(new TitledBorder(new EtchedBorder(), "Guess"));
+		bottomRight.setBorder(new TitledBorder(new EtchedBorder(), "Guess Result"));
+		bottomRight.add(theGuessResult, BorderLayout.CENTER);
+		bottomPanel.add(bottomLeft, BorderLayout.WEST);
+		bottomPanel.add(bottomRight, BorderLayout.EAST);
 	}
 	
 	public void setTurn(Player player, int roll) {
-		turnTextField.setText(player.getPlayerName());
-		rollNum.setText(""+roll);
+		playerTurn.setText(player.getPlayerName());
+		dieRoll.setSize(70,20);
+		dieRoll.setText(((Integer)(roll)).toString());
+		playerTurn.setBackground(player.getPlayerColor());
 	}
 	
 	public void setGuess(String guess) {
-		
+		theGuess.setSize(150, 20);
+		theGuess.setText(guess);
 	}
 	
 	public void setGuessResult(String result) {
-		
+		theGuessResult.setSize(200,20);
+		theGuessResult.setText(result);
 	}
 	
 	//main to test panel
@@ -65,6 +80,7 @@ public class GameControlPanel extends JPanel {
 		JFrame frame = new JFrame();// create the frame 
 		
 		JPanel wholeFrame = new JPanel(new BorderLayout());
+		wholeFrame.setLayout(new GridLayout(2, 0));
 		wholeFrame.add(topPanel, BorderLayout.NORTH);
 		wholeFrame.add(bottomPanel, BorderLayout.SOUTH);
 		

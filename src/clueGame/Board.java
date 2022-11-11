@@ -30,6 +30,7 @@ public class Board {
 	 private ArrayList<Card> deck = new ArrayList<Card>();
 	 private Solution solution;
 	 private Random random = new Random();
+	 private Player humanPlayer;
 
 
 	//variable and methods used for singleton pattern
@@ -197,8 +198,9 @@ public class Board {
 			//catches a NumberFormatException form Integer.parseInt and throws a badConfigFormat instead
 			try {
 			if(parse[5].equals("human")) {
-				players.add(new HumanPlayer(parse[1], parse[2],
-						(int)(Integer.parseInt(parse[3])), (int)(Integer.parseInt(parse[4]))));
+				humanPlayer = new HumanPlayer(parse[1], parse[2],
+						(int)(Integer.parseInt(parse[3])), (int)(Integer.parseInt(parse[4])));
+				players.add(humanPlayer);
 			}
 			else {
 				players.add(new ComputerPlayer(parse[1], parse[2],
@@ -319,6 +321,11 @@ public class Board {
    			 }
    		 }
    		 return null;
+   	 }
+   	 
+   	 //method to get the human player
+   	 public Player getHumanPlayer() {
+   		 return humanPlayer;
    	 }
      
    	 //method for testing accusations

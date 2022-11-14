@@ -37,7 +37,6 @@ public class KnownCardsPanel extends JPanel{
 	private int weaponHandSize;
 	private static Board testBoard = Board.getInstance();
 
-
 	public KnownCardsPanel() {
 		roomPanelSize = 1;
 		playerPanelSize = 1;
@@ -80,7 +79,15 @@ public class KnownCardsPanel extends JPanel{
 		mainPanel.add(playerPanel);
 		mainPanel.add(weaponPanel);
 		mainPanel.setSize(250, 100);
+		
+		JPanel wholeFrame = new JPanel(new BorderLayout());
+		wholeFrame.setLayout(new GridLayout(1, 1));
+		wholeFrame.add(mainPanel, BorderLayout.CENTER);
+		add(wholeFrame);
+		wholeFrame.revalidate();
 	}
+	
+	//Creates panels that hold the cards for the players starting hand
 	private void createHandPanels() {
 		int roomCounter = 0;
 		int playerCounter = 0;
@@ -133,6 +140,8 @@ public class KnownCardsPanel extends JPanel{
 			handWeaponPanel.add(field);
 		}
 	}
+	
+	
 	public static void main(String[] args) {
 		testBoard.setConfigFiles("ClueLayout.csv", "ClueSetup.txt");
 		testBoard.initialize();
@@ -155,15 +164,9 @@ public class KnownCardsPanel extends JPanel{
 		frame.setSize(250, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
 		frame.setVisible(true);
-//		for(Card card : testBoard.getDeck()) {
-//			if(!testBoard.getHumanPlayer().getHand().contains(card)) {
-//				updatePanel(card)
-//			}
-//		}
-		
-
 	}
 	
+	//Method to update all of the panels
 	public void updatePanel(Card card, Player player) {
 		mainPanel.removeAll();
 		switch (card.getType()) {
@@ -186,6 +189,7 @@ public class KnownCardsPanel extends JPanel{
 		mainPanel.add(weaponPanel);
 	}
 	
+	//Helper method to update panels
 	private void updateRoomPanel() {
 		roomPanelSize++;
 		seenRoomPanel.removeAll();
@@ -207,6 +211,8 @@ public class KnownCardsPanel extends JPanel{
 		roomPanel.add(handRoomPanel);
 		roomPanel.add(seenRoomPanel);
 	}
+	
+	//Helper method to update panels
 	private void updatePlayerPanel() {
 		playerPanelSize++;
 		seenPlayerPanel.removeAll();
@@ -228,6 +234,8 @@ public class KnownCardsPanel extends JPanel{
 		playerPanel.add(handPlayerPanel);
 		playerPanel.add(seenPlayerPanel);
 	}	
+	
+	//Helper method to update panels
 	private void updateWeaponPanel() {
 		weaponPanelSize++;
 		seenWeaponPanel.removeAll();

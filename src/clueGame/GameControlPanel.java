@@ -26,6 +26,7 @@ public class GameControlPanel extends JPanel {
 
 
 	public GameControlPanel() {
+		setSize(890, 180);
 		//makes a bottom panel to split the main panel in half
 		bottomPanel = new JPanel();
 		//creates grid layout for two other objects
@@ -56,6 +57,13 @@ public class GameControlPanel extends JPanel {
 		bottomRight.add(theGuessResult, BorderLayout.WEST);
 		bottomPanel.add(bottomLeft, BorderLayout.WEST);
 		bottomPanel.add(bottomRight, BorderLayout.EAST);
+		
+		JPanel wholeFrame = new JPanel(new BorderLayout());
+		wholeFrame.setLayout(new GridLayout(2, 0));
+		wholeFrame.add(topPanel, BorderLayout.NORTH);
+		wholeFrame.add(bottomPanel, BorderLayout.SOUTH);
+		add(wholeFrame);
+		wholeFrame.revalidate();
 	}
 	
 	//sets text feild to who's turn it is, the color that character and the roll

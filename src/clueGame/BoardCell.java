@@ -116,6 +116,7 @@ public class BoardCell {
 		}
 	}
 	
+	//Draws the doorways for the board
 	public void drawDoorways(BoardCell cell, Graphics g) {
 		g.setColor(Color.blue);
 		switch(cell.getDoorDirection()) {
@@ -134,6 +135,12 @@ public class BoardCell {
 			default:
 				break;
 		 }
+	}
+	
+	//Draws the room labels for each room
+	public void drawRoomLabel(BoardCell cell, Graphics g, String roomLabel) {
+		g.setColor(Color.blue);
+		g.drawString(roomLabel, col*21, row*21+20);
 	}
 	
 	//getters and setters

@@ -17,7 +17,7 @@ Player, Niobe jupiter, Blue, 25, 8, computer
 Player, Hermione Isis, Green, 0, 20, computer
 Player, Romulus Nephele, Orange, 0, 23, computer
 Player, Sigmundr Teshub, Purple, 8, 34, computer
-Player, Nemesis Loke, Gray, 17, 34, computer
+Player, Nemesis Loke, White, 17, 34, computer
 //Weapons and weapon cards
 Weapon, Brick
 Weapon, Traffic Cone

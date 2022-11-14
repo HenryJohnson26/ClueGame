@@ -334,8 +334,21 @@ public class Board extends JPanel {
    				 grid[i][j].drawCell(grid[i][j], g);
    			 }
    		 }
+   		 
    		 for(BoardCell cell : BoardCell.doorways) {
    			 cell.drawDoorways(cell, g);
+   		 }
+   		 
+   		 for(Map.Entry<Character, Room> rooms : roomMap.entrySet()) {
+   			 if(rooms.getValue().getLabelCell() != null) {
+   				BoardCell cell = rooms.getValue().getLabelCell();
+      			 String label = rooms.getValue().getName();
+      			 cell.drawRoomLabel(cell, g, label);
+   			 }
+   		 }
+   		 
+   		 for(Player player : players) {
+   			 player.drawPlayer(g);
    		 }
    	 }
    	 

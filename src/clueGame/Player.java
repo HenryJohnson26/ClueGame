@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -32,7 +33,7 @@ public abstract class Player {
 			this.color = Color.magenta;
 			break;
 		default:
-			this.color = Color.gray;
+			this.color = Color.white;
 			break;
 		}
 		
@@ -52,6 +53,12 @@ public abstract class Player {
 		}
 		if(canDisprove.size() == 0) return null;
 		return canDisprove.get(rand.nextInt(canDisprove.size()));
+	}
+	
+	//Draws each player at their starting position
+	public void drawPlayer(Graphics g) {
+		g.setColor(color);
+		g.fillOval(col*21, row*21, 21, 21);
 	}
 	
 	public ArrayList<Card> getHand() {

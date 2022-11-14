@@ -1,5 +1,10 @@
 package clueGame;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +21,7 @@ public class BoardCell {
 	private boolean isRoomCenter = false;
 	private boolean isOccupied = false;
 	private boolean isSecretPassage = false;
+	public static ArrayList<BoardCell> doorways = new ArrayList<BoardCell>();
 	
 	//constructor to create new cells
 	public BoardCell(int row, int col, char initial) {
@@ -86,6 +92,49 @@ public class BoardCell {
 	public void addAdjacency(BoardCell cell) {
 		adjList.add(cell);
 	}	
+	
+	//draws the boardCell
+	public void drawCell(BoardCell cell, Graphics g) {
+		if(cell.getInitial() == 'W') {
+			g.setColor(Color.black);
+			g.fillRect(21 * col, 21 * row, 21, 21);
+			g.setColor(Color.yellow);
+			g.fillRect(21*col+1, 21*row+1, 20, 20);
+			
+		}
+		else if(cell.getInitial() == 'X') {
+			g.setColor(Color.black);
+			g.fillRect(21 * col, 21 * row, 21, 21);
+		}
+		else {
+			g.setColor(Color.gray);
+			g.fillRect(21 * col, 21 * row, 21, 21);
+		}		
+		
+		if(cell.isDoorway()) {
+			doorways.add(cell);
+		}
+	}
+	
+	public void drawDoorways(BoardCell cell, Graphics g) {
+		g.setColor(Color.blue);
+		switch(cell.getDoorDirection()) {
+			case UP:
+				g.fillRect(21*col, 21*row-5, 21, 5);
+				break;
+			case DOWN:
+				g.fillRect(21*col, 21*row+21, 21, 5);
+				break;
+			case LEFT:
+				g.fillRect(21*col-5, 21*row, 5, 21);
+				break;
+			case RIGHT:
+				g.fillRect(21*col+21, 21*row, 5, 21);
+				break;
+			default:
+				break;
+		 }
+	}
 	
 	//getters and setters
 	public DoorDirection getDoorDirection() {

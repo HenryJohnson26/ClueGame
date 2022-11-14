@@ -87,7 +87,7 @@ public class GameControlPanel extends JPanel {
 		wholeFrame.setLayout(new GridLayout(2, 0));
 		wholeFrame.add(topPanel, BorderLayout.NORTH);
 		wholeFrame.add(bottomPanel, BorderLayout.SOUTH);
-		
+		wholeFrame.revalidate();
 		panel.add(wholeFrame);
 		
 		frame.setContentPane(panel); // put the panel in the frame

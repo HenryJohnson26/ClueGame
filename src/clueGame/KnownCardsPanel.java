@@ -149,6 +149,7 @@ public class KnownCardsPanel extends JPanel{
 			}
 		}
 		wholeFrame.add(mainPanel, BorderLayout.CENTER);
+		wholeFrame.revalidate();
 		panel.add(wholeFrame);
 		frame.setContentPane(panel);
 		frame.setSize(250, 1000);
@@ -159,6 +160,7 @@ public class KnownCardsPanel extends JPanel{
 //				updatePanel(card)
 //			}
 //		}
+		
 
 	}
 	

@@ -1,5 +1,36 @@
-I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 11/10/2022.
-I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 11//2022.
+I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 11/11/2022.
+I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 11/11/2022.
+
+commit 5789aad35a26aa384e6e605a91e880347851deee (HEAD -> master)
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Fri Nov 11 15:42:48 2022 -0700
+
+    updating cards works but resizing needs to be done
+
+commit 1dd7af58ab1ec7b63967f38b5e200d13e958d09c (origin/master)
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Fri Nov 11 14:26:30 2022 -0700
+
+    adjusted setters and wrote method to set HandPanels in knownCardsPanel
+
+commit f065d88fddaec683a984626e074c58804f73aa80
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Nov 10 13:46:09 2022 -0700
+
+    added setters for panels and refreshers and also added a few panels for organization
+
+commit 48e53062466f8f0b29754f6336063d748c0f0e18
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Nov 10 12:53:48 2022 -0700
+
+    Refractored
+
+commit e81f56c6fee16a741d6d2ba993699b33d276a839
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Thu Nov 10 12:47:53 2022 -0700
+
+    Changed formatting of gameControlBoard
+:
 
 commit 48e53062466f8f0b29754f6336063d748c0f0e18 (HEAD -> master, origin/master)
 Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>

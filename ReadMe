@@ -3,3 +3,6 @@ Isaiah Stene
 
 Tests will error and fail if all tests are run at once, but tests all pass when run individually. Not sure why it doesn't work when run all 
 at once.
+
+KnownCardsPanel displays all as it should, but just needs to be resized. 
+We are currently having issues with how to resize it.

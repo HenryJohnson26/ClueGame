@@ -1,8 +1,10 @@
 package clueGame;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
 	private static Board testBoard = Board.getInstance();
@@ -12,11 +14,13 @@ public class ClueGame extends JFrame {
 		setTitle("ClueGame");
 		testBoard.setConfigFiles("ClueLayout.csv", "ClueSetup.txt");
 		testBoard.initialize();
-		setSize(890, 700);
+		setSize(900, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
 		add(testBoard, BorderLayout.CENTER);
 		KnownCardsPanel side = new KnownCardsPanel();
 		GameControlPanel bottom = new GameControlPanel();
+		side.setSize(new Dimension(250, 1000));
+		bottom.setSize(new Dimension(900, 250));	
 		add(side, BorderLayout.EAST);
 		add(bottom, BorderLayout.SOUTH);
 		revalidate();
@@ -25,6 +29,8 @@ public class ClueGame extends JFrame {
 	public static void main(String[] args) {
 		ClueGame game = new ClueGame();
 		game.setVisible(true);
+		JOptionPane.showMessageDialog(null,  "You are " + testBoard.getHumanPlayer().getPlayerName() + 
+				". Can you find the solution before the Computer players?", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

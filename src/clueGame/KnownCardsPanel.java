@@ -139,6 +139,12 @@ public class KnownCardsPanel extends JPanel{
 			field.setEditable(false);
 			handWeaponPanel.add(field);
 		}
+		handRoomPanel.revalidate();
+		handPlayerPanel.revalidate();
+		handWeaponPanel.revalidate();
+		roomPanel.revalidate();
+		playerPanel.revalidate();
+		weaponPanel.revalidate();
 	}
 	
 	
@@ -187,6 +193,7 @@ public class KnownCardsPanel extends JPanel{
 		mainPanel.add(roomPanel);
 		mainPanel.add(playerPanel);
 		mainPanel.add(weaponPanel);
+		mainPanel.revalidate();
 	}
 	
 	//Helper method to update panels
@@ -210,6 +217,7 @@ public class KnownCardsPanel extends JPanel{
 		}
 		roomPanel.add(handRoomPanel);
 		roomPanel.add(seenRoomPanel);
+		roomPanel.revalidate();
 	}
 	
 	//Helper method to update panels

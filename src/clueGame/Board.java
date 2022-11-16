@@ -1,6 +1,8 @@
 package clueGame;
 
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Board extends JPanel {
@@ -34,7 +37,10 @@ public class Board extends JPanel {
 	 private Solution solution;
 	 private Random random = new Random();
 	 private Player humanPlayer;
-
+	 
+	 private boolean finishTurn = true;
+	 private int currentPlayer = -1;
+	 private int roll;
 
 	//variable and methods used for singleton pattern
      private static Board theInstance = new Board();
@@ -329,9 +335,10 @@ public class Board extends JPanel {
    	 //Method to draw the board
    	 public void paintComponent(Graphics g) {
    		 super.paintComponent(g);
+   		 
    		 for(int i = 0; i < numRows; i++) {
    			 for(int j = 0; j < numCols; j++) {
-   				 grid[i][j].drawCell(grid[i][j], g);
+   				 grid[i][j].drawCell(grid[i][j], targets, g);
    			 }
    		 }
    		 
@@ -352,6 +359,55 @@ public class Board extends JPanel {
    		 }
    	 }
    	 
+   	 public void newTurn() {
+  		 if(finishTurn) {
+  			 currentPlayer = (currentPlayer+1) % players.size();
+  	   		 roll = random.nextInt(5) + 1;
+  	   		 calcTargets(getCell(players.get(currentPlayer).getPlayerRow(), players.get(currentPlayer).getPlayerCol()), roll);
+  	   		 if(players.get(currentPlayer).equals(humanPlayer)) {	 
+  	   			 repaint();
+  	   			 finishTurn = false;
+  	   		 }
+  	   		 else {
+  	   			BoardCell cell = ((ComputerPlayer)players.get(currentPlayer)).selectTarget(targets, this);
+  	   			players.get(currentPlayer).setPosition(cell.getRow(), cell.getCol());
+  	   			repaint();
+  	   		 }
+  	   		 //targets.clear();
+  	   		 repaint();
+  		 } 
+   	 }
+  	 
+  	 
+//  	 private class boardListener implements MouseListener{
+//
+//		@Override
+//		public void mouseClicked(MouseEvent e) {
+//			int x = (int)e.getPoint().getX() / BoardCell.CELL_WIDTH;
+//			int y = (int)e.getPoint().getY() / BoardCell.CELL_WIDTH;
+//			for(BoardCell c : targets) {
+//				if(c.getRow() != y && c.getCol() != x) {
+//					JOptionPane.showMessageDialog(null,  "This is not a target.", "Invalid Target", JOptionPane.INFORMATION_MESSAGE);
+//				}
+//				else {
+//					players.get(currentPlayer).setPosition(y, x);
+//					finishTurn = true;
+//				}
+//			}
+//			repaint();
+//		}
+//
+//		//Empty definitions for unused event methods
+//		@Override
+//		public void mousePressed(MouseEvent e) {}
+//		@Override
+//		public void mouseReleased(MouseEvent e) {}
+//		@Override
+//		public void mouseEntered(MouseEvent e) {}
+//		@Override
+//		public void mouseExited(MouseEvent e) {}	 
+//  	 }
+//   	 
    	 //method to get the human player
    	 public Player getHumanPlayer() {
    		 return humanPlayer;
@@ -378,6 +434,14 @@ public class Board extends JPanel {
      }
      
      //other getters and setters
+     public int getRoll() {
+    	 return roll;
+     }
+     
+     public int getCurrentPlayer() {
+    	 return currentPlayer;
+     }
+     
      public int getNumRows() {
     	 return numRows;
      }

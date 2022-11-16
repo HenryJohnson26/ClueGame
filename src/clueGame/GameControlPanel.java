@@ -3,6 +3,8 @@ package clueGame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class GameControlPanel extends JPanel {
+public class GameControlPanel extends JPanel implements ActionListener {
 	private static JPanel topPanel;
 	private static JPanel bottomPanel;
 
@@ -23,7 +25,6 @@ public class GameControlPanel extends JPanel {
 	private static JTextField dieRoll;
 	private JPanel bottomLeft = new JPanel(new BorderLayout());
 	private JPanel bottomRight = new JPanel(new BorderLayout());
-
 
 	public GameControlPanel() {
 		setSize(890, 180);
@@ -49,8 +50,10 @@ public class GameControlPanel extends JPanel {
 		topRight.add(dieRoll);
 		topPanel.add(topLeft, BorderLayout.WEST);
 		topPanel.add(topRight, BorderLayout.EAST);
+		JButton next = new JButton("NEXT!");
+		next.addActionListener(this);
 		topPanel.add(new JButton("Make Accusation"));
-		topPanel.add(new JButton("NEXT!"));
+		topPanel.add(next);
 		bottomLeft.add(theGuess, BorderLayout.CENTER);
 		bottomLeft.setBorder(new TitledBorder(new EtchedBorder(), "Guess"));
 		bottomRight.setBorder(new TitledBorder(new EtchedBorder(), "Guess Result"));
@@ -64,14 +67,23 @@ public class GameControlPanel extends JPanel {
 		wholeFrame.add(bottomPanel, BorderLayout.SOUTH);
 		add(wholeFrame);
 		wholeFrame.revalidate();
+		
+		ClueGame.board.newTurn();
+		setTurn();
 	}
 	
-	//sets text feild to who's turn it is, the color that character and the roll
-	public void setTurn(Player player, int roll) {
-		playerTurn.setText(player.getPlayerName());
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		ClueGame.board.newTurn();
+		setTurn();
+	}
+	
+	//sets text field to who's turn it is, the color that character and the roll
+	public void setTurn() {
+		playerTurn.setText(ClueGame.board.getPlayers().get(ClueGame.board.getCurrentPlayer()).getPlayerName());
 		dieRoll.setSize(20,20);
-		dieRoll.setText(((Integer)(roll)).toString());
-		playerTurn.setBackground(player.getPlayerColor());
+		dieRoll.setText(((Integer)(ClueGame.board.getRoll())).toString());
+		playerTurn.setBackground(ClueGame.board.getPlayers().get(ClueGame.board.getCurrentPlayer()).getPlayerColor());
 	}
 	
 	//sets text field for guesses
@@ -104,7 +116,7 @@ public class GameControlPanel extends JPanel {
 		frame.setVisible(true); // make it visible
 		
 		// test filling in the data
-		panel.setTurn(new ComputerPlayer("Col. Mustard", "Orange", 0, 0), 5);
+		//panel.setTurn(new ComputerPlayer("Col. Mustard", "Orange", 0, 0), 5);
 		panel.setGuess( "I have no guess!");
 		panel.setGuessResult( "So you have nothing?");
 	}

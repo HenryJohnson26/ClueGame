@@ -22,6 +22,7 @@ public class BoardCell {
 	private boolean isOccupied = false;
 	private boolean isSecretPassage = false;
 	public static ArrayList<BoardCell> doorways = new ArrayList<BoardCell>();
+	public static final int CELL_WIDTH = 21;
 	
 	//constructor to create new cells
 	public BoardCell(int row, int col, char initial) {
@@ -94,21 +95,40 @@ public class BoardCell {
 	}	
 	
 	//draws the boardCell
-	public void drawCell(BoardCell cell, Graphics g) {
+	public void drawCell(BoardCell cell, Set<BoardCell> targets, Graphics g) {
 		if(cell.getInitial() == 'W') {
 			g.setColor(Color.black);
-			g.fillRect(21 * col, 21 * row, 21, 21);
-			g.setColor(Color.yellow);
-			g.fillRect(21*col+1, 21*row+1, 20, 20);
+			g.fillRect(CELL_WIDTH * col, CELL_WIDTH * row, CELL_WIDTH, CELL_WIDTH);
+			if(targets.contains(cell)) {
+				g.setColor(Color.cyan);
+			}
+			else {
+				g.setColor(Color.yellow);
+			}
+			g.fillRect(CELL_WIDTH*col+1, CELL_WIDTH*row+1, CELL_WIDTH-1, CELL_WIDTH-1);
 			
 		}
 		else if(cell.getInitial() == 'X') {
 			g.setColor(Color.black);
-			g.fillRect(21 * col, 21 * row, 21, 21);
+			g.fillRect(CELL_WIDTH * col, CELL_WIDTH * row, CELL_WIDTH, CELL_WIDTH);
 		}
 		else {
-			g.setColor(Color.gray);
-			g.fillRect(21 * col, 21 * row, 21, 21);
+			//checks to see if a room is in the targets list
+			ArrayList<Character> roomChars = new ArrayList<Character>();
+			for(BoardCell c : targets) {
+				if(c.isRoomCenter()) {
+					roomChars.add(c.getInitial());
+				}
+			}
+			
+			//sets all cells of a room to the appropriate color
+			if(roomChars.contains(cell.getInitial())) {
+				g.setColor(Color.cyan);
+			}
+			else {
+				g.setColor(Color.gray);
+			}
+			g.fillRect(CELL_WIDTH * col, CELL_WIDTH * row, CELL_WIDTH, CELL_WIDTH);
 		}		
 		
 		if(cell.isDoorway()) {
@@ -121,16 +141,16 @@ public class BoardCell {
 		g.setColor(Color.blue);
 		switch(cell.getDoorDirection()) {
 			case UP:
-				g.fillRect(21*col, 21*row-5, 21, 5);
+				g.fillRect(CELL_WIDTH*col, CELL_WIDTH*row-5, CELL_WIDTH, 5);
 				break;
 			case DOWN:
-				g.fillRect(21*col, 21*row+21, 21, 5);
+				g.fillRect(CELL_WIDTH*col, CELL_WIDTH*row+CELL_WIDTH, CELL_WIDTH, 5);
 				break;
 			case LEFT:
-				g.fillRect(21*col-5, 21*row, 5, 21);
+				g.fillRect(CELL_WIDTH*col-5, CELL_WIDTH*row, 5, CELL_WIDTH);
 				break;
 			case RIGHT:
-				g.fillRect(21*col+21, 21*row, 5, 21);
+				g.fillRect(CELL_WIDTH*col+CELL_WIDTH, CELL_WIDTH*row, 5, CELL_WIDTH);
 				break;
 			default:
 				break;
@@ -140,7 +160,7 @@ public class BoardCell {
 	//Draws the room labels for each room
 	public void drawRoomLabel(BoardCell cell, Graphics g, String roomLabel) {
 		g.setColor(Color.blue);
-		g.drawString(roomLabel, col*21, row*21+20);
+		g.drawString(roomLabel, col*CELL_WIDTH, row*CELL_WIDTH+(CELL_WIDTH-1));
 	}
 	
 	//getters and setters
@@ -200,6 +220,14 @@ public class BoardCell {
 		return false;
 	}
 	
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
+	}
+
 	@Override
 	public String toString() {
 		return "r: "+row+" c: "+col+" initial: "+initial;

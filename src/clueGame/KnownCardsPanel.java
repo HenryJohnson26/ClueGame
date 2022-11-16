@@ -167,9 +167,10 @@ public class KnownCardsPanel extends JPanel{
 		wholeFrame.revalidate();
 		panel.add(wholeFrame);
 		frame.setContentPane(panel);
-		frame.setSize(250, 1000);
+		frame.setSize(250, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
 		frame.setVisible(true);
+		frame.revalidate();
 	}
 	
 	//Method to update all of the panels

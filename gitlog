@@ -1,5 +1,35 @@
-I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 11/11/2022.
-I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 11/11/2022.
+I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 11/14/2022.
+I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 11/14/2022.
+
+commit 25c57882905f9e5a3f6e94c410a22a82051317e4 (HEAD -> master, origin/master)
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Mon Nov 14 15:49:06 2022 -0700
+
+    Added comments and added all of the panels to the main Jframe.
+
+commit 53cbb1a5c56521d3791060835ce82dd441900d99
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Mon Nov 14 15:35:01 2022 -0700
+
+    Added players and room labels to the board drawing
+
+commit d97897ae09d2386dda08f89108e20d7743f077aa
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Mon Nov 14 15:10:48 2022 -0700
+
+    Wrote draw method for board cells.
+
+commit 5da31e321d4f20ee1d0313b19efc2b1e3b88fe3c
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Mon Nov 14 14:00:58 2022 -0700
+
+    Fixed an issue with panel sizing.
+
+commit 85e0f3bfcec9d90865ff6a69609ac7d2647c1ae4
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Mon Nov 14 13:58:15 2022 -0700
+
+    changed readme and gitlog
 
 commit 5789aad35a26aa384e6e605a91e880347851deee (HEAD -> master)
 Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>

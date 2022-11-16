@@ -84,6 +84,12 @@ public abstract class Player {
 		return seen;
 	}
 	
+	//Updates the players position
+	public void setPosition(int r, int c) {
+		row = r;
+		col = c;
+	}
+	
 	//methods for testing
 	public void setHand(Card room, Card person, Card weapon) {
 		hand.clear();

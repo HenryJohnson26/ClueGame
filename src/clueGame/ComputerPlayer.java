@@ -3,6 +3,7 @@ package clueGame;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 
 public class ComputerPlayer extends Player {
 	
@@ -37,7 +38,7 @@ public class ComputerPlayer extends Player {
 	}
 	
 	//Chooses the target cell that the computer player will move to
-	public BoardCell selectTarget(ArrayList<BoardCell> targetList, Board board) {
+	public BoardCell selectTarget(Set<BoardCell> targetList, Board board) {
 		ArrayList<BoardCell> possibleLocations = new ArrayList<BoardCell>();
 		ArrayList<BoardCell> possibleRooms = new ArrayList<BoardCell>();
 		for(BoardCell b : targetList) {

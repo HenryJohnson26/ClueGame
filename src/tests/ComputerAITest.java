@@ -3,6 +3,8 @@ package tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -50,7 +52,7 @@ class ComputerAITest {
 	
 	@Test
 	void testComputerMovement() {
-		ArrayList<BoardCell> targets = new ArrayList<BoardCell>();
+		Set<BoardCell> targets = new HashSet<BoardCell>();
 		BoardCell walkway1 = new BoardCell(2, 2, 'W');
 		BoardCell walkway2 = new BoardCell(2, 3, 'W');
 		BoardCell room = board.getRoomMap().get('L').getCenterCell();

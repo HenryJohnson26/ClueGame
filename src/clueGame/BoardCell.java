@@ -95,12 +95,17 @@ public class BoardCell {
 	}	
 	
 	//draws the boardCell
-	public void drawCell(BoardCell cell, Set<BoardCell> targets, Graphics g) {
+	public void drawCell(BoardCell cell, Set<BoardCell> targets, Graphics g, Board board) {
 		if(cell.getInitial() == 'W') {
 			g.setColor(Color.black);
 			g.fillRect(CELL_WIDTH * col, CELL_WIDTH * row, CELL_WIDTH, CELL_WIDTH);
-			if(targets.contains(cell)) {
-				g.setColor(Color.cyan);
+			if(board.getPlayers().get(board.getCurrentPlayer()) == board.getHumanPlayer()) {
+				if(targets.contains(cell)) {
+					g.setColor(Color.cyan);
+				}
+				else {
+					g.setColor(Color.yellow);
+				}
 			}
 			else {
 				g.setColor(Color.yellow);
@@ -123,7 +128,9 @@ public class BoardCell {
 			
 			//sets all cells of a room to the appropriate color
 			if(roomChars.contains(cell.getInitial())) {
-				g.setColor(Color.cyan);
+				if(board.getPlayers().get(board.getCurrentPlayer()) == board.getHumanPlayer() ) {
+					g.setColor(Color.cyan);
+				}
 			}
 			else {
 				g.setColor(Color.gray);

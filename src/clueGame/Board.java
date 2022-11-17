@@ -338,7 +338,7 @@ public class Board extends JPanel {
    		 
    		 for(int i = 0; i < numRows; i++) {
    			 for(int j = 0; j < numCols; j++) {
-   				 grid[i][j].drawCell(grid[i][j], targets, g);
+   				 grid[i][j].drawCell(grid[i][j], targets, g, this);
    			 }
    		 }
    		 
@@ -407,7 +407,12 @@ public class Board extends JPanel {
 //		@Override
 //		public void mouseExited(MouseEvent e) {}	 
 //  	 }
-//   	 
+//   
+   	 //method to set the finishTurn boolean
+   	 public void setFinishTurn(boolean turn) {
+   		 finishTurn = turn;
+   	 }
+   	 
    	 //method to get the human player
    	 public Player getHumanPlayer() {
    		 return humanPlayer;

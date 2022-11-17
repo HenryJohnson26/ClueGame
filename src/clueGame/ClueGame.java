@@ -11,10 +11,8 @@ import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
 	public static Board board = Board.getInstance();
-	private Random random = new Random();
 	private GameControlPanel bottom;
 	private KnownCardsPanel side;
-	private boolean finishTurn = false;
 	
 	//constructor that creates the frame and adds all of the panels to the main frame
 	public ClueGame() {
@@ -34,26 +32,33 @@ public class ClueGame extends JFrame {
 		addMouseListener(new boardListener());
 	}
 	
+	 //
 	 private class boardListener implements MouseListener{
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int counter = 0;
-				int x = (int)e.getPoint().getX() / BoardCell.CELL_WIDTH;
-				int y = (int)e.getPoint().getY() / BoardCell.CELL_WIDTH;
-				for(BoardCell c : board.getTargets()) {
-					if(c.getRow() != y && c.getCol() != x) {
-						counter++;
+				if(board.getPlayers().get(board.getCurrentPlayer()) == board.getHumanPlayer()) {
+					int counter = 0;
+					
+					double x1 = (e.getPoint().getX() / BoardCell.CELL_WIDTH) - 1;
+					double y1 = (e.getPoint().getY() / BoardCell.CELL_WIDTH) - 2;
+					int x = (int)Math.round(x1);
+					int y = (int)Math.round(y1);
+					
+					for(BoardCell c : board.getTargets()) {
+						if(c.getRow() != y && c.getCol() != x) {
+							counter++;
+						}
+						else {
+							board.getPlayers().get(board.getCurrentPlayer()).setPosition(y, x);
+							board.setFinishTurn(true);
+						}
 					}
-					else {
-						board.getPlayers().get(board.getCurrentPlayer()).setPosition(y, x);
-						finishTurn = true;
-					}
-					if(counter == board.getTargets().size()-1) {
+					if(counter == board.getTargets().size()) {
 						JOptionPane.showMessageDialog(null,  "This is not a target.", "Invalid Target", JOptionPane.INFORMATION_MESSAGE);
 					}
+					board.getTargets().clear();
+					repaint();
 				}
-				repaint();
 			}
 
 			//Empty definitions for unused event methods

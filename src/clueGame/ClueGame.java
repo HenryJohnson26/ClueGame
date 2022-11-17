@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
@@ -21,6 +22,11 @@ public class ClueGame extends JFrame {
 		board.initialize();
 		setSize(900, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
+		//mainPanel.add(testBoard, BorderLayout.CENTER);
+		KnownCardsPanel side = new KnownCardsPanel();
+		GameControlPanel bottom = new GameControlPanel();
+		//add(mainPanel);
+		setVisible(true);
 		add(board, BorderLayout.CENTER);
 		side = new KnownCardsPanel();
 		bottom = new GameControlPanel();

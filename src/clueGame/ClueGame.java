@@ -40,14 +40,13 @@ public class ClueGame extends JFrame {
 	
 	 //boardListener class that tells the board what to do when the human player clicks on the board
 	 //Known issues:
-	 //If player clicks on an invalid target, player can no longer move after closing the dialogue box
 	 //Issue with rooms changing to undesired colors when computer players move inside them
 	 //Clicking on any cell that is a part of a target room will not move the player to the room center
 	 private class boardListener implements MouseListener{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//Ensures that it is the human players turn
-				if(board.getPlayers().get(board.getCurrentPlayer()) == board.getHumanPlayer()) {
+				if(board.getPlayers().get(board.getCurrentPlayer()) == board.getHumanPlayer() && board.getTurn() == false) {
 					int counter = 0;
 					//variables to find the position of the mouse click
 					double x1 = (e.getPoint().getX() / BoardCell.CELL_WIDTH) - 1;
@@ -70,8 +69,10 @@ public class ClueGame extends JFrame {
 						JOptionPane.showMessageDialog(null,  "This is not a target.", "Invalid Target", JOptionPane.INFORMATION_MESSAGE);
 					}
 					//Clear target list and repaint the board
-					board.getTargets().clear();
-					repaint();
+					if(board.getTurn()) {
+						board.getTargets().clear();
+						repaint();
+					}
 				}
 			}
 

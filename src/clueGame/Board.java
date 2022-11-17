@@ -394,16 +394,6 @@ public class Board extends JPanel {
   	   		 repaint();
   		 } 
    	 }
-
-   	 //method to set the finishTurn boolean
-   	 public void setFinishTurn(boolean turn) {
-   		 finishTurn = turn;
-   	 }
-   	 
-   	 //method to get the human player
-   	 public Player getHumanPlayer() {
-   		 return humanPlayer;
-   	 }
      
    	 //method for testing accusations
    	 public void setSolution(Solution theAnswer) {
@@ -426,6 +416,18 @@ public class Board extends JPanel {
      }
      
      //other getters and setters
+   	 public Player getHumanPlayer() {
+   		 return humanPlayer;
+   	 }
+   	 
+     public void setFinishTurn(boolean turn) {
+   		 finishTurn = turn;
+   	 }
+   	 
+   	 public boolean getTurn() {
+   		 return finishTurn;
+   	 }
+   	 
      public int getRoll() {
     	 return roll;
      }

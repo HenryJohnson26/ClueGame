@@ -37,7 +37,6 @@ public class Board extends JPanel {
 	 private Solution solution;
 	 private Random random = new Random();
 	 private Player humanPlayer;
-	 
 	 private boolean finishTurn = true;
 	 private int currentPlayer = -1;
 	 private int roll;
@@ -52,6 +51,7 @@ public class Board extends JPanel {
      public static Board getInstance() {
             return theInstance;
      }
+     
      //initialize the board (since we are using singleton pattern)
      public void initialize() {
     	 //handles exceptions
@@ -84,6 +84,8 @@ public class Board extends JPanel {
     	 
     	 deal();
      }
+     
+    //makes the grid of BoardCells for the game board
 	private void makeGrid() {
 		for(int row = 0; row < cells.size(); row++) {
     		 for(int col = 0; col < cells.get(row).size(); col++) {
@@ -94,6 +96,7 @@ public class Board extends JPanel {
     			 if(cells.get(row).get(col).length() == 2) {
     				 String[] parse = cells.get(row).get(col).split("");
     				 switch(parse[1]) {
+    				 //cell is a door
     				 case "^":
     					 grid[row][col].setDoorDirection(DoorDirection.UP);
     					 grid[row][col].setDoor();
@@ -110,14 +113,17 @@ public class Board extends JPanel {
     					 grid[row][col].setDoorDirection(DoorDirection.DOWN);
     					 grid[row][col].setDoor();
     					 break;
+    				 //cell is a labelCell of a room
     				 case "#":
     					 grid[row][col].setLabel();
     					 roomMap.get(parse[0].charAt(0)).setLabelCell(grid[row][col]);
     					 break;
+    				 //cell is a centerCell of a room
     				 case "*":
     					 grid[row][col].setRoomCenter();
     					 roomMap.get(parse[0].charAt(0)).setCenterCell(grid[row][col]);
     					 break;
+    				 //cell is a secret passage
     				 default:
     					 grid[row][col].setSecretPassage(parse[1].charAt(0));
     					 break;
@@ -170,6 +176,8 @@ public class Board extends JPanel {
     	 }
     	 in.close();
      }
+     
+    //helper method that creates a room object and room card
 	private void makeRoomObjects(String[] parse) throws BadConfigFormatException, FileNotFoundException {
 		Character label;
 		if(parse[2].length() != 1 || parse.length != 3) {
@@ -187,6 +195,8 @@ public class Board extends JPanel {
 			}
 		 }
 	}
+	
+	//helper method that creates a weapon card
 	private void makeWeaponObject(String[] parse) throws BadConfigFormatException, FileNotFoundException {
 		//throws if it has the wrong number of parses
 		if(parse.length!=2) {
@@ -199,6 +209,8 @@ public class Board extends JPanel {
 			deck.add(card);
 		}
 	}
+	
+	//helper method that creates a player object and player card
 	private void makePlayerObject(String[] parse) throws BadConfigFormatException, FileNotFoundException {
 		if(parse.length!=6) {
 			throw new BadConfigFormatException("Incorrect player format on file " + setupConfigFile);
@@ -336,16 +348,19 @@ public class Board extends JPanel {
    	 public void paintComponent(Graphics g) {
    		 super.paintComponent(g);
    		 
+   		 //draws cells
    		 for(int i = 0; i < numRows; i++) {
    			 for(int j = 0; j < numCols; j++) {
    				 grid[i][j].drawCell(grid[i][j], targets, g, this);
    			 }
    		 }
    		 
+   		 //draws doorways
    		 for(BoardCell cell : BoardCell.doorways) {
    			 cell.drawDoorways(cell, g);
    		 }
    		 
+   		 //draws room labels
    		 for(Map.Entry<Character, Room> rooms : roomMap.entrySet()) {
    			 if(rooms.getValue().getLabelCell() != null) {
    				BoardCell cell = rooms.getValue().getLabelCell();
@@ -354,11 +369,13 @@ public class Board extends JPanel {
    			 }
    		 }
    		 
+   		 //draws players
    		 for(Player player : players) {
    			 player.drawPlayer(g);
    		 }
    	 }
    	 
+   	 //helper method for the actionListener in GameControlPanel that determines what to do when NEXT button is pressed
    	 public void newTurn() {
   		 if(finishTurn) {
   			 currentPlayer = (currentPlayer+1) % players.size();
@@ -377,37 +394,7 @@ public class Board extends JPanel {
   	   		 repaint();
   		 } 
    	 }
-  	 
-  	 
-//  	 private class boardListener implements MouseListener{
-//
-//		@Override
-//		public void mouseClicked(MouseEvent e) {
-//			int x = (int)e.getPoint().getX() / BoardCell.CELL_WIDTH;
-//			int y = (int)e.getPoint().getY() / BoardCell.CELL_WIDTH;
-//			for(BoardCell c : targets) {
-//				if(c.getRow() != y && c.getCol() != x) {
-//					JOptionPane.showMessageDialog(null,  "This is not a target.", "Invalid Target", JOptionPane.INFORMATION_MESSAGE);
-//				}
-//				else {
-//					players.get(currentPlayer).setPosition(y, x);
-//					finishTurn = true;
-//				}
-//			}
-//			repaint();
-//		}
-//
-//		//Empty definitions for unused event methods
-//		@Override
-//		public void mousePressed(MouseEvent e) {}
-//		@Override
-//		public void mouseReleased(MouseEvent e) {}
-//		@Override
-//		public void mouseEntered(MouseEvent e) {}
-//		@Override
-//		public void mouseExited(MouseEvent e) {}	 
-//  	 }
-//   
+
    	 //method to set the finishTurn boolean
    	 public void setFinishTurn(boolean turn) {
    		 finishTurn = turn;

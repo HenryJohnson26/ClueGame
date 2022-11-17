@@ -96,9 +96,12 @@ public class BoardCell {
 	
 	//draws the boardCell
 	public void drawCell(BoardCell cell, Set<BoardCell> targets, Graphics g, Board board) {
+		//sets walkway cells to the appropriate color
 		if(cell.getInitial() == 'W') {
+			//draws the cell border
 			g.setColor(Color.black);
 			g.fillRect(CELL_WIDTH * col, CELL_WIDTH * row, CELL_WIDTH, CELL_WIDTH);
+			//determines which cells need to be highlighted for human player movement
 			if(board.getPlayers().get(board.getCurrentPlayer()) == board.getHumanPlayer()) {
 				if(targets.contains(cell)) {
 					g.setColor(Color.cyan);

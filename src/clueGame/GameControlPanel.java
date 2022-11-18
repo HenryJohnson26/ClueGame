@@ -18,7 +18,6 @@ import javax.swing.border.TitledBorder;
 public class GameControlPanel extends JPanel implements ActionListener {
 	private static JPanel topPanel;
 	private static JPanel bottomPanel;
-
 	private static JTextField theGuess;
 	private static JTextField theGuessResult;
 	private static JTextField playerTurn;
@@ -72,6 +71,7 @@ public class GameControlPanel extends JPanel implements ActionListener {
 		setTurn();
 	}
 	
+	//method to determine what happens when the next button is pressed
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ClueGame.board.newTurn();

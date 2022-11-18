@@ -61,6 +61,7 @@ public abstract class Player {
 		g.fillOval(col*21, row*21, 21, 21);
 	}
 	
+	//Getters and setters
 	public ArrayList<Card> getHand() {
 		return hand;
 	}	

@@ -12,10 +12,8 @@ import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
 	public static Board board = Board.getInstance();
-	private Random random = new Random();
 	private GameControlPanel bottom;
 	private KnownCardsPanel side;
-	private boolean finishTurn = false;
 	
 	//constructor that creates the frame and adds all of the panels to the main frame
 	public ClueGame() {
@@ -40,26 +38,42 @@ public class ClueGame extends JFrame {
 		addMouseListener(new boardListener());
 	}
 	
+	 //boardListener class that tells the board what to do when the human player clicks on the board
+	 //Known issues:
+	 //Issue with rooms changing to undesired colors when computer players move inside them
+	 //Clicking on any cell that is a part of a target room will not move the player to the room center
 	 private class boardListener implements MouseListener{
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int counter = 0;
-				int x = (int)(e.getPoint().getX() / BoardCell.CELL_WIDTH)-1;
-				int y = (int)(e.getPoint().getY() / BoardCell.CELL_WIDTH)-1;
-				for(BoardCell c : board.getTargets()) {
-					if(c.getRow() != y && c.getCol() != x) {
-						counter++;
+				//Ensures that it is the human players turn
+				if(board.getPlayers().get(board.getCurrentPlayer()) == board.getHumanPlayer() && board.getTurn() == false) {
+					int counter = 0;
+					//variables to find the position of the mouse click
+					double x1 = (e.getPoint().getX() / BoardCell.CELL_WIDTH) - 1;
+					double y1 = (e.getPoint().getY() / BoardCell.CELL_WIDTH) - 2;
+					int x = (int)Math.round(x1);
+					int y = (int)Math.round(y1);
+					
+					//Determines if the clicked on cell is in the target list
+					for(BoardCell c : board.getTargets()) {
+						if(c.getRow() != y || c.getCol() != x) {
+							counter++;
+						}
+						else {
+							board.getPlayers().get(board.getCurrentPlayer()).setPosition(y, x);
+							board.setFinishTurn(true);
+						}
 					}
-					else {
-						board.getPlayers().get(board.getCurrentPlayer()).setPosition(y, x);
-						finishTurn = true;
-					}
-					if(counter == board.getTargets().size()-1) {
+					//Error message if clicked on cell is not in the target list
+					if(counter == board.getTargets().size()) {
 						JOptionPane.showMessageDialog(null,  "This is not a target.", "Invalid Target", JOptionPane.INFORMATION_MESSAGE);
 					}
+					//Clear target list and repaint the board
+					if(board.getTurn()) {
+						board.getTargets().clear();
+						repaint();
+					}
 				}
-				repaint();
 			}
 
 			//Empty definitions for unused event methods
@@ -73,7 +87,7 @@ public class ClueGame extends JFrame {
 			public void mouseExited(MouseEvent e) {}	 
 	  	 }
 	   	 
-	
+	//main method to start the game
 	public static void main(String[] args) {
 		ClueGame game = new ClueGame();
 		game.setVisible(true);

@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -134,12 +135,21 @@ public class BoardCell {
 				if(board.getPlayers().get(board.getCurrentPlayer()) == board.getHumanPlayer() ) {
 					g.setColor(Color.cyan);
 				}
+				else {
+					g.setColor(Color.gray);
+				}
 			}
 			else {
 				g.setColor(Color.gray);
 			}
 			g.fillRect(CELL_WIDTH * col, CELL_WIDTH * row, CELL_WIDTH, CELL_WIDTH);
-		}		
+		}	
+		
+		if(isSecretPassage) {
+			g.setColor(Color.red);
+			g.setFont(new Font("TimesRoman", Font.BOLD, 15));
+			g.drawString("S", col*CELL_WIDTH+6, row*CELL_WIDTH+(CELL_WIDTH-1)-6);
+		}
 		
 		if(cell.isDoorway()) {
 			doorways.add(cell);
@@ -170,6 +180,7 @@ public class BoardCell {
 	//Draws the room labels for each room
 	public void drawRoomLabel(BoardCell cell, Graphics g, String roomLabel) {
 		g.setColor(Color.blue);
+		g.setFont(new Font("TimesRoman", Font.BOLD, 12));
 		g.drawString(roomLabel, col*CELL_WIDTH, row*CELL_WIDTH+(CELL_WIDTH-1));
 	}
 	

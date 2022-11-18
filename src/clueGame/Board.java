@@ -390,7 +390,6 @@ public class Board extends JPanel {
   	   			players.get(currentPlayer).setPosition(cell.getRow(), cell.getCol());
   	   			repaint();
   	   		 }
-  	   		 //targets.clear();
   	   		 repaint();
   		 } 
    	 }

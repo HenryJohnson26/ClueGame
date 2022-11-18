@@ -39,9 +39,6 @@ public class ClueGame extends JFrame {
 	}
 	
 	 //boardListener class that tells the board what to do when the human player clicks on the board
-	 //Known issues:
-	 //Issue with rooms changing to undesired colors when computer players move inside them
-	 //Clicking on any cell that is a part of a target room will not move the player to the room center
 	 private class boardListener implements MouseListener{
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -51,17 +48,23 @@ public class ClueGame extends JFrame {
 					//variables to find the position of the mouse click
 					double x1 = (e.getPoint().getX() / BoardCell.CELL_WIDTH) - 1;
 					double y1 = (e.getPoint().getY() / BoardCell.CELL_WIDTH) - 2;
-					int x = (int)Math.round(x1);
-					int y = (int)Math.round(y1);
+					int col = (int)Math.round(x1);
+					int row = (int)Math.round(y1);
 					
 					//Determines if the clicked on cell is in the target list
 					for(BoardCell c : board.getTargets()) {
-						if(c.getRow() != y || c.getCol() != x) {
+						if(c.getRow() != row || c.getCol() != col) {
 							counter++;
 						}
 						else {
-							board.getPlayers().get(board.getCurrentPlayer()).setPosition(y, x);
+							board.getPlayers().get(board.getCurrentPlayer()).setPosition(row, col);
 							board.setFinishTurn(true);
+						}
+						//Enables any cell of a room to be a valid target if clicked on
+						if(board.getCell(row, col).getInitial() == c.getInitial() && c.isRoom()) {
+							board.getPlayers().get(board.getCurrentPlayer()).setPosition(c.getRow(), c.getCol());
+							board.setFinishTurn(true);
+							counter--;
 						}
 					}
 					//Error message if clicked on cell is not in the target list
@@ -85,7 +88,7 @@ public class ClueGame extends JFrame {
 			public void mouseEntered(MouseEvent e) {}
 			@Override
 			public void mouseExited(MouseEvent e) {}	 
-	  	 }
+	}
 	   	 
 	//main method to start the game
 	public static void main(String[] args) {

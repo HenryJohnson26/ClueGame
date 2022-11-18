@@ -379,7 +379,7 @@ public class Board extends JPanel {
    	 public void newTurn() {
   		 if(finishTurn) {
   			 currentPlayer = (currentPlayer+1) % players.size();
-  	   		 roll = random.nextInt(5) + 1;
+  	   		 roll = random.nextInt(6) + 1;
   	   		 calcTargets(getCell(players.get(currentPlayer).getPlayerRow(), players.get(currentPlayer).getPlayerCol()), roll);
   	   		 if(players.get(currentPlayer).equals(humanPlayer)) {	 
   	   			 repaint();

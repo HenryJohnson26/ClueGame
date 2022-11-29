@@ -14,6 +14,7 @@ public class ClueGame extends JFrame {
 	public static Board board = Board.getInstance();
 	private GameControlPanel bottom;
 	private KnownCardsPanel side;
+	private SuggestionPanel suggestionPanel;
 	
 	//constructor that creates the frame and adds all of the panels to the main frame
 	public ClueGame() {
@@ -65,6 +66,16 @@ public class ClueGame extends JFrame {
 							board.getPlayers().get(board.getCurrentPlayer()).setPosition(c.getRow(), c.getCol());
 							board.setFinishTurn(true);
 							counter--;
+							//call the suggestion window
+							suggestionPanel = new SuggestionPanel();
+							suggestionPanel.setRoom(board.getRoom(board.getCell(row, col)).getName());
+							for(Player p : board.getPlayers()) {
+								suggestionPanel.addPerson(p.getPlayerName());
+							}
+							for(Card wcard : board.getWeaponCards()) {
+								suggestionPanel.addWeapon(wcard.getName());
+							}
+							suggestionPanel.setVisible(true);
 						}
 					}
 					//Error message if clicked on cell is not in the target list

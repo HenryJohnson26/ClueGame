@@ -381,10 +381,12 @@ public class Board extends JPanel {
   			 currentPlayer = (currentPlayer+1) % players.size();
   	   		 roll = random.nextInt(6) + 1;
   	   		 calcTargets(getCell(players.get(currentPlayer).getPlayerRow(), players.get(currentPlayer).getPlayerCol()), roll);
+  	   		 //current turn is the human player
   	   		 if(players.get(currentPlayer).equals(humanPlayer)) {	 
   	   			 repaint();
   	   			 finishTurn = false;
   	   		 }
+  	   		 //Current turn is a computer player
   	   		 else {
   	   			BoardCell cell = ((ComputerPlayer)players.get(currentPlayer)).selectTarget(targets, this);
   	   			players.get(currentPlayer).setPosition(cell.getRow(), cell.getCol());

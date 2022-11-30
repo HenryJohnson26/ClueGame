@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class GameControlPanel extends JPanel implements ActionListener {
+public class GameControlPanel extends JPanel {
 	private static JPanel topPanel;
 	private static JPanel bottomPanel;
 	private static JTextField theGuess;
@@ -49,10 +49,15 @@ public class GameControlPanel extends JPanel implements ActionListener {
 		topRight.add(dieRoll);
 		topPanel.add(topLeft, BorderLayout.WEST);
 		topPanel.add(topRight, BorderLayout.EAST);
+		
+		//Creates the next and accusation buttons and adds action listeners to them
 		JButton next = new JButton("NEXT!");
-		next.addActionListener(this);
-		topPanel.add(new JButton("Make Accusation"));
+		JButton accusation = new JButton("Make Accusation");
+		next.addActionListener(new nextListener());
+		accusation.addActionListener(new accusationListener());
+		topPanel.add(accusation);
 		topPanel.add(next);
+		
 		bottomLeft.add(theGuess, BorderLayout.CENTER);
 		bottomLeft.setBorder(new TitledBorder(new EtchedBorder(), "Guess"));
 		bottomRight.setBorder(new TitledBorder(new EtchedBorder(), "Guess Result"));
@@ -71,11 +76,22 @@ public class GameControlPanel extends JPanel implements ActionListener {
 		setTurn();
 	}
 	
-	//method to determine what happens when the next button is pressed
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		ClueGame.board.newTurn();
-		setTurn();
+	//button listener to determine what happens when the next button is pressed
+	private class nextListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			ClueGame.board.newTurn();
+			setTurn();	
+		}	
+	}
+	
+	//button listener to make an accusation
+	private class accusationListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 	
 	//sets text field to who's turn it is, the color that character and the roll

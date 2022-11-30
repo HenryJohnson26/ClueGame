@@ -25,8 +25,8 @@ public class SuggestionPanel extends JDialog{
 		
 		room = new JTextField();
 		room.setEditable(false);
-		person = new JComboBox();
-		weapon = new JComboBox();
+		person = new JComboBox<String>();
+		weapon = new JComboBox<String>();
 		submit = new JButton("Submit");
 		close = new JButton("Cancel");
 		
@@ -58,7 +58,6 @@ public class SuggestionPanel extends JDialog{
 
 
 	private class SubmitListener implements ActionListener{
-	
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Card roomCard = new Card("");
@@ -72,12 +71,11 @@ public class SuggestionPanel extends JDialog{
 		
 	}
 	
+	//Will close the dialog box if the cancel button is clicked
 	private class CancelListener implements ActionListener{
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
+			System.exit(0);		
 		}
 	}
 }

@@ -1,5 +1,68 @@
-I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 11/14/2022.
-I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 11/14/2022.
+I, Henry Johnson, certify that I, Henry Johnson participated equitably in the creation of this assignment ClueGame, dated 11/18/2022.
+I, Isaiah Stene, certify that I, Isaiah Stene participated equitably in the creation of this assignment ClueGame, dated 11/18/2022.
+
+commit 464d757ba57ea02836e9ca03b92aa7dc4a8994a7 (HEAD -> master, origin/master)
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Fri Nov 18 14:20:44 2022 -0700
+
+    Fixed some errors with the board displaying correctly.
+
+commit 0e444d488505ec7ca34029b851466c4c004b4c4d
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Thu Nov 17 14:36:30 2022 -0700
+
+    Fixed an issue that was allowing the human player to move anywhere on the board. Fixed an issue that was not allowing the human player to move after choosing an incorrect target.
+
+commit adf375f1d7443feebd22773e3e087ad34e48010e
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Thu Nov 17 14:21:00 2022 -0700
+
+    Added comments
+
+commit 3efdec09fdd90daf7de5a0e5b143fadf93274d7d
+Merge: 819f53b d32ed61
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Thu Nov 17 13:47:36 2022 -0700
+
+    Merge branch 'master' of https://github.com/HenryJohnson26/ClueGame
+
+commit 819f53b77350e955a1b1bd59aa69365ba560ddbc
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Thu Nov 17 13:44:53 2022 -0700
+
+    Fixed a few issues with human player movement.
+
+commit d32ed612b9799e2a2632e3cb3cd2b2a3afc087fd
+Merge: e0c6892 79df7c8
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Wed Nov 16 16:14:43 2022 -0700
+
+    attempted to fix player movement bug
+
+commit e0c6892633414f53fa01ca84f908f05da801fff6
+Merge: c24642e 4866e1a
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Wed Nov 16 16:03:45 2022 -0700
+
+    minor changes made
+
+commit 79df7c8b2cd74f847d01afd5d3fbf193e50f65e7
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Nov 16 16:02:27 2022 -0700
+
+    Wrote button listener and mouse listener to implement next button and player movement.
+
+commit c24642ec2cd301e9ebf5b90e10a3dbec1e51c1d2
+Author: HenryJohnson26 <108373639+HenryJohnson26@users.noreply.github.com>
+Date:   Wed Nov 16 14:01:43 2022 -0700
+
+    Changed formatting for gui
+
+commit 4866e1adbc820ac61cde7e227fa053e57aff2d4f
+Author: Isaiah Stene <istene@mines.edu>
+Date:   Wed Nov 16 14:00:40 2022 -0700
+
+    Added opening dialogue box
 
 commit 25c57882905f9e5a3f6e94c410a22a82051317e4 (HEAD -> master, origin/master)
 Author: Isaiah Stene <istene@mines.edu>

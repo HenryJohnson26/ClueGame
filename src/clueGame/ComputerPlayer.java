@@ -18,13 +18,13 @@ public class ComputerPlayer extends Player {
 		Card r = new Card("");
 		//Chooses a weapon card
 		for(Card c : board.getWeaponCards()) {
-			if (!hand.contains(c) || !seen.contains(c)) {
+			if (!hand.contains(c) && !seen.contains(c)) {
 				possibleWeapons.add(c);
 			}
 		}
 		//Chooses a player card
 		for(Card p : board.getPlayerCards()) {
-			if (!hand.contains(p) || !seen.contains(p)) {
+			if (!hand.contains(p) && !seen.contains(p)) {
 				possiblePlayers.add(p);
 			}
 		}

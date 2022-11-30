@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -376,7 +377,7 @@ public class Board extends JPanel {
    	 }
    	 
    	 //helper method for the actionListener in GameControlPanel that determines what to do when NEXT button is pressed
-   	 public void newTurn() {
+   	 public void newTurn(GameControlPanel gameControl) {
   		 if(finishTurn) {
   			 currentPlayer = (currentPlayer+1) % players.size();
   	   		 roll = random.nextInt(6) + 1;
@@ -389,7 +390,21 @@ public class Board extends JPanel {
   	   		 //Current turn is a computer player
   	   		 else {
   	   			BoardCell cell = ((ComputerPlayer)players.get(currentPlayer)).selectTarget(targets, this);
+  	   			//creates a suggestion if the computers target is a room
   	   			players.get(currentPlayer).setPosition(cell.getRow(), cell.getCol());
+  	   			if(cell.isRoom()) {
+  	   				Solution suggestion = ((ComputerPlayer)players.get(currentPlayer)).createSuggestion(getRoom(cell), this);
+  	   			gameControl.setGuess(suggestion.getPersonSolution().getName()+", "+suggestion.getWeaponSolution().getName()+ ","+suggestion.getRoomSolution().getName());
+				Card result = ClueGame.board.handleSuggestion(ClueGame.board.getHumanPlayer(), suggestion.getRoomSolution(), suggestion.getPersonSolution(), suggestion.getWeaponSolution());
+				if(result!=null) {
+				gameControl.setGuessResult("Guess Disproven", ClueGame.board.playerHasCard(result).getPlayerColor());
+				//side.updatePanel(result, ClueGame.board.playerHasCard(result));
+				}
+				else {
+					gameControl.setGuessResult("No result", Color.gray);
+				}
+				
+  	   			}
   	   			repaint();
   	   		 }
   	   		 repaint();
@@ -425,6 +440,10 @@ public class Board extends JPanel {
      //returns the room based on the value of the cell
      public Room getRoom(BoardCell cell) {
     	 return roomMap.get(cell.getInitial());
+     }
+     
+     public boolean getFinishedTurn() {
+    	 return finishTurn;
      }
      
      //other getters and setters

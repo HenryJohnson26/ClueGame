@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
 	public static Board board = Board.getInstance();
-	private GameControlPanel bottom;
+	public GameControlPanel bottom;
 	private KnownCardsPanel side;
 	private SuggestionPanel suggestionPanel;
 	
@@ -210,5 +210,8 @@ public class ClueGame extends JFrame {
 				suggestionPanel.setVisible(false);		
 			}
 		}
+	}
+	public GameControlPanel getControlPanel() {
+		return bottom;
 	}
 }

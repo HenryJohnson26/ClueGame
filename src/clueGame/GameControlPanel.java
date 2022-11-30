@@ -106,12 +106,14 @@ public class GameControlPanel extends JPanel {
 	public void setGuess(String guess) {
 		theGuess.setSize(150, 20);
 		theGuess.setText(guess);
+		theGuess.setBackground(ClueGame.board.getPlayers().get(ClueGame.board.getCurrentPlayer()).getPlayerColor());
 	}
 	
 	//sets text field for 
-	public void setGuessResult(String result) {
+	public void setGuessResult(String result, Color color) {
 		theGuessResult.setSize(200,20);
 		theGuessResult.setText(result);
+		theGuessResult.setBackground(color);
 	}
 	
 	//main to test panel
@@ -133,8 +135,8 @@ public class GameControlPanel extends JPanel {
 		
 		// test filling in the data
 		//panel.setTurn(new ComputerPlayer("Col. Mustard", "Orange", 0, 0), 5);
-		panel.setGuess( "I have no guess!");
-		panel.setGuessResult( "So you have nothing?");
+//		panel.setGuess( "I have no guess!");
+//		panel.setGuessResult( "So you have nothing?");
 	}
 
 }

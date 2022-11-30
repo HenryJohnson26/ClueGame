@@ -1,13 +1,26 @@
 package clueGame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+//import clueGame.SuggestionPanel.CancelListener;
+//import clueGame.SuggestionPanel.SubmitListener;
+
 import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
@@ -24,8 +37,8 @@ public class ClueGame extends JFrame {
 		setSize(900, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
 		//mainPanel.add(testBoard, BorderLayout.CENTER);
-		KnownCardsPanel side = new KnownCardsPanel();
-		GameControlPanel bottom = new GameControlPanel();
+		side = new KnownCardsPanel();
+		bottom = new GameControlPanel();
 		//add(mainPanel);
 		setVisible(true);
 		add(board, BorderLayout.CENTER);
@@ -107,5 +120,95 @@ public class ClueGame extends JFrame {
 		game.setVisible(true);
 		JOptionPane.showMessageDialog(null,  "You are " + board.getHumanPlayer().getPlayerName() + 
 				". Can you find the solution before the Computer players?", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
+	}
+	private class SuggestionPanel extends JDialog{
+		private JTextField room;
+		private JComboBox<String> person;
+		private JComboBox<String> weapon;
+		private JButton submit;
+		private JButton close;
+		private String roomStr;
+
+		public SuggestionPanel() {
+			setTitle("Make a suggestion!");
+			setSize(300, 300);
+			setLayout(new GridLayout(4, 2));
+			
+			room = new JTextField();
+			room.setEditable(false);
+			person = new JComboBox<String>();
+			weapon = new JComboBox<String>();
+			submit = new JButton("Submit");
+			close = new JButton("Cancel");
+			
+			submit.addActionListener(new SubmitListener());
+			close.addActionListener(new CancelListener());
+			
+			add(new JLabel("Current room:"));
+			add(room);
+			add(new JLabel("Person: "));
+			add(person);
+			add(new JLabel("Weapon: "));
+			add(weapon);
+			add(submit);
+			add(close);
+		}
+		
+		public void setRoom(String room) {
+			this.room.setText(room);
+			roomStr = room;
+		}
+		
+		public void addPerson(String person) {
+			this.person.addItem(person);
+		}
+		
+		public void addWeapon(String Weapon) {
+			this.weapon.addItem(Weapon);
+		}
+
+
+		private class SubmitListener implements ActionListener{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Card roomCard = new Card("");
+				for(Card c : ClueGame.board.getRoomCards()) {
+					if(c.getName().equals(roomStr)) {
+						roomCard = c;
+					}
+				}
+				Card playerCard = new Card("");
+				for(Card c : ClueGame.board.getPlayerCards()) {
+					if(c.getName().equals(person.getSelectedItem())) {
+						playerCard = c;
+					}
+				}
+				Card weaponCard = new Card("");
+				for(Card c : ClueGame.board.getWeaponCards()) {
+					if(c.getName().equals(weapon.getSelectedItem())) {
+						weaponCard = c;
+					}
+				}
+				bottom.setGuess(playerCard.getName()+", "+weaponCard.getName()+ ","+roomStr);
+				Card result = ClueGame.board.handleSuggestion(ClueGame.board.getHumanPlayer(), roomCard, playerCard, weaponCard);
+				if(result!=null) {
+				bottom.setGuessResult(result.getName(), ClueGame.board.playerHasCard(result).getPlayerColor());
+				side.updatePanel(result, ClueGame.board.playerHasCard(result));
+				}
+				else {
+					bottom.setGuessResult("No result", Color.gray);
+				}
+				suggestionPanel.setVisible(false);	
+			}
+			
+		}
+		
+		//Will close the dialog box if the cancel button is clicked
+		private class CancelListener implements ActionListener{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				suggestionPanel.setVisible(false);		
+			}
+		}
 	}
 }

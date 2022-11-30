@@ -395,6 +395,17 @@ public class Board extends JPanel {
   	   		 repaint();
   		 } 
    	 }
+   	 
+   	 public Player playerHasCard(Card c) {
+   		 for(Player p : players) {
+   			 for(Card card : p.getHand()) {
+   				if(card.equals(c)) {
+   					return p;
+   				}
+   			 }
+   		 }
+   		 return null;
+   	 }
      
    	 //method for testing accusations
    	 public void setSolution(Solution theAnswer) {

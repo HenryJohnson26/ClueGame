@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -126,7 +127,7 @@ public class GameControlPanel extends JPanel {
 	
 	//sets text field for guesses
 	public void setGuess(String guess) {
-		theGuess.setSize(150, 20);
+		theGuess.setSize(250, 20);
 		theGuess.setText(guess);
 		theGuess.setBackground(ClueGame.board.getPlayers().get(ClueGame.board.getCurrentPlayer()).getPlayerColor());
 	}
@@ -146,7 +147,7 @@ public class GameControlPanel extends JPanel {
 		private String roomStr;
 
 		public AccusationPanel() {
-			setTitle("Make a suggestion!");
+			setTitle("Make an accusation!");
 			setSize(300, 300);
 			setLayout(new GridLayout(4, 2));
 			
@@ -185,8 +186,32 @@ public class GameControlPanel extends JPanel {
 		private class SubmitListener implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-			
+				Card playerCard = new Card("");
+			for(Card c : ClueGame.board.getPlayerCards()) {
+				if(c.getName().equals(person.getSelectedItem())) {
+					playerCard = c;
+				}
+			}
+			Card weaponCard = new Card("");
+			for(Card c : ClueGame.board.getWeaponCards()) {
+				if(c.getName().equals(weapon.getSelectedItem())) {
+					weaponCard = c;
+				}
+			}
+			Card roomCard = new Card("");
+			for(Card c : ClueGame.board.getRoomCards()) {
+				if(c.getName().equals(room.getSelectedItem())) {
+					roomCard = c;
+				}
+			}
+			Solution accusation = new Solution(roomCard, playerCard, weaponCard);
+			if(ClueGame.board.checkAccusation(accusation)) {
+				JOptionPane.showMessageDialog(null,  "You won!", "Chicken diner", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else {
+				JOptionPane.showMessageDialog(null,  "Sorry, not correct! You lose!", "Loser", JOptionPane.INFORMATION_MESSAGE);
+			}
+			System.exit(0);
 		}
 	}
 		//Will close the dialog box if the cancel button is clicked

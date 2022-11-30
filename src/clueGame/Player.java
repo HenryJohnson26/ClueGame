@@ -12,7 +12,9 @@ public abstract class Player {
 	protected ArrayList<Card> hand;
 	protected ArrayList<Card> seen;
 	protected Random rand = new Random();
-	
+	private boolean wasMoved = false;
+
+
 	public Player(String n, String color, int r, int col) {
 		name = n;
 		//turning string into color
@@ -87,8 +89,10 @@ public abstract class Player {
 	
 	//Updates the players position
 	public void setPosition(int r, int c) {
+		ClueGame.board.getCell(row, col).setOccupied(true);
 		row = r;
 		col = c;
+		ClueGame.board.getCell(r, c).setOccupied(true);
 	}
 	
 	//methods for testing
@@ -101,5 +105,13 @@ public abstract class Player {
 	
 	public void setSeen(Card card) {
 		seen.add(card);
+	}
+	
+	public boolean isWasMoved() {
+		return wasMoved;
+	}
+
+	public void setWasMoved(boolean wasMoved) {
+		this.wasMoved = wasMoved;
 	}
 }

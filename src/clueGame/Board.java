@@ -313,7 +313,10 @@ public class Board extends JPanel {
    	 public void calcTargets(BoardCell startCell, int pathlength) {
    		 targets.clear();
    		 _calcTargets(startCell, pathlength); 
+   		 if(!players.get(currentPlayer).isWasMoved()) {
    		 targets.remove(startCell);
+   		 }
+   		 players.get(currentPlayer).setWasMoved(false);
    	 }
    	 
    	 //deals cards to players
@@ -337,6 +340,13 @@ public class Board extends JPanel {
    	 
    	 //Handles suggestions made by players
    	 public Card handleSuggestion(Player p, Card room, Card person, Card weapon) {
+   		 for(Player player : players) {
+   			 if(player.getPlayerName().equals(person.getName())&&!p.getPlayerName().equals(person.getName())) {
+   				 player.setPosition(p.getPlayerRow(), p.getPlayerCol());
+   				 player.setWasMoved(true);
+   				 repaint();
+   			 }
+   		 }
    		 for(Player player : players) {
    			 if(player != p) {
    				 if(player.DisproveSuggestion(room, person, weapon) != null) return player.DisproveSuggestion(room, person, weapon);
@@ -389,18 +399,27 @@ public class Board extends JPanel {
   	   		 }
   	   		 //Current turn is a computer player
   	   		 else {
+  	   			 if(((ComputerPlayer)players.get(currentPlayer)).getHasSolution()) {
+  	   				 //If the computer player makes an accusation, we know they are correct
+  	   				 //because a computer can't suggest its own hand cards
+  	   				 //thus if the last suggestion returned no result, we know that that is the answer
+  					JOptionPane.showMessageDialog(null,  "Sorry, the computer won!", "Loser", JOptionPane.INFORMATION_MESSAGE);
+  					System.exit(0);
+  	   			 }
+  	   			 else {
   	   			BoardCell cell = ((ComputerPlayer)players.get(currentPlayer)).selectTarget(targets, this);
   	   			//creates a suggestion if the computers target is a room
   	   			players.get(currentPlayer).setPosition(cell.getRow(), cell.getCol());
   	   			if(cell.isRoom()) {
   	   				Solution suggestion = ((ComputerPlayer)players.get(currentPlayer)).createSuggestion(getRoom(cell), this);
   	   			gameControl.setGuess(suggestion.getPersonSolution().getName()+", "+suggestion.getWeaponSolution().getName()+ ","+suggestion.getRoomSolution().getName());
-				Card result = ClueGame.board.handleSuggestion(ClueGame.board.getHumanPlayer(), suggestion.getRoomSolution(), suggestion.getPersonSolution(), suggestion.getWeaponSolution());
+				Card result = handleSuggestion(players.get(currentPlayer), suggestion.getRoomSolution(), suggestion.getPersonSolution(), suggestion.getWeaponSolution());
 				if(result!=null) {
-				gameControl.setGuessResult("Guess Disproven", ClueGame.board.playerHasCard(result).getPlayerColor());
+				gameControl.setGuessResult("Guess Disproven", playerHasCard(result).getPlayerColor());
 				//side.updatePanel(result, ClueGame.board.playerHasCard(result));
 				}
 				else {
+					((ComputerPlayer)players.get(currentPlayer)).setHasSolution(true);
 					gameControl.setGuessResult("No result", Color.gray);
 				}
 				
@@ -408,6 +427,7 @@ public class Board extends JPanel {
   	   			repaint();
   	   		 }
   	   		 repaint();
+  	   		 }
   		 } 
    	 }
    	 

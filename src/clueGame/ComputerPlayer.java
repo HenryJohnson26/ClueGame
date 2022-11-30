@@ -7,6 +7,8 @@ import java.util.Set;
 
 public class ComputerPlayer extends Player {
 	
+	private boolean hasSolution = false;
+	
 	public ComputerPlayer(String n, String color, int r, int col) {
 		super(n, color, r, col);
 	}
@@ -57,4 +59,12 @@ public class ComputerPlayer extends Player {
 		return possibleRooms.get(rand.nextInt(possibleRooms.size()));
 	}
 	
+	public boolean getHasSolution() {
+		return hasSolution;
+	}
+
+	public void setHasSolution(boolean hasSolution) {
+		this.hasSolution = hasSolution;
+	}
+
 }

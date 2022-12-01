@@ -389,7 +389,10 @@ public class Board extends JPanel {
    	 //helper method for the actionListener in GameControlPanel that determines what to do when NEXT button is pressed
    	 public void newTurn(GameControlPanel gameControl) {
   		 if(finishTurn) {
-  			 currentPlayer = (currentPlayer+1) % players.size();
+  			 currentPlayer++;
+  			 if(currentPlayer > players.size() - 1) {
+  				 currentPlayer = 0;
+  			 }
   	   		 roll = random.nextInt(6) + 1;
   	   		 calcTargets(getCell(players.get(currentPlayer).getPlayerRow(), players.get(currentPlayer).getPlayerCol()), roll);
   	   		 //current turn is the human player
@@ -410,6 +413,7 @@ public class Board extends JPanel {
   	   			 }
   	   			 else {
   	   			BoardCell cell = ((ComputerPlayer)players.get(currentPlayer)).selectTarget(targets, this);
+  	   			if(cell != null) {
   	   			//creates a suggestion if the computers target is a room
   	   			players.get(currentPlayer).setPosition(cell.getRow(), cell.getCol());
   	   			if(cell.isRoom()) {
@@ -431,6 +435,7 @@ public class Board extends JPanel {
   	   		 repaint();
   	   		 }
   		 } 
+  		 }
    	 }
    	 
    	 public Player playerHasCard(Card c) {
@@ -531,4 +536,7 @@ public class Board extends JPanel {
     public Solution getSolution() {
 		return solution;
 	}
+    public void setCurrentPlayer(int p) {
+    	currentPlayer = p;
+    }
 }

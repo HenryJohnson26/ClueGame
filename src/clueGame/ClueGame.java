@@ -121,6 +121,8 @@ public class ClueGame extends JFrame {
 		JOptionPane.showMessageDialog(null,  "You are " + board.getHumanPlayer().getPlayerName() + 
 				". Can you find the solution before the Computer players?", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 	}
+	
+	//Creates the suggestion panel
 	private class SuggestionPanel extends JDialog{
 		private JTextField room;
 		private JComboBox<String> person;
@@ -167,7 +169,7 @@ public class ClueGame extends JFrame {
 			this.weapon.addItem(Weapon);
 		}
 
-
+		//Handles when a suggestion is submitted by the player
 		private class SubmitListener implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -399,6 +399,9 @@ public class Board extends JPanel {
   	   		 if(players.get(currentPlayer).equals(humanPlayer)) {	 
   	   			 repaint();
   	   			 finishTurn = false;
+  	   			 if(this.targets.isEmpty()) {
+  	   				 finishTurn = true;
+  	   			 }
   	   		 }
   	   		 //Current turn is a computer player
   	   		 else {

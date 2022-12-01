@@ -141,8 +141,6 @@ public class GameControlPanel extends JPanel {
 		theGuessResult.setText(result);
 		theGuessResult.setBackground(color);
 	}
-	
-	//creates the accusation panel
 	private class AccusationPanel extends JDialog{
 		private JComboBox<String> room;
 		private JComboBox<String> person;
@@ -187,7 +185,7 @@ public class GameControlPanel extends JPanel {
 			this.weapon.addItem(Weapon);
 		}
 
-		//Handles when the player submits and accusation 
+		//
 		private class SubmitListener implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {

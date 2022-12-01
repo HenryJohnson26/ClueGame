@@ -78,7 +78,7 @@ public class KnownCardsPanel extends JPanel{
 		mainPanel.add(roomPanel);
 		mainPanel.add(playerPanel);
 		mainPanel.add(weaponPanel);
-		mainPanel.setSize(250, 100);
+		mainPanel.setSize(750, 100);
 		
 		JPanel wholeFrame = new JPanel(new BorderLayout());
 		wholeFrame.setLayout(new GridLayout(1, 1));
@@ -145,6 +145,7 @@ public class KnownCardsPanel extends JPanel{
 		roomPanel.revalidate();
 		playerPanel.revalidate();
 		weaponPanel.revalidate();
+		mainPanel.revalidate();
 	}
 	
 	
@@ -219,6 +220,7 @@ public class KnownCardsPanel extends JPanel{
 		roomPanel.add(handRoomPanel);
 		roomPanel.add(seenRoomPanel);
 		roomPanel.revalidate();
+		mainPanel.revalidate();
 	}
 	
 	//Helper method to update panels
@@ -242,6 +244,8 @@ public class KnownCardsPanel extends JPanel{
 		}
 		playerPanel.add(handPlayerPanel);
 		playerPanel.add(seenPlayerPanel);
+		playerPanel.revalidate();
+		mainPanel.revalidate();
 	}	
 	
 	//Helper method to update panels
@@ -265,5 +269,7 @@ public class KnownCardsPanel extends JPanel{
 		}
 		weaponPanel.add(handWeaponPanel);
 		weaponPanel.add(seenWeaponPanel);
+		weaponPanel.revalidate();
+		mainPanel.revalidate();
 	}
 }

@@ -89,7 +89,7 @@ public abstract class Player {
 	
 	//Updates the players position
 	public void setPosition(int r, int c) {
-		ClueGame.board.getCell(row, col).setOccupied(true);
+		ClueGame.board.getCell(row, col).setOccupied(false);
 		row = r;
 		col = c;
 		ClueGame.board.getCell(r, c).setOccupied(true);

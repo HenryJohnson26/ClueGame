@@ -44,7 +44,7 @@ public class ClueGame extends JFrame {
 		add(board, BorderLayout.CENTER);
 		side = new KnownCardsPanel();
 		bottom = new GameControlPanel();
-		side.setSize(new Dimension(250, 1000));
+		side.setSize(new Dimension(250, 450));
 		bottom.setSize(new Dimension(900, 250));	
 		add(side, BorderLayout.EAST);
 		add(bottom, BorderLayout.SOUTH);

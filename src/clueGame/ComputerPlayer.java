@@ -41,9 +41,6 @@ public class ComputerPlayer extends Player {
 	
 	//Chooses the target cell that the computer player will move to
 	public BoardCell selectTarget(Set<BoardCell> targetList, Board board) {
-		if(targetList.size() == 0) {
-			return null;
-		}
 		ArrayList<BoardCell> possibleLocations = new ArrayList<BoardCell>();
 		ArrayList<BoardCell> possibleRooms = new ArrayList<BoardCell>();
 		for(BoardCell b : targetList) {
@@ -57,6 +54,9 @@ public class ComputerPlayer extends Player {
 			else {
 				possibleLocations.add(b);
 			}
+		}
+		if(possibleLocations.size() == 0) {
+			return null;
 		}
 		if(possibleRooms.size() == 0) return possibleLocations.get(rand.nextInt(possibleLocations.size()));
 		return possibleRooms.get(rand.nextInt(possibleRooms.size()));

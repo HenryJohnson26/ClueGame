@@ -403,7 +403,9 @@ public class Board extends JPanel {
   	   				 //If the computer player makes an accusation, we know they are correct
   	   				 //because a computer can't suggest its own hand cards
   	   				 //thus if the last suggestion returned no result, we know that that is the answer
-  					JOptionPane.showMessageDialog(null,  "Sorry, the computer won!", "Loser", JOptionPane.INFORMATION_MESSAGE);
+  					JOptionPane.showMessageDialog(null,  "Sorry, the computer won! The correct answer was "+ ClueGame.board.getSolution().getRoomSolution().getName() + ", " + 
+  							ClueGame.board.getSolution().getPersonSolution().getName() + ", " + 
+  							ClueGame.board.getSolution().getWeaponSolution().getName(), "Loser", JOptionPane.INFORMATION_MESSAGE);
   					System.exit(0);
   	   			 }
   	   			 else {

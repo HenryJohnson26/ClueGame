@@ -114,6 +114,9 @@ public class GameControlPanel extends JPanel {
 				}
 				accusationPanel.setVisible(true);
 			}
+			else {
+				JOptionPane.showMessageDialog(null,  "You can not make an accusation because it is not your turn.", "Error", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 	}
 	
@@ -206,10 +209,14 @@ public class GameControlPanel extends JPanel {
 			}
 			Solution accusation = new Solution(roomCard, playerCard, weaponCard);
 			if(ClueGame.board.checkAccusation(accusation)) {
-				JOptionPane.showMessageDialog(null,  "You won!", "Chicken diner", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,  "You won! The solution was " + ClueGame.board.getSolution().getRoomSolution().getName() + ", " + 
+						ClueGame.board.getSolution().getPersonSolution().getName() + ", " + 
+						ClueGame.board.getSolution().getWeaponSolution().getName(),"Chicken diner", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
-				JOptionPane.showMessageDialog(null,  "Sorry, not correct! You lose!", "Loser", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,  "Sorry, not correct! The correct solution was " + ClueGame.board.getSolution().getRoomSolution().getName() + ", " + 
+						ClueGame.board.getSolution().getPersonSolution().getName() + ", " + 
+						ClueGame.board.getSolution().getWeaponSolution().getName(), "Loser", JOptionPane.INFORMATION_MESSAGE);
 			}
 			System.exit(0);
 		}
@@ -221,28 +228,5 @@ public class GameControlPanel extends JPanel {
 				accusationPanel.setVisible(false);		
 			}
 		}
-	
-	//main to test panel
-//	public static void main(String[] args) {
-//		GameControlPanel panel = new GameControlPanel();  // create the panel
-//		JFrame frame = new JFrame();// create the frame 
-//		
-//		JPanel wholeFrame = new JPanel(new BorderLayout());
-//		wholeFrame.setLayout(new GridLayout(2, 0));
-//		wholeFrame.add(topPanel, BorderLayout.NORTH);
-//		wholeFrame.add(bottomPanel, BorderLayout.SOUTH);
-//		wholeFrame.revalidate();
-//		panel.add(wholeFrame);
-//		
-//		frame.setContentPane(panel); // put the panel in the frame
-//		frame.setSize(750, 180);  // size the frame
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
-//		frame.setVisible(true); // make it visible
-//		
-		// test filling in the data
-		//panel.setTurn(new ComputerPlayer("Col. Mustard", "Orange", 0, 0), 5);
-//		panel.setGuess( "I have no guess!");
-//		panel.setGuessResult( "So you have nothing?");
-//	}
 	}
 }
